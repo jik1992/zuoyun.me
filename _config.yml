@@ -87,7 +87,11 @@ fancybox: true
 # Specify the date when the site was setup
 since: 2018
 
-# Deployment
+social:
+  GitHub: your-github-url
+  Twitter: your-twitter-url
+
+  # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type:
