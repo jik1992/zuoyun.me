@@ -88,8 +88,8 @@ fancybox: true
 since: 2018
 
 social:
-  GitHub: your-github-url
-  Twitter: your-twitter-url
+  GitHub: https://github.com/jik1992/
+  Twitter: https://twitter.com/Jik1992
 
   # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
