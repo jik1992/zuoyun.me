@@ -1,4 +1,4 @@
-title: SteanLink+XboxOneS Wireless Controller  Guide
+title: SteanLink+XboxOneS Wireless Controller  Guide
 date: 2018/01/10 03:06:44
 categories:
 
