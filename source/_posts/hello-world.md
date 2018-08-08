@@ -1,37 +1,26 @@
-title: Hello World
+title: 博客迁移
 ---
-Welcome to [Hexo](http://hexo.io/)! This is your very first post. Check [documentation](http://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](http://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+这里把原来tryghost的blog全部迁移到hexo上面来了，新的方案使用github+travisCI+hexo。
+说一下整体过程
 
-## Quick Start
+# 原因
+1. tryghost版本太老，nodejs基于0.10.x的版本，dependence里面有很多包都有漏洞但是无法升级。
+2. 新版本和老版本数据库不兼容。
 
-### Create a new post
+# 过程
+## 迁移过程
+ 1. export tryghost backup.json
+ 2. 把json通过java解析，用fastjson，velocity 库转换成md模版
+ 3. import hexo，然后hexo clean ，hexo g集成
+## 部署过程
+ 1. github新建仓库zuoyun.me，设置blog-resouce 和master双分支
+ 2. 对master分支设置GitHub page 和 CNAME，域名重定向
+ 3. 对blog-resouce分支导入hexo和.travis.yml文件
+ 4. 生成github token在travis-ci里面配置对应的库，完成ci配置
+#后记 
+## travis.yml文件
 
-``` bash
-$ hexo new "My New Post"
 ```
 
-More info: [Writing](http://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
 ```
-
-More info: [Server](http://hexo.io/docs/server.html)
-
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](http://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](http://hexo.io/docs/deployment.html)
+## 引用
