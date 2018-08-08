@@ -21,12 +21,12 @@ after_script:
   - git config user.email "chinajik@gmail.com"
   - git add .
   - git commit -m "Update docs"
-  - git push --force --quiet "https://${token}@${GH_REF}" master:blog-resource
+  - git push --force --quiet "https://${token}@${GH_REF}" master:master
 # E: Build LifeCycle
 
 branches:
   only:
-    - master
+    - blog-resource
 env:
  global:
    - GH_REF: github.com/jik1992/zuoyun.me.git
