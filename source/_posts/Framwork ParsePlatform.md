@@ -1,13 +1,12 @@
 title: Framwork ParsePlatform
 date: 2016/06/21 09:00:32
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -20,7 +19,7 @@ https://github.com/ParsePlatform/parse-server-example
  * 中间层 express+parse-server 
  * 前端 parse sdk
 
-#SDK 
+# SDK 
 
  * Cloud* 这个是 parse-server 定义方法，client 调用。也可以做一些方法拦截。
  * User 用户模块相关
@@ -28,7 +27,7 @@ https://github.com/ParsePlatform/parse-server-example
  * Sessions/Roles 控制安全
  * Other
 
-#使用
+# 使用
  * Server 声明一个 parse 服务
 ```langauge-javascript
 var api = new ParseServer({

@@ -1,48 +1,47 @@
 title: Server Gitlab
 date: 2016/03/03 06:09:46
 categories:
+ - tryghost
 
+tags:
  - manage 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##官网
+## 官网
 
 https://about.gitlab.com/gitlab-com/
 
-##Ominibus 一键安装包
-https://about.gitlab.com/downloads/#ubuntu1404
+## Ominibus 一键安装包
+https://about.gitlab.com/downloads/# ubuntu1404
 https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/
 
 
 
-##安装
+## 安装
 ```language-bash
-#安装
+# 安装
 rpm -i gitlab-7.7.2omnibus.5.4.2.ci-1.el6.x8664.rpm 
-#重置配置
+# 重置配置
 gitlab-ctl reconfigure
-#备份文件目录/var/opt/gitlab/backups
+# 备份文件目录/var/opt/gitlab/backups
 gitlab-rake gitlab:backup:create 
-#修改备份文件目录
+# 修改备份文件目录
 vim /etc/gitlab/gitlab.rb
    gitlabrails['backuppath'] = '/mnt/backups' 
-#恢复备份
+# 恢复备份
 gitlab-ctl stop
 gitlab-rake gitlab:backup:restore BACKUP=1393513186
 gitlab-ctl start
-#升级
+# 升级
 gitlab-ctl upgrade
-#升级2
+# 升级2
 查看：https://about.gitlab.com/upgrade-to-package-repository/
 ```
 
-##修改邮箱收发
+## 修改邮箱收发
 ```language-bash
  gitlab_rails['gitlab_email_enabled'] = true
  gitlab_rails['gitlab_email_from'] = 'xxxxx@58gxb.com'
@@ -58,7 +57,7 @@ gitlab-ctl upgrade
  gitlab_rails['smtp_enable_starttls_auto'] = false
 ```
 
-##Gitlab-CI
+## Gitlab-CI
 * 安装
 参考：https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/blob/master/docs/install/linux-repository.md
 ```language-bash
@@ -80,7 +79,7 @@ job_name:
   allow_failure: true
 ```
 
-##相关概念
+## 相关概念
 * 默认账号 root
 * 版本控制
  * Files

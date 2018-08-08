@@ -1,36 +1,35 @@
 title: BED Nodejs/Express/NPM
 date: 2016/06/22 06:23:18
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#NPM 
+# NPM 
 >Nodejs 构建工具
-##简介
+## 简介
 https://npm.taobao.org/
 https://www.npmjs.com/
-##使用
+## 使用
 ```language-bash
-#初始化模块
+# 初始化模块
 npm init
-#发布模块到中央仓库
+# 发布模块到中央仓库
 npm publish
-#引入模块, 并添加至 package.json
+# 引入模块, 并添加至 package.json
 npm install --save express
-#引入至全局
+# 引入至全局
 npm install --g express
-#引入到当前项目
+# 引入到当前项目
 npm install express
 ```
-#Nodejs
-##Nodejs
+# Nodejs
+## Nodejs
  * 版本控制 nvm https://github.com/creationix/nvm
  * 文件系统 fs 、Buffer、Steam
 ```languag-bash
@@ -127,8 +126,8 @@ async.series({
  * 并发 cluster
  * 守护进程 pm2
 
-##Express 使用
-###关键组件
+## Express 使用
+### 关键组件
  * body-parser
  * cookie-parser
  * multer
@@ -167,7 +166,7 @@ app.listen(3000);
 
 ```
 
-##module 化
+## module 化
 ```language-javascipt
 
 var express = require('express');
@@ -181,11 +180,11 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 ```
-##私有仓库
+## 私有仓库
 verdaccio
 https://github.com/verdaccio/verdaccio
 
-##强制包更新
+## 强制包更新
 方法一手动跟新：
 修改package.json中依赖包版本，执行npm install --force
 方法二使用第三方插件：

@@ -1,20 +1,19 @@
 title: Maven Plugin Build
 date: 2017/01/04 03:30:18
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##背景
+## 背景
   有时候要自己设计一个maven插件
 
-##使用
+## 使用
   注意：
 
 * 老版本的maven支持注释里面@goal，并不支持@Mojo注解，导致编译错误，在编译maven plugin的时候使用最新的maven版本（3.3.x>）
@@ -89,7 +88,7 @@ public class Car extends AbstractMojo {
 最后 clean package deploy 可以正常使用
 ![](https://dn-zuoyun.qbox.me/201701041283450C8B04F-2D37-4938-8DCE-043E9F77A2A1.png)
 
-##参考
+## 参考
 
 * http://maven.apache.org/guides/plugin/guide-java-plugin-development.html  
 

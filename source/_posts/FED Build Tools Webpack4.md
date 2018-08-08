@@ -1,28 +1,27 @@
 title: FED Build Tools Webpack4
 date: 2018/06/24 15:03:56
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
-###参考
+### 参考
 https://webpack.js.org/guides/getting-started/
 https://webpack.docschina.org/concepts/
 
-###安装
+### 安装
 ```language-bash
 cd demo
 npm init -y
 npm install webpack webpack-cli webpack-dev-server --save-dev
 ```
 
-###引用
+### 引用
 需要手动创建的核心文件
 
 * index.html 入口模板文件
@@ -31,7 +30,7 @@ npm install webpack webpack-cli webpack-dev-server --save-dev
 
 ![20180625152985796284604.png](https://dn-zuoyun.qbox.me/20180625152985796284604.png)
 
-###package.json
+### package.json
 
 ```language-javascript
 {
@@ -70,7 +69,7 @@ npm install webpack webpack-cli webpack-dev-server --save-dev
 
 ```
 
-###webpack.dev.config.js
+### webpack.dev.config.js
 webpack4的配置文件由几个部分组成
 
 * mode 编译模式，选择 prod 会有优化压缩能力
@@ -172,7 +171,7 @@ module.exports = {
 };
 
 ```
-###.babelrc
+### .babelrc
 ```language-javascript
 {
   "presets":["react","es2015"]

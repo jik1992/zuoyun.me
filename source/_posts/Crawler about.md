@@ -1,39 +1,38 @@
 title: Crawler about
 date: 2017/01/06 09:23:51
 categories:
+ - tryghost
 
+tags:
  - python 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##背景
+## 背景
 爬虫设计，主要是分【控制器】，【爬行节点】，【代理池】
 
 * 列表爬取-》详情爬取-》翻页
 * 任务派发-》领取任务-》详情爬取
 * 请求失败-》重试-》判断ip被ban-》更换代理
 
-####反爬虫机制
+#### 反爬虫机制
  * 频度判断
  * IP判断
  * 会员积分制
 
-####爬虫IP池策略
+#### 爬虫IP池策略
  * ADSL
  * squid3.x 透明代理
  * 爬虫代理池
 
-####爬虫工具
+#### 爬虫工具
  * 基本httpclient请求
  * webdriver
  * phantomjs webkit内核
 
-##工具
+## 工具
 * IPProxyPool-稳定代理池工具
 https://github.com/qiyeboy/IPProxyPool
 * HttpRequest-Http 请求工具

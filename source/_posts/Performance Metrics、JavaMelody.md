@@ -1,17 +1,16 @@
 title: Performance Metrics、JavaMelody
 date: 2015/11/19 13:50:54
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#核心问题
+# 核心问题
  * 服务
  * 重试，超时，心跳，熔断，监控，重启。
  * load/network/database/io
@@ -19,11 +18,11 @@ tags:
 
 
 
-#神器！ 指标度量工具
+# 神器！ 指标度量工具
 
 https://github.com/dropwizard/metrics
 
-##使用
+## 使用
 写一个 MetricsUtils 方法，对指标定义，如下：
 ```language-java
 public class MetricUtils {
@@ -83,7 +82,7 @@ ConsoleReporter reporter = ConsoleReporter.forRegistry(metrics)
 
 }
 ```
-##暴露数据到 webapi
+## 暴露数据到 webapi
 声明两个 listener
 ```language-java
 
@@ -181,7 +180,7 @@ https://github.com/elastic/elasticsearch-metrics-reporter-java
 http://metrics.dropwizard.io/3.1.0/
 还看到了一些不错的插件集成 spring 、aspcetj、elasticsearch 的。
 
-#monitoring of JavaEE applications
+# monitoring of JavaEE applications
 https://github.com/javamelody/javamelody
 关键指标全部都有，配置起来比较简单
 ```language-xml
@@ -238,9 +237,9 @@ pom.xml
 
 ![](https://dn-zuoyun.qbox.me/image/c/f7/8aad90ae3a37dd9eebf90c5f49cdf.png)
 
-###路由请求地址
+### 路由请求地址
 http://127.0.0.1:8888/monitoring
-###api 说明文档
+### api 说明文档
 http://127.0.0.1:8888/monitoring?resource=help/api.html
 
 

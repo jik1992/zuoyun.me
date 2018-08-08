@@ -1,17 +1,16 @@
 title: Server IRC
 date: 2016/07/13 01:28:15
 categories:
+ - tryghost
 
+tags:
  - manage 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#IRC Server
+# IRC Server
 
 https://github.com/unrealircd/unrealircd
 https://www.unrealircd.org/docs/Installing_from_source
@@ -29,12 +28,12 @@ config error: 5 errors encountered
 sh ./bin/unrealircd 
 ```
 
-#IRC Web Client
+# IRC Web Client
 
 https://github.com/erming/shout
 http://shout-irc.com/docs/
 
-#IRC Local Client
+# IRC Local Client
 https://github.com/mephux/komanda
 
 or maybe irssi
@@ -48,10 +47,10 @@ irssi
 /nick zuoyun
 ```
 
-#IRC Cloud 
+# IRC Cloud 
 http://webchat.freenode.net/
 
-#IRC Protocl
+# IRC Protocl
 https://en.wikipedia.org/wiki/Internet_Relay_Chat
 https://www.alien.net.au/irc/index.html
 

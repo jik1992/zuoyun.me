@@ -1,61 +1,60 @@
 title: MicroService Dubbo
 date: 2015/11/25 18:47:42
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#官方网站
+# 官方网站
 http://dubbo.io/
 
 此文对文档和生产线上的使用总结
 
-##分支扩展集成
+## 分支扩展集成
 
 https://github.com/alibaba/dubbo
 https://github.com/dangdangdotcom/dubbox
 https://github.com/Percy0601/boot-dubbo
 
-##核心
+## 核心
 
 ![](https://dn-zuoyun.qbox.me/image/0/5d/a45bcf1d641b55c4ab805c6e634b9.png)
-###模块解释
+### 模块解释
 >单个服务坐标， app-name+group+version+name
 
-###注解
+### 注解
 ```language-xml
-     #应用名称
+     # 应用名称
     <dubbo:application name="hello-world-app" owner="zuoyun" />
-     #注册中心
+     # 注册中心
     <dubbo:registry address="multicast://224.5.6.7:1234" register="true" subscribe="true" />
-     #暴露协议,name="injvm" 本地调用
+     # 暴露协议,name="injvm" 本地调用
     <dubbo:protocol name="dubbo" port="20880" dispatcher="all" threadpool="fixed" threads="100"  token="true"  />  
-     #生产者全局配置  
+     # 生产者全局配置  
     <dubbo:provider/> 
-     #消费者全局配置
+     # 消费者全局配置
     <dubbo:consumer/> 
-     #监控中心全局配置
+     # 监控中心全局配置
      <dubbo:monitor/> 
-     #暴露服务名称
+     # 暴露服务名称
     <dubbo:service interface="com.alibaba.dubbo.demo.DemoService" ref="demoServiceLocal" version="1.0.0" validation="true" async="true"sent="true"  executes="10" accepts="10"  />
-     #消费服务名称
+     # 消费服务名称
     <dubbo:reference id="demoServiceRemote"
 interface="com.alibaba.dubbo.demo.DemoService" version="1.0.0" validation="true" actives="10"  connections="10"/>
 
 ```
-###功能详解
+### 功能详解
 集群容错
 负载均衡
 
 
-##相关配置
-###生产者配置
+## 相关配置
+### 生产者配置
 ```language-xml
     <!--主配置-->
     <dubbo:application name="demo-dubbo" />
@@ -70,7 +69,7 @@ interface="com.alibaba.dubbo.demo.DemoService" version="1.0.0" validation="true"
 
 ```
 
-###消费者配置
+### 消费者配置
 ```language-xml
     <!--主配置-->
     <dubbo:application name="demo-dubbo"/>
@@ -82,7 +81,7 @@ interface="com.alibaba.dubbo.demo.DemoService" version="1.0.0" validation="true"
 
 ```
 
-###依赖， 服务发现用 zoo ，client 用curator
+### 依赖， 服务发现用 zoo ，client 用curator
 ```language-xml
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -106,8 +105,8 @@ interface="com.alibaba.dubbo.demo.DemoService" version="1.0.0" validation="true"
             <version>3.3.3</version>
         </dependency>
 ```
-##其他功能
-###RPC上下文
+## 其他功能
+### RPC上下文
 ```language-java
 xxxService.xxx(); // 远程调用
 boolean isConsumerSide = RpcContext.getContext().isConsumerSide(); // 本端是否为消费端，这里会返回true
@@ -124,7 +123,7 @@ Future<Foo> fooFuture = RpcContext.getContext().getFuture(); // 拿到调用的F
  
 
 ```
-###回声测试
+### 回声测试
 所有服务自动实现EchoService接口
 ```language-java
 MemberService memberService = ctx.getBean("memberService"); // 远程服务引用
@@ -135,11 +134,11 @@ String status = echoService.$echo("OK"); // 回声测试可用性
  
 assert(status.equals("OK"))
 ```
-###参数回调
+### 参数回调
 ```
 public class CallbackServiceImpl implements CallbackService 
 ```
-###本地存根
+### 本地存根
 本地调用前，先调用一个伪装的实现方法，在执行真正的方法
 ```language-xml
 <dubbo:service interface="com.foo.BarService" stub="com.foo.BarServiceStub" />
@@ -174,7 +173,7 @@ public class BarServiceStub implements BarService {
 
 
 ```
-###本地伪装
+### 本地伪装
 当抛出异常的时候调用伪装的service
 ```language-xml
 <dubbo:service interface="com.foo.BarService" mock="com.foo.BarServiceMock" />
@@ -193,18 +192,18 @@ public class BarServiceMock implements BarService {
     }
 }
 ```
-##最佳实践
+## 最佳实践
  * 在Provider上尽量多配置Consumer端属性
  * Provider上配置合理的Provider端属性
  * 配置上管理信息
  * 配置上Dubbo缓存文件
 
-##运维相关
-###dubbo-admin
+## 运维相关
+### dubbo-admin
 ```
   dubbo-admin-2.5.4.war
 ```
-###dubbo-telnet
+### dubbo-telnet
 ```language-bash
 telnet 127.0.0.1 8080
 ps

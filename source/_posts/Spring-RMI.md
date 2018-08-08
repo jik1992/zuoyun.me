@@ -1,18 +1,17 @@
 title: Spring-RMI
 date: 2016/05/24 09:00:18
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
 
-#RMI
+# RMI
 remote method invocation
 
 ```language-java

@@ -1,28 +1,27 @@
 title: Store Hbase/Phoenix
 date: 2017/01/09 09:47:24
 categories:
+ - tryghost
 
+tags:
  - store 
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##背景
+## 背景
 ![](https://dn-zuoyun.qbox.me/image/8/27/e8ceb60d99b8c659065515c9a01c4.png)
 
 基于HDFS的NoSQL数据库
 ```language-base
-#启动 16010 端口
+# 启动 16010 端口
 export JAVA_HOME=xxxx
 ./bin/hbase start
 ```
 
-##最佳实践
+## 最佳实践
 挂载Phoenix，用Squirrel GUI进行GUI查询
 
 To install a pre-built phoenix, use these directions:
@@ -34,11 +33,11 @@ To install a pre-built phoenix, use these directions:
 
 
 ```language-bash
-#loading Data
+# loading Data
 ./sqlline.py localhost ../examples/stock_symbol.sql
 .psql.py localhost ../examples/web_stat.sql ../examples/web_stat.csv ../examples/web_stat_queries.sql
 
-#query Data
+# query Data
 ./sqlline.py localhost
 !tables
 !exit
@@ -46,7 +45,7 @@ To install a pre-built phoenix, use these directions:
 select * from xx;
 ```
 Squirrel使用，增加一个Driver，增加一个Ailaes
-##引用
+## 引用
 http://hbase.apache.org/
 http://phoenix.apache.org/
 http://phoenix.apache.org/installation.html

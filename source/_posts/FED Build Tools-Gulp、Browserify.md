@@ -1,46 +1,45 @@
 title: FED Build Tools-Gulp、Browserify
 date: 2016/07/16 05:44:12
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
 ↓主流方案
-#FIS3
+# FIS3
 http://fis.baidu.com/
 >百度的构建方案,比较重,有自己的闭环生态
 
-#Webpack
+# Webpack
 >这个功能强大，但是配置复杂，并没有想象中的成熟
 
 ↓我的构建工具方案
-#NPM+Browserify+Gulp
+# NPM+Browserify+Gulp
 http://www.gulpjs.com.cn/
 http://browserify.org/
 https://segmentfault.com/a/1190000002941361
 >流式插件化构建工具, 前端代码压缩
 
-##Browserify
+## Browserify
 模块化前端代码，基于 CommonJS 风格管理，统一前后端命名空间
 ```language-bash
 browserify main.js -o bundle.js --debug
 watchify main.js -o 'exorcist static/bundle.js.map > static/bundle.js' -d
 ```
 
-##Gulp
-###常用插件列表
+## Gulp
+### 常用插件列表
 * watchify+browserify
 * live-reload
 * less
 * csslint/eslint
 
-###exp
+### exp
 ```language-bash
 var gulp = require("gulp");
 var browserify = require("browserify");
@@ -85,7 +84,7 @@ gulp.task('watch', function () {
 
 ```
 
-##参考
+## 参考
 http://my.oschina.net/fellowtraveler/blog/719108
 
 

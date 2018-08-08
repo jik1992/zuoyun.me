@@ -1,22 +1,21 @@
 title: Linux Sysstat／Glance／Netdata
 date: 2017/06/14 08:49:27
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
-###官网
+### 官网
 http://sebastien.godard.pagesperso-orange.fr/
-###仓库
+### 仓库
 https://github.com/sysstat/sysstat
 这个项目离线下使用比较好，功能较弱
-###性能检查命令集
+### 性能检查命令集
 
 * iostat reports CPU statistics and input/output statistics 
 * for devices, partitions and network filesystems.
@@ -25,7 +24,7 @@ https://github.com/sysstat/sysstat
 * tapestat reports statistics for tape drives connected to the system.
 * cifsiostat reports CIFS statistics.
 
-###性能监控工具
+### 性能监控工具
 
 * sar collects, reports and saves system activity information (see below a list of metrics collected by sar).
 * sadc is the system activity data collector, used as a backend for sar.
@@ -52,13 +51,13 @@ install -m 755 pidstat /usr/local/bin
 install -m 755 cifsiostat /usr/local/bin
 install -m 644 sysstat.ioconf /etc/sysconfig
 
-###监控原理
+### 监控原理
 sadc命令会生成 /usr/local/lib64/saDD的二进制日志文件，
 sa1命令会生成 当日性能汇总数据
 sa2命令会生成 当月性能汇总数据
 sadf 可以读取转义ssDD的日志出报表活着svg图表审计
 
-###实践
+### 实践
 ```language-bash
 安装编译带参数
 ./configure --enable-install-cron

@@ -1,25 +1,24 @@
 title: SelfHost MailServer
 date: 2016/11/22 09:54:47
 categories:
+ - tryghost
 
+tags:
  - tools 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##背景
+## 背景
    在使用阿里和腾讯的免费企业邮箱的时候，发现有别有用心的人使用社工钓鱼企业内部机密资料，给部门行政管理带来很大的困扰，所以迁移回本地私有邮件服务器。
 
-##服务端
-###可选方案
+## 服务端
+### 可选方案
  * postfix
  * hmailserver
 
-### hmailserver使用
+###  hmailserver使用
 
 资源 https://pan.baidu.com/s/1eSIAXKu
 
@@ -36,15 +35,15 @@ tags:
 ![](https://dn-zuoyun.qbox.me/image/c/4e/a258bf4ee444a6acda752ffa64e52.jpeg)
 
 
-###AfterLogic WebMail
-###使用
+### AfterLogic WebMail
+### 使用
  1. 使用wampserver，挂在webmail
  2. /install ，一路next
  3. 管理后台登录, /adminpanel/index.php 设置save
  4. webmail登录，/index.php
 
 ![](https://dn-zuoyun.qbox.me/image/0/57/0f86ae9b1fd51f8b9bac95ab55eb8.png)
-###来源
+### 来源
  * https://en.wikipedia.org/wiki/Comparison_of_mail_servers
  * https://www.hmailserver.com/
  * http://www.afterlogic.org

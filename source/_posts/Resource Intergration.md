@@ -1,17 +1,16 @@
 title: Resource Intergration
 date: 2016/07/16 09:35:41
 categories:
+ - tryghost
 
+tags:
  - manage 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#公共
+# 公共
 * Wiki Conflunce
 * Issue Jira
 * CVS Gitlab
@@ -21,7 +20,7 @@ tags:
 * User LDAPServer
 * VPN L2TP
 
-#个人 
+# 个人 
 * Win/Mac
 * WPS
 * Intellij Idea
@@ -36,11 +35,11 @@ tags:
 * Wunderlist
 * Auxre
 
-#硬件
+# 硬件
 ![](https://dn-zuoyun.qbox.me/image/6/63/ed4b88e8a1527b493c26d24be2b05.png)
 ![](https://dn-zuoyun.qbox.me/image/3/a2/7171967861ca40e788341b595151b.png)
 
-##耗材
+## 耗材
 * 戴尔（DELL） U2412M
 * 三星(SAMSUNG) 750 EVO 120G
 * Filco 87 

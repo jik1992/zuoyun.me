@@ -1,18 +1,17 @@
 title: linux-systemd 命令族
 date: 2016/04/26 11:45:51
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
 新兴的 linux 的强大的进程管理工具，类似 win 系里面的任务管理器
-#功能方面
+# 功能方面
  * cgroups
  * logs
  * uptime 
@@ -20,41 +19,41 @@ tags:
  * security
 
 
-#基础命令
+# 基础命令
 ```langauge-bash
-#任务
+# 任务
 pstree
 
-#启动分析
+# 启动分析
 systemd-analyze time
 systemd-analyze blame
 
-#模块管理
+# 模块管理
 systemctl list-units
 systemctl --failed
 
-#运行时任务
+# 运行时任务
 systemd-cgls
 systemd-cgtop 
 
-#引导任务
+# 引导任务
 systemctl is-enabled dnsmasq.service
 systemctl enable dnsmasq.service
 systemctl disable dnsmasq.service
 systemctl daemon-reload
 
 
-#电源管理
+# 电源管理
 systemctl poweroff
 systemctl reboot
 systemctl suspend
 systemctl hibernate
 
-#系统信息
+# 系统信息
 hostnamectl
 ```
 
-#构建一个服务
+# 构建一个服务
 ```language-bash
 cd /etc/systemd/system
 cat aliyun.service 

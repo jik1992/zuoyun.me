@@ -1,17 +1,16 @@
 title: Product Roadmap
 date: 2014/12/23 04:05:02
 categories:
+ - tryghost
 
+tags:
  - manage 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##运营模块
+## 运营模块
  * 积分系统
  * 勋章系统
  * 帮助系统
@@ -20,7 +19,7 @@ tags:
  * SNS系统
  * CRM系统 
 
-##ERP 系统
+## ERP 系统
  * WMS 模块
  * 仓储模块
  * 订单模块

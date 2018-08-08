@@ -1,30 +1,29 @@
 title: Guide HTML/CSS
 date: 2016/01/26 05:25:26
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
 >两种语言都不属于冯诺依曼体系， 所以没有逻辑相对简单，暂时不扯 Scss这种带逻辑的增强 css 脚本
 
-#MDN
+# MDN
 https://developer.mozilla.org/zh-CN/docs/Web
 https://caniuse.com/
-#HTML基础
-##Elements
+# HTML基础
+## Elements
 ```
    文档描述： html head meta body 
    排版：<a> <p> <h1-6> <div> <ul><li> <ol>
    表单：form input button submit text select>option  radio checkbox 
    表格：<table> <tbody> <thead> <tr><td>
 ```
-##template
+## template
 ```language-html
 <html>
 <head>
@@ -43,7 +42,7 @@ https://caniuse.com/
 </body>
 ```
 
-#Html5相关
+# Html5相关
  * Canvas/SVG
  * WebSockets
  * Location
@@ -53,15 +52,15 @@ https://caniuse.com/
 
 
 
-#CSS 基础
-##布局
+# CSS 基础
+## 布局
 ![](https://dn-zuoyun.qbox.me/image/d/27/f5aa50324e397583670d494304520.png)
-##元素分类
+## 元素分类
 
  * 块级元素
  * 行内元素
  * 行内级元素
-##位置
+## 位置
  * postion
   * relative
   * absolute
@@ -70,25 +69,25 @@ https://caniuse.com/
   * left/right
  * z-index
 
-##定位语法
+## 定位语法
 ```language-css
-#class 查找
+# class 查找
 .{
 }
-#id 查找
-#{
+# id 查找
+# {
 
 }
-#elements 查找
+# elements 查找
 div{
 
 }
-#级联查找
+# 级联查找
 div > .id{
 }
 ```
 
-#Cheatsheet
+# Cheatsheet
 联系我代码
 ![](https://dn-zuoyun.qbox.me/image/0/99/2bd4ac14d316300e5b2517ba0eb26.png)
 

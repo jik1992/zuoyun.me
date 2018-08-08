@@ -1,17 +1,16 @@
 title: NoSQl Redis 4.0
 date: 2015/12/17 08:54:25
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#简介
+# 简介
 kv 数据库， 单线程高并发，支持集群，可以实现队列，事务场景，有原子cas 类实现计数。
 有几个概念，数据库，表
 
@@ -32,11 +31,11 @@ kv 数据库， 单线程高并发，支持集群，可以实现队列，事务�
 
 
 
-##工具
-###GUI
+## 工具
+### GUI
 https://github.com/uglide/RedisDesktopManager
 
-###运维命令
+### 运维命令
 ```language-bash
 redis-cli shutdown
 nohup redis-server ./redis.conf  -p 3388 >/dev/null 2>&1 &
@@ -44,7 +43,7 @@ nohup redis-server ./redis.conf  -p 3388 >/dev/null 2>&1 &
 vim redis.conf
 daemonize yes
 requirepass myRedis  
-##其他可选的配置
+## 其他可选的配置
 pidfile
 port
 bind
@@ -58,14 +57,14 @@ src/redis-cli -h  127.0.0.1 -p 6379 -a MiPOnylRdJzTsmhu
 
 
 
-###cli 监控
+### cli 监控
 https://github.com/facebookarchive/redis-faina
 ```language-bash
 redis-cli -p 6379 -h x.x.x.x MONITOR | head -n 10 | ./redis-faina.py 
 ```
 
-##客户端
-###jedis
+## 客户端
+### jedis
 pom.xml
 ```language-xml
         <dependency>
@@ -107,7 +106,7 @@ public class TaskPushTask implements TaskExecute {
 
 
 ```
-#快速安装
+# 快速安装
 ```language-bash
 docker run -p 6379:6379 -v $PWD/data:/data  -d redis redis-server --appendonly yes --requirepass xxxxx
 
@@ -144,7 +143,7 @@ docker run -p 6379:6379 -v $PWD/data:/data  -d redis redis-server --appendonly y
 subpub 模型实现
 http://guosxu.iteye.com/blog/977382
 
-#常见命令
+# 常见命令
  * CRUD  SET/GET/DEL/EXISTS/decr/incr/mget
  * 清空数据库 flushdb、flushall
  * 队列  lpush、lrange、blpop、llen
@@ -158,39 +157,39 @@ http://guosxu.iteye.com/blog/977382
   redis-server --maxclients 100000
 ```
  
-#telnet 命令
+# telnet 命令
 ```language-bash
 telnet 0.0.0.0  6379
-#状态
+# 状态
 info
-#关机
+# 关机
 SHUTDOWN
-#退出
+# 退出
 QUIT
-#返回数据库总数
+# 返回数据库总数
 DBSIZE
-#清空当前数据库的所有键
+# 清空当前数据库的所有键
 FLUSHDB
-#清空所有数据库中的所有键
+# 清空所有数据库中的所有键
 FLUSHALL
-#异步保存
+# 异步保存
 BGSAVE、SAVE
-#实时输出请求
+# 实时输出请求
 MONITOR
 ```
 
 
-#配置
+# 配置
 ```language-bash
-#查询配置文件位置
+# 查询配置文件位置
 ps -aux |grep redis
-#默认位置
+# 默认位置
 /etc/redis.conf
 /usr/local/redis
 ./redis -c redis.conf
 ```
 
-#使用 redis 作为session 整合 spring
+# 使用 redis 作为session 整合 spring
 ```language-xml
     <!--session redis-->
     <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"/>

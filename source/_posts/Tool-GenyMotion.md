@@ -1,13 +1,12 @@
 title: Tool-GenyMotion
 date: 2016/08/14 13:08:06
 categories:
+ - tryghost
 
+tags:
  - tools 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -19,7 +18,7 @@ https://pan.baidu.com/s/1pLcpSJT
 
 来源
 
-http://stackoverflow.com/questions/20187609/genymotion-failure-install-failed-cpu-api-incompatible/24076795#24076795
+http://stackoverflow.com/questions/20187609/genymotion-failure-install-failed-cpu-api-incompatible/24076795# 24076795
 
 
 

@@ -1,29 +1,28 @@
 title: Eisx6 安装黑群晖
 date: 2016/03/05 18:17:32
 categories:
+ - tryghost
 
+tags:
  - about 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##官网
+## 官网
 
  https://www.synology.com/zh-cn/
 
-##原理
+## 原理
  1. 设定一个引导层
  2. 更新最新安装包
 
-##原料
+## 原料
  
  http://pan.baidu.com/s/1bol8rqZ
 
-##步骤
+## 步骤
 
  1. NB_x64_5032_DSM_50-4528_Xpenology_nl.rar 解压到虚拟机
  2. 新建一个 ubuntux64引导的虚拟机，添加虚拟磁盘使用vmdk
@@ -33,11 +32,11 @@ tags:
 ![](https://dn-zuoyun.qbox.me/image/7/fb/2c1641678330d156d231d9a515787.png)
  ￼
 
-##之后
+## 之后
 
  看了下系统，第三方软件的支持远远超出了我的预料， 完爆小米 R2..有完整的权限体系，入门版本也不贵也就1000块钱，这个做小型企业 NAS 组 RAID0 并没有太大的问题。
 
-##之后的之后
+## 之后的之后
 
  FreeNAS
 
@@ -45,7 +44,7 @@ tags:
  
  这个是 FreeBSD 做的，其实也挺好用， samba，ftp ，store都有， 手机装个 moliplayer 就是家庭娱乐中心了, good job..
 
-##之后的之后的之后
+## 之后的之后的之后
 
 终于我还是买了白群晖了, DS218+ / 镁光 DDR3L 1600 8G / 酷鱼3T *2 成本大概3k2.
 研究了几天功能真的强的可怕, 群晖的系统有点久远了,所以功能比较乱的我给各位梳理一下.

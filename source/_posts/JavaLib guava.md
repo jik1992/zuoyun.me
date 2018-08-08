@@ -1,21 +1,20 @@
 title: JavaLib guava
 date: 2014/12/24 19:25:36
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-####Guava
+#### Guava
 >https://github.com/google/guava
 >https://github.com/jik1992/guavaDemo
 
-##详细的中文文档
+## 详细的中文文档
 https://www.gitbook.com/book/willnewii/google-guava/details
 
 ```language-java
@@ -52,7 +51,7 @@ https://www.gitbook.com/book/willnewii/google-guava/details
         System.out.println(end - start);         
     }  
 
-##反射
+## 反射
     Demo demo= Reflection.newProxy(Demo.class, new InvocationHandler() {
       @Override
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -61,7 +60,7 @@ https://www.gitbook.com/book/willnewii/google-guava/details
       }
     });
 
-##类路径扫描
+## 类路径扫描
  ClassPath classpath = ClassPath.from(Demo.class.getClassLoader());
     for (ClassPath.ClassInfo classInfo : classpath.getTopLevelClasses("zuoyun.me")) {
       System.out.println(JSON.toJSONString(classInfo));

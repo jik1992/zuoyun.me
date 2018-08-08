@@ -1,13 +1,12 @@
 title: ETL  kettle
 date: 2015/12/02 07:56:07
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 

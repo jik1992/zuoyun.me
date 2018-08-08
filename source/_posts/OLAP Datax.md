@@ -1,20 +1,19 @@
 title: OLAP Datax
 date: 2016/12/15 09:19:22
 categories:
+ - tryghost
 
+tags:
  - python 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##背景
+## 背景
 各种数据迁移，ETL
 
-##使用
+## 使用
 
 * 安装
 ```language-bash
@@ -23,7 +22,7 @@ sudo chmod -R 755 {YOUR_DATAX_HOME}
 ```
 * 生成传输脚本文件
 ```language-bash
-#生成传输脚本
+# 生成传输脚本
 python datax.py -r mysqlreader -w mysqlwriter
 ```
 ```language-javascipt
@@ -81,7 +80,7 @@ python datax.py -r mysqlreader -w mysqlwriter
 ```
 
 
-##引用
+## 引用
 * https://github.com/alibaba/DataX
 * https://github.com/alibaba/DataX/wiki/Quick-Start
 * https://github.com/alibaba/DataX/blob/master/mysqlwriter/doc/mysqlwriter.md

@@ -1,18 +1,17 @@
 title: NewSQL CouchBase
 date: 2016/11/25 07:31:53
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
 Couchbase
-###feature
+### feature
 
  * 分社区版和专业版，功能没有阉割
  * 前身memcache，完全兼容相关协议。
@@ -21,7 +20,7 @@ Couchbase
  * server有丰富的监控模块，webgui
 
 
-###安装使用
+### 安装使用
 ```language-bash
 rpm -ivh couchbase-server-enterprise-4.6.0-DP-
 centos7.x86_64.rpm
@@ -84,7 +83,7 @@ public class Example {
 
 ```
 
-###参考
+### 参考
 * http://www.couchbase.com/
 * http://developer.couchbase.com/documentation/server/current/sdk/java/start-using-sdk.html
 

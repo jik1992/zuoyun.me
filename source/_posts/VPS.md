@@ -1,13 +1,12 @@
 title: VPS
 date: 2016/02/24 06:08:06
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 

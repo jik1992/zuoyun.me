@@ -1,20 +1,19 @@
 title: Using Mariadb For Docker
 date: 2018/03/01 03:31:00
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
 1. daocloud 安装 docker/docker-compose
 2. docker-compose.yml
 ```language-bash
-# Use root/example as user/password credentials
+#  Use root/example as user/password credentials
 version: '3.1'
 
 services:
@@ -39,11 +38,11 @@ services:
 5. nano /etc/my.cnf
 add
 ```language-bash
-# 在[mysqld]标签下添加下面内容
+#  在[mysqld]标签下添加下面内容
 character-set-server = utf8
-# 在[client]标签下添加下面内容
+#  在[client]标签下添加下面内容
 default-character-set=utf8
-# 在[mysql]标签下添加下面内容
+#  在[mysql]标签下添加下面内容
 default-character-set=utf8
 ```
 6.sql commond

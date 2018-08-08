@@ -1,22 +1,21 @@
 title: Spring-Swagger2
 date: 2016/05/31 08:02:30
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
 基于 Java 注解的 RestFul API文档生成工具，注意这个工具的 Spring3.x 和 Spring4.x的依赖使用方法不一样，一下流程基于 Spring4.x
 
-#官网
+# 官网
 http://swagger.io/
 
-#依赖
+# 依赖
 ```language-xml
         <!--json-->
         <dependency>
@@ -58,7 +57,7 @@ http://swagger.io/
             </dependency>
 ```
 
-#配置
+# 配置
 1.spring-servlet.xml
 ```language-xml
 
@@ -152,10 +151,10 @@ public class MySwaggerConfig implements InitializingBean {
 }
 
 ```
-#访问地址
+# 访问地址
 /v2/api-docs
 
-#常用注解
+# 常用注解
 ```language-java
 @ApiClass
 
@@ -181,7 +180,7 @@ public class MySwaggerConfig implements InitializingBean {
 
 ```
 
-#静态文档生成
+# 静态文档生成
 
 ```language-java
 /**
@@ -225,7 +224,7 @@ public class ApiDocs {
 
 }
 ```
-#其他
+# 其他
  * spring-restful-doc 项目
 
 

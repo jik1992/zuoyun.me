@@ -1,19 +1,18 @@
 title: Play Terminal
 date: 2015/06/06 05:15:40
 categories:
+ - tryghost
 
+tags:
  - tools 
 
 
-tags:
-
-- tryghost
 
 ---
 
 终极使用搭配,  iterm2+oh-my-zsh+tmux
 
-###iterm2
+### iterm2
 >http://www.iterm2.com/
 
  1. Search 和 各种高亮
@@ -21,7 +20,7 @@ tags:
  
 
 
-###oh-my-zsh  
+### oh-my-zsh  
 >http://ohmyz.sh/
 
  1. 灵活的自动补全
@@ -29,7 +28,7 @@ tags:
  
 
 
-###tmux
+### tmux
 >https://github.com/tmux/tmux
 
  1. c+b 进入指令模式
@@ -43,7 +42,7 @@ tags:
 
 
 
-###that is all! enjoy it !
+### that is all! enjoy it !
 
 
 

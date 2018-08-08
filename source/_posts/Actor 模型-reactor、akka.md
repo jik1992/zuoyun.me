@@ -1,13 +1,12 @@
 title: Actor 模型-reactor、akka
 date: 2016/01/07 08:18:06
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 

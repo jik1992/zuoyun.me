@@ -1,20 +1,19 @@
 title: Spring-Mybatis3
 date: 2016/05/17 04:00:36
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##Mybatis 构建器
+## Mybatis 构建器
 http://generator.sturgeon.mopaas.com/index.html
 
-###使用
+### 使用
 配置 generatorConfig.xml
 ```language-xml
 <?xml version="1.0" encoding="UTF-8"?>

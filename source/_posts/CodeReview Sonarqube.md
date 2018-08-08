@@ -1,26 +1,25 @@
 title: CodeReview Sonarqube
 date: 2016/07/23 02:33:08
 categories:
+ - tryghost
 
+tags:
  - manage 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#SonarQube
-##安装
+# SonarQube
+## 安装
 ```
 brew install sonarqube
 ```
-##使用
+## 使用
 localhost:9000
 
 snoarqube
-##使用
+## 使用
 admin:admin
 ```
 localhost:9000

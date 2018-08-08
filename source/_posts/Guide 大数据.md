@@ -1,13 +1,12 @@
 title: Guide 大数据
 date: 2015/12/04 07:15:48
 categories:
+ - tryghost
 
+tags:
  - python 
 
 
-tags:
-
-- tryghost
 
 ---
 

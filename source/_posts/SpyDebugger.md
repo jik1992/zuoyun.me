@@ -1,30 +1,29 @@
 title: SpyDebugger
 date: 2016/12/09 09:36:50
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
-###背景
+### 背景
 移动端远程调试
 
-###安装
+### 安装
 ```language-bash
 cnpm install spy-debugger
 spy-debugger
 ```
 
-###使用
-####手机设置代理，端口如下
+### 使用
+#### 手机设置代理，端口如下
 ![](https://dn-zuoyun.qbox.me/image/9/25/d37ca78121309cf8f4a2a7355a73e.png)
 
-####页面调试
+#### 页面调试
 * 调试 weinre
 * 抓包 anyproxy
 ![](https://dn-zuoyun.qbox.me/image/8/42/2a71cb8dbfe6003e27dda865116e2.png)

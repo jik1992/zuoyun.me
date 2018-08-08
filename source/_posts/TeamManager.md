@@ -1,17 +1,16 @@
 title: TeamManager
 date: 2016/01/07 06:04:38
 categories:
+ - tryghost
 
+tags:
  - manage 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##管理方面书籍
+## 管理方面书籍
 
 * [技术管理之巅——如何从零打造高质效互联网技术团队？]
 * [一网打尽]
@@ -19,7 +18,7 @@ tags:
 * [30天软件开发：告别瀑布拥抱敏捷]
 
 
-##管理方法
+## 管理方法
 
  * 狼群管理/末位淘汰制/KPI绩效制度
 <br/>基本上都是说的同一个东西, 讲白了就是wow里面下副本的时候用的那种... 大部分对团队激励还是蛮大的, 但是也会有创伤,不够人性.
@@ -84,18 +83,18 @@ idea
 15：“团队凝聚力”是Scrum的核心要素之一，如果一个团队合作工作达多个sprint之久，他们就会变得非常紧密。他们会学会如何达成团队涌流（group flow），生产力会提升至难以置信的地步。
 
 
-##马斯洛需求层次理论
+## 马斯洛需求层次理论
 
 ![](https://dn-zuoyun.qbox.me/image/0/01/778897be182ea714c2d0cb2d748cb.jpg)
 
 
 
-##视频
+## 视频
   哈佛大学公开课：领袖心理学
   http://open.163.com/special/opencourse/psychologyofleadership.html
 
-##技术等级
-###中级
+## 技术等级
+### 中级
 * 了解maven/git/基础算法
 * 对 SOA服务有了解（如 dubbo）
 * 对 linux 基础操作有了解
@@ -103,7 +102,7 @@ idea
 * 工作2-5年，本科生
 * 假想目标薪资8k-14k
 
-###高级
+### 高级
 * 了解阿里云各种组件
 * 了解云架构运维安全
 * 了解分布式日志运维框架
@@ -112,30 +111,30 @@ idea
 * 假想目标薪资13k+
 
 
-##面试问题
-###构建工具
+## 面试问题
+### 构建工具
 1. Git 使用
 2. IDEA 使用
 3. MAVEN 使用
 
-###Spring/Mybatis/Druid 使用
+### Spring/Mybatis/Druid 使用
 1. ApplicationContext
 2. Mybatis、Hibernate 区别
 3. Druid 和 C3P0 区别
 
-###Java current包
+### Java current包
 1. 队列工具有哪些？具体场景？
 2. Threadlocal使用场景
 
-###数据库 
+### 数据库 
 1. slowsql 怎么出现的，如何调试修复
 2. 为什么要使用PreparedStatement接口，SQl 注入如何产生的
 3. 事务、ACID、DML、DDL、索引优化
 
-###算法  
+### 算法  
 1. 冒泡排序、斐波拉契数列
 
-###中间件
+### 中间件
 1. 了解 dubbo
 2. 听说过哪些 队列中间件
 3. 听说过哪些 NoSQl

@@ -1,13 +1,12 @@
 title: Proxy Shadowsocks/Omga
 date: 2016/07/01 01:58:13
 categories:
+ - tryghost
 
+tags:
  - tools 
 
 
-tags:
-
-- tryghost
 
 ---
 

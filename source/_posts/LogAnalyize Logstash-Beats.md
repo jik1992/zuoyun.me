@@ -1,22 +1,21 @@
 title: LogAnalyize Logstash/Beats
 date: 2015/12/08 03:02:42
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#流式日志收集基础架构
+# 流式日志收集基础架构
 ![](https://dn-zuoyun.qbox.me/image/6/de/7070f73d53f1186286c6519ae05cb.png)
 
 ![](https://dn-zuoyun.qbox.me/image/c/7d/f539840247f98f8b0a0770fcc28aa.png)
 
-#Logstash
+# Logstash
 核心：input->filter->output
 
 负责收集日志，格式化，然后导出，有强大的插件机制支持各种不同类型的日志收集系统，无缝对接 es 平台。所有的插件能在 logstash 官网找到 。当配置无法生效尝试安装对应插件启用 ./bin/plugin list  ->./bin/plugin install 
@@ -25,7 +24,7 @@ tags:
  * logstash 支持 redis 集群随机多写，单读
 
 
-##使用
+## 使用
 ```language-bash
 bin/logstash -f xxx.conf
 cd logstash-6.0.0
@@ -33,7 +32,7 @@ bin/logstash -e 'input { stdin { } } output { stdout {} }'
 
 ```
 
-##配置
+## 配置
 ```language-javascript
 input {
     log4j {
@@ -55,7 +54,7 @@ output {
     }
 }
 ```
-##最佳实践
+## 最佳实践
 检测吞吐量 
 ```language-xml
 input {
@@ -78,14 +77,14 @@ input {
     data_type => 'list'
     key => 'logstash:redis'
     threads => 10
-    #batch_count => 1000
+    # batch_count => 1000
   }
 }
 
 
 output {
   elasticsearch {
-    #embedded => true
+    # embedded => true
     host => localhost
     workers => 10
   }
@@ -119,21 +118,21 @@ input {
 }
 ```
 
-##正则
+## 正则
    
-###基础写法
+### 基础写法
 ```language-bash
-#自定义
+# 自定义
 (?<name>[0..9]{1,2})
-#正则函数
+# 正则函数
 %{DATA:name}
-#匹配
+# 匹配
 if [message] =~ "QAQ {}
 ```
-###正则检测
+### 正则检测
 http://grokdebug.herokuapp.com/
 
-###字符串转 json
+### 字符串转 json
 ```language-bash
 filter {
   json {
@@ -142,7 +141,7 @@ filter {
 }
 ```
 
-###一个复杂的正则用例
+### 一个复杂的正则用例
 ```language-javascript
 input {
     file {
@@ -228,7 +227,7 @@ output {
     }
 }
 ```
-#Beats
+# Beats
 是从Logstash分出来的一个分支，用go语言写的，性能相对来说更好，分为 产品线
 * Filebeat 收集中间件日志
 * Metricbeat 收集系统级性能日志

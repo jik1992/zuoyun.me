@@ -1,13 +1,12 @@
 title: Tools-Synergy、OBS、TeamViewer
 date: 2016/06/15 17:46:55
 categories:
+ - tryghost
 
+tags:
  - tools 
 
 
-tags:
-
-- tryghost
 
 ---
 

@@ -1,29 +1,28 @@
 title: web 压测工具
 date: 2015/12/01 16:15:34
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
-###api
+### api
 [ping.chinaz.com](ping.chinaz.com)
-###ab
+### ab
 ```language-bash
-#1000并发 50次连接
+# 1000并发 50次连接
 ab -kn 1000 -c 50 https://zuoyun.me/
 ```
 
-###jmeter
+### jmeter
 
 TODO
 
-###Ngrinder
+### Ngrinder
 
  1. 系统账号  admin admin 
     测试   user user

@@ -1,13 +1,12 @@
 title: Framework Vuejs
 date: 2016/01/26 05:01:46
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -15,7 +14,7 @@ tags:
 
 http://cn.vuejs.org/api/
 
-##双向绑定原理
+## 双向绑定原理
 基于Objects.defineProperty(object,value,descriptor)
 >* https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 * https://github.com/DMQ/mvvm
@@ -40,14 +39,14 @@ http://cn.vuejs.org/api/
 Observer／Compiler／Watcher
 
 
-##过滤器
+## 过滤器
 ```language-javascript
 Vue.filter('time', function (value) {
     return moment(value).endOf('day').fromNow();
 });
 ```
 
-##初始化
+## 初始化
 ```language-html
 <div id="app">
   {{ message }}
@@ -56,14 +55,14 @@ Vue.filter('time', function (value) {
 ```
 ```language-javascript
 new Vue({
-  el: '#app',
+  el: '# app',
   data: {
     message: 'Hello Vue.js!'
   }
 })
 ```
 
-##常用标签
+## 常用标签
 
  * v-on:click  v-on:change  v-on:ofucos
  * v-bind:value=""  v-bind:disabled=""
@@ -72,12 +71,12 @@ new Vue({
  * v-model
  * @keyup.13="search"
 
-##常用api
+## 常用api
 * https://vuejs-tips.github.io/cheatsheet/
 * https://vuejs-tips.github.io/vuex-cheatsheet/
-##常用框架
+## 常用框架
 * iviewui.com
-* element.eleme.io/#/
+* element.eleme.io/# /
 
 
 

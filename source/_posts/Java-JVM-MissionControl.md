@@ -1,37 +1,36 @@
 title: Java-JVM/MissionControl
 date: 2014/12/31 18:59:43
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#查看 jvm 常用的命令
+# 查看 jvm 常用的命令
 
  * ps -ef| grep name （查询进程 pid）
  * netstate -tupln (查询端口占用)
  * jinfo  <pid> -lmvV（查询所有环境变量）
 ![](http://pic002.cnblogs.com/images/2012/422908/2012073109465349.jpg)
 
-#调整 jvm 参数
+# 调整 jvm 参数
 ```language-bash
-#生产模式
+# 生产模式
 -server 
-#堆空间，这两个相同
+# 堆空间，这两个相同
 -Xms1024M
 -Xmx1024M
-#(S0+S1+Eden)：Old，默认1
+# (S0+S1+Eden)：Old，默认1
 -XX:NewRatio=1 
-#(S0+S1)：Eden，默认 8
+# (S0+S1)：Eden，默认 8
 -XX:SurvivorRatio
-#年轻带大小，可以不设置
+# 年轻带大小，可以不设置
 -XX:NewSize
-#永久带大小，这里理论256M
+# 永久带大小，这里理论256M
 -XX:PermSize
 -XX:MaxPermSize
 ```
@@ -68,7 +67,7 @@ http://iamzhongyong.iteye.com/blog/1333100
 http://www.cnblogs.com/lingiu/p/3866559.html
 
  
-#查看运行时命令
+# 查看运行时命令
  * java –verbose:[gc|class]
  * jmap -heap pid (直接查看堆)
  * jmap -histo:live 15304 |more > histo.log （查看 heap 内存, 触发gc）
@@ -77,7 +76,7 @@ http://www.cnblogs.com/lingiu/p/3866559.html
  * jstat -gcutil pid frequency (实时打印 gc 情况，单位内存所占百分比%)
  * jstat -[gccapacity|gcpermcapacity] pid frequency （单位次数）
  * jstat -class 21806 （类加载数量，所占PermGen空间信息）
-#关于内存设置
+# 关于内存设置
 
  * Heap size的值，其初始空间(即-Xms)是物理内存的1/64，最大空间(-Xmx)是物理内存的1/4。
  * gc一天最好不要超过48次，full GC频率 平均大约半小时1次
@@ -93,13 +92,13 @@ http://www.cnblogs.com/lingiu/p/3866559.html
  * Minor GC执行的并不频繁（大概10秒一次）
  * Full GC执行的很快（小于1s）
  * Full GC执行的并不频繁（10分钟一次）
-#查看 CPU 占用最高的线程
+# 查看 CPU 占用最高的线程
  * 一般的 jps -Vv 查找当前 pid
  * top -H -p pid 找到cpu 消费最高的线程的 pid
  * jstack -p pid |grep 线程 pid 转16进制
  * https://github.com/jik1992/fork-jcpu.sh
 
-#关于 PermGen OOM
+# 关于 PermGen OOM
  
 1. pg 一般128-256m 之间已经完全够用，oom 导致可能由于过多的加载类，此类原因调大 PermGen 大小即可，后续趋于稳定。
 2. 还有一种可能DelegatingClassLoader不会回收，由于本地反射使用不当。或者YGC过于频繁,导致无法进入Perm空间的回收事件。
@@ -107,11 +106,11 @@ http://www.cnblogs.com/lingiu/p/3866559.html
 
 ![](https://dn-zuoyun.qbox.me/image/d/1a/7ef151c4e7a932447d9e087cce1ca.png)
 
-#远程监控VisualVM
+# 远程监控VisualVM
 
 PS, 两边版本一致。
 
-## 远程安装 jstatd
+##  远程安装 jstatd
 
 vim jstatd.policy
 ```language-java
@@ -124,7 +123,7 @@ nohup ./jstatd -J-Djava.security.policy=jstatd.policy -J-Djava.rmi.server.hostna
 ```
 最后进VisualVM直接add remote jstatd address
 
-## tomcat 挂载 JMX
+##  tomcat 挂载 JMX
 
 ```language-bash
 JAVA_OPTS='-Dcom.sun.management.jmxremote.port=8099 
@@ -139,15 +138,15 @@ PS 最后发现 Java8里面的 MissionControl 是可以兼容上面的方案的 
 
 ![](https://dn-zuoyun.qbox.me/image/2/02/d487d0df49431b94cfb24836f6713.png)
 
-#MAT
+# MAT
 启动8G内存
 ```language-bash
 open -a MemoryAnalyzer --args -vmargs -Xmx8g
 ```
 
-#文章收集
+# 文章收集
 
-[Jstat](http://docs.oracle.com/javase/1.5.0/docs/tooldocs/share/jstat.html#gcutil_option)
+[Jstat](http://docs.oracle.com/javase/1.5.0/docs/tooldocs/share/jstat.html# gcutil_option)
 
 [G1 GC实践](http://zhaoyanblog.com/?s=G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8)
 

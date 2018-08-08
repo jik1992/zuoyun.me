@@ -1,13 +1,12 @@
 title: NameServer-Zookeepr相关
 date: 2016/01/07 07:30:28
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 

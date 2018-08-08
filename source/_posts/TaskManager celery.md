@@ -1,13 +1,12 @@
 title: TaskManager celery
 date: 2016/01/09 05:37:19
 categories:
+ - tryghost
 
+tags:
  - python 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -23,7 +22,7 @@ sudo pip install Celery
 ```
 
 ```language-python
-# tasks.py
+#  tasks.py
 import time
 from celery import Celery
 
@@ -54,7 +53,7 @@ https://github.com/dbader/schedule
 import schedule
 import time
 import logging
-#输出日志到文件
+# 输出日志到文件
 logging.basicConfig(level=logging.INFO,
                 format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
                 datefmt='%a, %d %b %Y %H:%M:%S',

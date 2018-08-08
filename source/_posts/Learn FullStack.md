@@ -1,17 +1,16 @@
 title: Learn FullStack
 date: 2015/02/26 03:18:54
 categories:
+ - tryghost
 
+tags:
  - manage 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#FullStack
+# FullStack
 
    1. JavaScript(CSS/HTML)，脚本语言控制浏览器的样式结构，同时对后端进行数据收发。
    2. Nodejs，BackEnd 数据处理，与前端通信，渲染页面。
@@ -22,23 +21,23 @@ tags:
 PS:https://github.com/phodal/growth-ebook
     
 
-#习惯
+# 习惯
  
-##Github 使用技巧
+## Github 使用技巧
 
  * 看完所有 https://github.com/showcases
  * 每日Trending https://github.com/trending/html
  * 不错的资料收集 Star
 
-##每日晨读
+## 每日晨读
 
  * 看程序员思维 https://v2ex.com/
  * 看软件更新资讯 http://www.oschina.net/
  * 看阿里云技术 https://yq.aliyun.com/
  * 看安全相关 http://drops.wooyun.org/
- * 看业界新闻 http://gold.xitu.io/#/
+ * 看业界新闻 http://gold.xitu.io/# /
  
-##你需要加强
+## 你需要加强
 
  * Git 的版本控制的知识[1](https://github.com/oldratlee/translations/tree/master/git-workflows-and-tutorials)
  * maven 的模块化构建的知识[1](http://wiki.jikexueyuan.com/project/maven/)[2](http://www.infoq.com/cn/maven-practice)
@@ -48,25 +47,25 @@ PS:https://github.com/phodal/growth-ebook
  * SQL 编写，熟悉数据库DDL，DML 相关语法和索引构建技巧，以及防止 SQL 注入的基本常识
 
 
-##learning roadmap
-###工具
+## learning roadmap
+### 工具
 * 学习 ubuntu
 * 学习 shadowsocks/fiddler4
 * 学习 github
 * 学习 atom
 * 学习 chrome
-###基础
+### 基础
 * 学习 css、html
 * 学习 JavaScript/DOM/Ajax
 * 学习 http/tcp 协议
 * 学习 nodejs/npm/express
 * 学习 mysql、redis
-###框架
+### 框架
 * 学习 cordova、electron
 * 学习 bootstrap、iframework7
 * 学习 jquery、zetop
 * 学习 vuejs
-###整体能力
+### 整体能力
 * 学习 nginx
 * 学习 阿里云、七牛服务
 * 学习 freecodecamp

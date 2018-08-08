@@ -1,13 +1,12 @@
 title: Groovy/Gradle
 date: 2014/12/22 15:35:34
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -30,14 +29,14 @@ http://docs.codehaus.org/display/GROOVY/Home
  * more?  actor model/httpbuilder/for Android?
  
  
-####包结构
+#### 包结构
 ![](https://dn-zuoyun.qbox.me/image/7/5b/11fd893574d211fb27e67231032d7.jpg)
 
 ![](https://dn-zuoyun.qbox.me/image/0/8d/941d564e82d6bc1ea46a4fc65b9c6.jpg)
  
  过几天准备探索spring和maven的整合
 
-####注解
+#### 注解
 ```
 @TypeChecked //静态检查
 @Singleton   //单列
@@ -48,14 +47,14 @@ http://docs.codehaus.org/display/GROOVY/Home
 @Grab  //独立script都可以使用这个注解加载包, 模块请使用gradle
 ```
 
-####groovy compile
+#### groovy compile
 三种
 groovy
-groovyc -d classes/-j #编译成class/java(main方法)文件
+groovyc -d classes/-j # 编译成class/java(main方法)文件
 groovyshell
 groovyconsole
 
-####java/groovy 相互调用
+#### java/groovy 相互调用
 * java JSR233/GroovyShell/Engine
 ```java
 GroovyShell shell=new GroovyShell;
@@ -65,11 +64,11 @@ shell.execute("demo.groovy");
 ```groovy
 import com.demo.java
 object obj=new object();
-#或者使用注解
+# 或者使用注解
 @Grab
 ```
 
-####groovy use build tools
+#### groovy use build tools
 使用maven 编译groovy ->mvn clean test
 ```xml
 <dependencies>
@@ -126,7 +125,7 @@ dependencies {
 }
 ```
 
-####api/feature
+#### api/feature
 ```groovy
 //集合
 1）省略了JavaBean的getter和setter方法；
@@ -163,28 +162,28 @@ if (a==b)   等价于  if (a.equal(b))
 ["Java", "Groovy"]*.toUpperCase()
 ```
 
-####groovy script
+#### groovy script
 ```
-#!/usr/bin/groovy
+# !/usr/bin/groovy
 println "Hello ${args[0]}, may Groovy be with you."
 
 groovy -e "println 'Hello World!'"
 ```
 
 
-####GroovyTestCase/Spock
+#### GroovyTestCase/Spock
 ```
 assert 1==2 : "One isn't Two"
 ```
 
-####其他的项目
-#####Grails
-#####GPars
-#####GVM
-#####Griffon
-#####GroovyServ
-#####CodeNarc
-#####Gaiden
+#### 其他的项目
+##### Grails
+##### GPars
+##### GVM
+##### Griffon
+##### GroovyServ
+##### CodeNarc
+##### Gaiden
 
 
 

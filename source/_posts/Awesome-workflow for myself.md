@@ -1,13 +1,12 @@
 title: Awesome-workflow for myself
 date: 2015/10/27 06:37:57
 categories:
+ - tryghost
 
+tags:
  - about 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -15,7 +14,7 @@ tags:
  1. 这是至今用过觉得靠谱产品选择，每一个领域只有一个.
  2. 如果辞职了，有机会要好好把玩~~~~记在这里
 
-##production/design
+## production/design
  * auxre7
  * stekch
  * ps/ae/imoive
@@ -27,7 +26,7 @@ tags:
  * iconfont.cn
  * slides.com
 
-##webfrontend
+## webfrontend
  * socket.io
  * semantic  
  * marionette/backbonejs/undercore/handlerbar
@@ -42,7 +41,7 @@ tags:
  * pm2/supervisor
  * intro.js/moment.js
 
-##server
+## server
  * springboot
  * cas/keycloak/Shiro
  * dubbox/zk
@@ -61,20 +60,20 @@ tags:
  * celery
  * ldap/leveldb
 
-##IDE
+## IDE
  * idea
  * sublimetext
  * cloud9
  * sourcetree
  * jrebel
 
-####BigData
+#### BigData
  * docker/daocloud
  * mesos/marathon
  * hadoop/spark
  * deis
 
-##OA
+## OA
  * odoo/ghost/gitbook
  * dokuwiki
  * etherpad
@@ -86,7 +85,7 @@ tags:
  * confluece/jira
  * processon
 
-##Operations
+## Operations
  * nginx/lua
  * disconf
  * btree
@@ -100,18 +99,18 @@ tags:
  * glances
  * zabbix
 
-##DBA
+## DBA
  * kettle/metabase
  * flywaydb
  * mycat
 
-##Test
+## Test
  * mockito
  * jmeter
  * selenium
  * junit4、springtest
 
-##Saas
+## Saas
  * dnspod
  * cloudfare
  * aliyun/digtailocean
@@ -119,7 +118,7 @@ tags:
  * intercom/disqus
  * google analytics
 
-##oauth2
+## oauth2
  * github/weixin/taobaosdk
 
 

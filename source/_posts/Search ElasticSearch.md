@@ -1,13 +1,12 @@
 title: Search ElasticSearch
 date: 2015/12/07 05:28:34
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -23,8 +22,8 @@ tags:
  * 字段（Field）：搜索的最小单元，可通过Mapping定义不同的属性（比如可否被搜索）
 
 
-##基本 CRUD
-###配置
+## 基本 CRUD
+### 配置
 启动锁定内存
 ```language-bash
 ES_MIN_MEM=8.5g
@@ -33,29 +32,29 @@ ES_HEAP_SIZE=8G
 ```
 配置
 ```language-bash
-#名称
+# 名称
 cluster.name: my-application
-#节点名称
+# 节点名称
 node.name: node-2
-#是否保存数据
+# 是否保存数据
 node.data: true
 node.master: true
-#分片副本
+# 分片副本
 index.number_of_shards:5 
 index.number_of_replicas:1
-#单播节点发现
+# 单播节点发现
 discovery.zen.ping.unicast.hosts: ["x.x.x.x", "[::1]"]
-#锁内存
+# 锁内存
 bootstrap.mlockall:true
-#是否禁止 http 访问
+# 是否禁止 http 访问
 http.enabled
-#如果需要开启动态脚本查询，严禁使用 root 启动 es
+# 如果需要开启动态脚本查询，严禁使用 root 启动 es
 script.groovy.sandbox.enabled: true
 script.inline: on
 script.indexed: on
 script.search: on
 script.engine.groovy.inline.aggs: on
-#慢日志设置 logger.yml 那边要手动开启
+# 慢日志设置 logger.yml 那边要手动开启
 index.search.slowlog.level: TRACE
 
 index.search.slowlog.threshold.query.warn: 10s
@@ -68,18 +67,18 @@ index.search.slowlog.threshold.fetch.info: 800ms
 index.search.slowlog.threshold.fetch.debug: 500ms
 index.search.slowlog.threshold.fetch.trace: 200ms
 
-#关闭自动创建索引、
+# 关闭自动创建索引、
 action.auto_create_index: false
 
 
 ```
-##集群
+## 集群
 集群策略基本上就是一个负载点暴露地址，2N+1个数据集群。
 node.master=true/node.data=false
 node.master=false/node.data=true
 node.master=false/node.data=true
 ![](https://dn-zuoyun.qbox.me/image/1/12/8aef70686cb67591b510f8e052f44.png)
-##暴露api
+## 暴露api
  * _settings  全局设置
  * _templates 动态模板设定
  * _cluster  集群操作
@@ -88,7 +87,7 @@ node.master=false/node.data=true
  * _bluk 批量更新端口
 
 
-##DSL
+## DSL
 ```language-bash
 curl -XPOST http://127.0.0.1:9200/films/md/ -d '{ "name":"hei yi ren", "tag": "bad", "post_date":"2015-10-29T14:12:12"}'  
 curl -XDELETE http://127.0.0.1:9200/films  
@@ -115,7 +114,7 @@ script 查询
 doc['clientip'].value
 ```
 
-##mapping配置 
+## mapping配置 
  * 当前字段设置doc_values，不能使用分词，数据直接刷磁盘。
  * es 不支持索引的 rename mapping更改操作，只能 reindex
  * 假如你在基准测试中得到单机写入性能在 10000 eps，那么开启一个副本后所能达到的 eps 就只有 5000 了。还想写入 10000 eps 的话，就需要加一倍机器。
@@ -257,7 +256,7 @@ conn = pyes.es.ES("http://10.xx.xx.xx:8305/")
 search = pyes.query.MatchAllQuery().search(bulk_read=1000)
 hits = conn.search(search, 'store_v1', 'client', scan=True, scroll="30m", model=lambda _,hit: hit)
 for hit in hits:
-     #print hit
+     # print hit
      conn.index(hit['_source'], 'store_v2', 'client', hit['_id'], bulk=True)
 conn.flush()
 ```
@@ -362,19 +361,19 @@ PUT /my_index
 }
 ```
 
-##插件安装
+## 插件安装
 ```language-bash
 bin/plugin install lmenezes/elasticsearch-kopf  
 bin/plugin install mobz/elasticsearch-head
 ```
-##同步mysql database
+## 同步mysql database
 https://github.com/jprante/elasticsearch-jdbc
 
 ```language-bash
-#解压到 lib 文件夹下
+# 解压到 lib 文件夹下
 http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-river-jdbc/1.5.0.5/elasticsearch-river-jdbc-1.5.0.5-plugin.zip 
 
-#请求同步数据库, 注意要设定主键，会增量同步
+# 请求同步数据库, 注意要设定主键，会增量同步
 curl -XPUT 'http://localhost:9200/_river/who_jdbc_river/_meta' -d '{
     "type": "jdbc",
     "jdbc": {
@@ -394,13 +393,13 @@ curl -XPUT 'http://localhost:9200/_river/who_jdbc_river/_meta' -d '{
 }'
 
 
-##删除相关索引
+## 删除相关索引
 curl -XDELETE '192.168.1.116:9200/_river/userinfo/_meta'
 curl -XDELETE '192.168.1.116:9200/_river/userinfo/_status'
 
 ```
 
-##运维索引Curator
+## 运维索引Curator
 https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html
 ```language-bash
 pip install elasticsearch-curator
@@ -408,14 +407,14 @@ curator delete/show indices --index trace --older-than 7 --time-unit days --time
 ```
 
 
-##备份恢复
+## 备份恢复
 参考
 
 http://keenwon.com/1393.html
 https://www.elastic.co/guide/en/elasticsearch/reference/current/backup.html
 http://kibana.logstash.es/
 
-##集群控制
+## 集群控制
 POST _cluster/reroute
 ```language-javascript
 {
@@ -447,16 +446,16 @@ POST _cluster/reroute
 }
 ```
 
-##插件安装
+## 插件安装
 ```langauge-bash
 bin/plugin install lmenezes/elasticsearch-kopf
 bin/plugin install head
 bin/plugin install elasticsearch/watcher/latest
 ```
-## TODO
+##  TODO
 白名单权限http-basic 不支持2.1版本，需要做插件兼容
 
-##配置详解
+## 配置详解
 http://kibana.logstash.es/
 
 elastalert

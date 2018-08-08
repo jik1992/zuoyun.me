@@ -1,25 +1,24 @@
 title: Guide Docker
 date: 2015/06/28 09:21:13
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
-###国内云托管
+### 国内云托管
 >http://www.daocloud.io
-###单机监控
+### 单机监控
 >https://github.com/google/cadvisor
-###集群托管
+### 集群托管
 >https://github.com/shipyard/shipyard
-###云平台(TODO) 
+### 云平台(TODO) 
 coreOS+etcd+kubernetes(Mesos)
-###概念
+### 概念
  * daemon 
  * image
  * container  
@@ -29,7 +28,7 @@ coreOS+etcd+kubernetes(Mesos)
 ```
 sudo docker -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock -d
 ```
-###工具
+### 工具
  * docker
  * docker2boot
  * docker-machine
@@ -39,7 +38,7 @@ sudo docker -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock -d
  * kitematic
 
 
-###命令
+### 命令
 ```language-bash
 docker ps
 docker images
@@ -51,27 +50,27 @@ docker export
 docker exec -it 2d97d96edf92 /bin/bash
 service docker start/stop/restart
 ```
-##运维脚本
+## 运维脚本
 ```language-bash
-# 杀死所有正在运行的容器 
+#  杀死所有正在运行的容器 
 docker kill $(docker ps -a -q) 
 
-# 删除所有已经停止的容器 
+#  删除所有已经停止的容器 
 docker rm $(docker ps -a -q) 
 
-# 删除所有未打 dangling 标签的镜像 
+#  删除所有未打 dangling 标签的镜像 
 docker rmi $(docker images -q -f dangling=true) 
 
-# 删除所有镜像 
+#  删除所有镜像 
 docker rmi $(docker images -q) 
 
 ```
 
 
-###制作迁移镜像(TODO)
+### 制作迁移镜像(TODO)
 xxx
-###暴露 Docke API(TODO)
-###最新的 docker 版本
+### 暴露 Docke API(TODO)
+### 最新的 docker 版本
 ```language-bash
 sudo apt-get install apt-transport-https  
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9  
@@ -82,7 +81,7 @@ apt-get update -y lxc-docker
 ln -sf /usr/bin/docker /usr/local/bin/docker  
 ```
 
-###代理镜像
+### 代理镜像
 ```language-bash
 https://help.aliyun.com/knowledge_detail/40557.html
 https://lug.ustc.edu.cn/wiki/mirrors/help/docker

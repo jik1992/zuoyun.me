@@ -1,17 +1,16 @@
 title: Test Junit4/Mockito
 date: 2015/08/31 06:43:05
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#Junit4
+# Junit4
 批量测试
 ```language-java
 @RunWith(Suite.class)
@@ -64,7 +63,7 @@ public class ParameterizedTest {
 
 
 
-#Mockito
+# Mockito
 >http://mockito.org/
 
 原语
@@ -78,9 +77,9 @@ public class ParameterizedTest {
 参考
 >http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html
 
-#Htmlunit
+# Htmlunit
 
-#Seleuium
+# Seleuium
 
 
 

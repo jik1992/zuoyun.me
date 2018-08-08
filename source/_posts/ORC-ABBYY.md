@@ -1,13 +1,12 @@
 title: ORC-ABBYY
 date: 2016/08/14 13:26:21
 categories:
+ - tryghost
 
+tags:
  - tools 
 
 
-tags:
-
-- tryghost
 
 ---
 

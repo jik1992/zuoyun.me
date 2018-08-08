@@ -1,19 +1,18 @@
 title: Depoly gunicorn
 date: 2015/11/19 17:19:43
 categories:
+ - tryghost
 
+tags:
  - python 
 
 
-tags:
-
-- tryghost
 
 ---
 
 nginx+gunicorn+flask
 
-http://gunicorn.org/#quickstart
+http://gunicorn.org/# quickstart
 
 使用很简单
 

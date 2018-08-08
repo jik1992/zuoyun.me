@@ -1,38 +1,37 @@
 title: RaspberryPi2
 date: 2016/02/24 06:52:54
 categories:
+ - tryghost
 
+tags:
  - tools 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##常见core
+## 常见core
 
  * STM32
  * ARM7、9 
  * MTK
 
-##无线通信
+## 无线通信
 
  * CC2530 套件 zigbee
  * WIFI
 
-##硬件设备
+## 硬件设备
 
  * Pi2、EDUP EP-N8508GS
  * NanoPI2
 
-##常用参考网址
+## 常用参考网址
 
  * https://www.raspberrypi.org/
  * http://wiki.friendlyarm.com/wiki/index.php/NanoPi_2/zh
 
-##系统
+## 系统
  
  * noobs/raspberry
  * openelec
@@ -40,11 +39,11 @@ tags:
  * android
  * openwrt arm
 
-##烧写软件 
+## 烧写软件 
 
  * Win32DiskImager
 
-##关于 openwrt 
+## 关于 openwrt 
 
  https://wiki.openwrt.org/toh/raspberry_pi_foundation/raspberry_pi
  
@@ -61,7 +60,7 @@ tags:
  opkg update
  opkg install 
  opkg install fdisk e2fsprogs 
- fdisk -l #查看分区 
+ fdisk -l # 查看分区 
  mkfs.ext3 /dev/sda1
 
 

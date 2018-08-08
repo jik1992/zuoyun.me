@@ -1,24 +1,23 @@
 title: HTTPS letencrypt' certbot
 date: 2016/12/14 16:53:22
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
 
 letencrypt的证书续签服务
 
-##背景
+## 背景
 根据url路由访问脚本生成的校验文件，通过自动签名证书
 
 
-##使用
+## 使用
 1 . 配置nginx，设置访问路径
 ```language-javascipt
 server{
@@ -60,9 +59,9 @@ server{
 ```
 2 . 验证url路径，自动签名
 ```language-bash
-#首次签名
+# 首次签名
 certbot certonly --webroot -w /usr/local/openresty/nginx/html -d git.tech84.com  -d tech84.com -d app.tech84.com -d wiki.tech84.com  -d repo.tech84.com 
-#手动续签
+# 手动续签
 certbot renew --dry-run 
 ```
 3 . 证书保存路径
@@ -76,7 +75,7 @@ crontabe -e
 30 2 * * 1 /usr/bin/certbot renew  >> /var/log/le-renew.log
 ```
 
-##引用
+## 引用
 https://github.com/certbot/certbot
 https://certbot.eff.org/
 https://segmentfault.com/a/1190000005797776

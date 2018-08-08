@@ -1,13 +1,12 @@
 title: Learn 2015
 date: 2014/12/29 03:40:07
 categories:
+ - tryghost
 
+tags:
  - about 
 
 
-tags:
-
-- tryghost
 
 ---
 

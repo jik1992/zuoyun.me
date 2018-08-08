@@ -1,20 +1,19 @@
 title: Spring-Cache
 date: 2016/06/01 06:06:38
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#简介
+# 简介
 http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html
 
-#使用
+# 使用
  * @Cacheable triggers cache population
  * @CacheEvict triggers cache eviction
  * @CachePut updates the cache without interfering with the   method execution
@@ -22,7 +21,7 @@ http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.
  * @CacheConfig shares some common cache-related settings at class-level
  * 可以使用 Spel 表达式来解析数据
 
-#配置
+# 配置
 1.spring-cache.xml
 ```language-xml
     <!--cache 注解-->

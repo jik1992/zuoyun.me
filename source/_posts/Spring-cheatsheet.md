@@ -1,17 +1,16 @@
 title: Spring-cheatsheet
 date: 2015/12/04 06:31:15
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##静态方法装载 spring
+## 静态方法装载 spring
 ```language-java
 static ApplicationContext ctx;
 
@@ -29,14 +28,14 @@ static {
   }
 ```
 
-##常规注解
+## 常规注解
 
  *  @compent
  *  @resouce
  *  @controll
  *  @postconstruct
 
-##常规接口 
+## 常规接口 
  * InitializingBean
   
 

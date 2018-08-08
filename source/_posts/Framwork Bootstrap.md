@@ -1,21 +1,20 @@
 title: Framwork Bootstrap
 date: 2016/01/29 05:30:10
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##Bootstarp 
+## Bootstarp 
 
 http://v3.bootcss.com/
 
-###排版 class
+### 排版 class
 ```language-css
 .container-fluid
 .rows
@@ -28,7 +27,7 @@ table table-striped table-condensed
 btn btn-default btn-info btn-warning btn-default btn-block             
 ```
 
-### popover
+###  popover
 ```language-javascript
 //tooltips 初始化
 $('[data-toggle="tooltip"]').tooltip();

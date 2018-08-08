@@ -1,24 +1,23 @@
 title: Java concurrent
 date: 2015/11/25 16:57:38
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#原子
+# 原子
 ```language-java
   @Test
   public void _testMain() throws Exception {
     AtomicLong aLong = new AtomicLong(1);
   }
 ```
-#基础接口 callable\future\futuretask
+# 基础接口 callable\future\futuretask
 ```language-java
 public class ThreadDemoTest {
 
@@ -54,7 +53,7 @@ public class ThreadDemoTest {
   }
 }
 ```
-#线程池
+# 线程池
 ```language-java
   @Test
   public void testMain4() {
@@ -70,7 +69,7 @@ public class ThreadDemoTest {
   }
 ```
 
-#线程安全数据结构
+# 线程安全数据结构
 ```language-java
   @Test
   public void testMain4() {
@@ -86,7 +85,7 @@ public class ThreadDemoTest {
   }
 
 ```
-#工具
+# 工具
 ```language-java
   @Test
   public void testMain5() throws InterruptedException {
@@ -112,7 +111,7 @@ public class ThreadDemoTest {
     semaphore.release();
   }
 ```
-#增强包 guava
+# 增强包 guava
 ```language-java
 //todo
 ```
@@ -130,7 +129,7 @@ public class ThreadDemoTest {
     ExecutorService executor4 = Executors.newScheduledThreadPool(4);
   }
 ```
-#forkjoin
+# forkjoin
 ```language-java
   @Test
   public void testMain6() {
@@ -225,7 +224,7 @@ class SubTask2 extends RecursiveTask<Long> {
 }
 ```
 
-#actors/eventBus 模型
+# actors/eventBus 模型
 ```language-java
   @Test
   public void testMain7() {
@@ -272,15 +271,15 @@ class EventListener {
   }
 }
 ```
-#并发框架 Disruptor
+# 并发框架 Disruptor
 效率很高，有很多 hack 写法，非常值得学习
 
 https://github.com/LMAX-Exchange/disruptor
 http://ifeve.com/disruptor-getting-started/
 
-#书籍
+# 书籍
 《JAVA并发编程实践》
-#很有意思的一个项目
+# 很有意思的一个项目
 http://sourceforge.net/projects/javaconcurrenta/
 
 

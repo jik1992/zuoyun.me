@@ -1,25 +1,24 @@
 title: Guide Maven
 date: 2014/12/27 04:28:22
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#maven
+# maven
 
-##相关库
+## 相关库
 
  * http://maven.oschina.net/home.html
  * http://maven.apache.org/
  * http://maven.apache.org/plugins/index.html
 
-##常用插件
+## 常用插件
 
  * maven-assembly-plugin
  * maven-resources-plugin
@@ -31,16 +30,16 @@ tags:
 
 ${log_dir}
 
-##常用命令
+## 常用命令
 ```
-# debug -X   重新拉 jar -U
+#  debug -X   重新拉 jar -U
 mvn -X -U clean install 
-# 查看依赖树
+#  查看依赖树
 mvn dependency:tree 
 
 ```
 
-#模块划分
+# 模块划分
 
  * 查找依赖的顺序是 本地->镜像->remote repo 
  * 坐标        
@@ -101,7 +100,7 @@ mvn dependency:tree
 ```
 
 
-##远程发布
+## 远程发布
 ```language-xml
             <!--tomcat7插件-->
             <plugin>
@@ -122,7 +121,7 @@ mvn dependency:tree
             </plugin>
 ```
 
-##执行 shell 脚本
+## 执行 shell 脚本
 ```language-xml
             <plugin>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -152,7 +151,7 @@ mvn dependency:tree
             </plugin>
 
 ```
-##deploy-file
+## deploy-file
 ```language-bash
 mvn deploy:deploy-file  
 -DrepositoryId=raycloud  
@@ -163,7 +162,7 @@ mvn deploy:deploy-file
 -Dsource=taobao-sdk-java-auto_1453878322044-20160127-source.jar
 ```
 
-##deploy
+## deploy
 ```language-xml
     <!--构建仓库-->
     <distributionManagement>

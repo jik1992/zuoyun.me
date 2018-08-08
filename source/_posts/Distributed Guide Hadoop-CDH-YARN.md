@@ -1,17 +1,16 @@
 title: Distributed Guide Hadoop/CDH/YARN
 date: 2017/01/11 15:38:49
 categories:
+ - tryghost
 
+tags:
  - python 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##背景
+## 背景
 盗一张图来解释hadoop目前生态
 ![](https://dn-zuoyun.qbox.me/image/b/6a/1033fc27e1d8e8f774bb07db1422b.png)
 其中这些领域有很好的第三方替代
@@ -27,12 +26,12 @@ https://hortonworks.com
 http://cloudera.com/
 http://ambari.apache.org/
 
-##引用
+## 引用
 http://www.linuxidc.com/Linux/2014-03/98978.htm
 
 常见的三种算
 DAG(Spark)、Tez(MapReduce)
-##Hive2.0/impala
+## Hive2.0/impala
 
 
 

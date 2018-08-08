@@ -1,19 +1,18 @@
 title: Distributed Guide ELKBStack
 date: 2014/12/25 19:58:39
 categories:
+ - tryghost
 
+tags:
  - store 
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
 http://kibana.logstash.es/content/elasticsearch/performance/curator.html
-##Dapper
+## Dapper
 
 http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/36356.pdf
 
@@ -22,13 +21,13 @@ http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archiv
 ![](https://dn-zuoyun.qbox.me/image/a/86/37a4b036c32bc86686835497497ff.png)
 ![](https://dn-zuoyun.qbox.me/image/1/5f/312493b3df09c4b9631879f1d15d0.png)
 
-##kibana/grafana
+## kibana/grafana
 概念
 所有的图的 x 轴都是 timestamp 坐标，Y 轴是任意维度切分。可以按照需求自由设计，分组， 保存面板。
 
 当然我们也可以引入 grafana 更加智能，可以自动发现字段，不需要手动查询配置，精简了一些不会太常用的功能。
 
-###核心思考，关键词
+### 核心思考，关键词
 
 服务：重试，超时，心跳，熔断，监控，重启
 
@@ -36,7 +35,7 @@ http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archiv
 
 日志：审计日志、线上日志、后台日志、*nix操作日志
 
-###相关资料
+### 相关资料
 <table border>
 <tr>
 		<td></td>
@@ -108,11 +107,11 @@ http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archiv
 
 </table>
 
-###架构
+### 架构
 ![](https://dn-zuoyun.qbox.me/image/a/c8/83a7f99820a9df249b54229cbe8cd.png)
 ![](https://dn-zuoyun.qbox.me/image/5/b4/4cd6202022b3b6e14abd2720ab743.png)
 
-###Dapper 原理项目实现
+### Dapper 原理项目实现
 https://github.com/naver/pinpoint
 https://github.com/openzipkin/zipkin
 

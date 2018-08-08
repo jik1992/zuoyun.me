@@ -1,20 +1,19 @@
 title: Oauth Shiro Usage
 date: 2016/03/10 07:16:08
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-###官网
+### 官网
 http://shiro.apache.org/
 
-###架构
+### 架构
 ![](https://dn-zuoyun.qbox.me/image/e/88/be4e36b79102864554476e69c4483.png)
 
 ![](http://img.blog.csdn.net/20160114233958301)
@@ -34,10 +33,10 @@ Web Support：Web支持，可以非常容易的集成到Web环境；
 * Run As：允许一个用户假装为另一个用户（如果他们允许）的身份进行访问；
 * Remember Me：记住我，这个是非常常见的功能，即一次登录后，下次再来的话不用登录了。
 
-###RBAC模型
+### RBAC模型
 角色扮演的权限模型
 
-###使用
+### 使用
 http://shiro.apache.org/10-minute-tutorial.html
 
 集成Shiro核心内容:
@@ -52,9 +51,9 @@ ShiroFilterFactoryBean，此实现类是依赖于SecurityManager安全管理器�
 6 . 其它的就是缓存管理，记住登录、验证码、分布式系统共享Session之类的，这些大部分都是需要自己进行的实现，其中缓存管理，记住登录比较简单实现，并需要注入到SecurityManager让Shiro的安全管理器进行管理就好了。
 
 
-###依赖关系
+### 依赖关系
 http://shiro.apache.org/download.html
-###表字段
+### 表字段
 ```language-sql
 USE `test`;
 
@@ -252,8 +251,8 @@ public class UserRealm extends AuthorizingRealm {
 //    }
     userRoles.add("admin");
     userPermissions.add("1");
-    System.out.println("#######获取角色：" + userRoles);
-    System.out.println("#######获取权限：" + userPermissions);
+    System.out.println("####### 获取角色：" + userRoles);
+    System.out.println("####### 获取权限：" + userPermissions);
     //为当前用户设置角色和权限
     SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
     authorizationInfo.addRoles(userRoles);
@@ -267,7 +266,7 @@ public class UserRealm extends AuthorizingRealm {
   @Override
   protected AuthenticationInfo doGetAuthenticationInfo(
       AuthenticationToken authcToken) throws AuthenticationException {
-    System.out.println("###【开始认证[SessionId]】" + SecurityUtils.getSubject().getSession().getId());
+    System.out.println("### 【开始认证[SessionId]】" + SecurityUtils.getSubject().getSession().getId());
     String loginName = (String) authcToken.getPrincipal();
     System.out.println(JSON.toJSONString(authcToken));
 //    User user = userService.findByLoginName(loginName);
@@ -325,7 +324,7 @@ public class App {
 }
 
 ```
-###引用
+### 引用
 https://www.gitbook.com/book/waylau/apache-shiro-1-2-x-reference/details
 
 

@@ -1,17 +1,16 @@
 title: Plugin http-proxy-middleware 服务端跨域
 date: 2016/04/29 08:57:37
 categories:
+ - tryghost
 
+tags:
  - nodejs 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##项目再此
+## 项目再此
 https://github.com/chimurai/http-proxy-middleware
 由于只有 GET 对跨域有很好的支持，在做项目拆分的时候有时候接口难免会有跨域问题。
 这个nodejs 的服务端插件通过接口映射很少的代码可以做端口转发，挺实用的，目前已经上生产线。

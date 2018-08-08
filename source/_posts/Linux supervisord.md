@@ -1,17 +1,16 @@
 title: Linux supervisord
 date: 2015/11/18 05:18:09
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##文档
+## 文档
 
 http://supervisord.org/
 
@@ -19,26 +18,26 @@ http://supervisord.org/
 
 一个常规的后台进程开启
 ```language-bash
-!#bin/bash
+!# bin/bash
 nohup ./kibana >/dev/null 2>&1 &
 ```
 
 
-##使用
+## 使用
 
 ```language-bash
-## 安装
+##  安装
 pip install supervisor
 echo_supervisord_conf > /etc/supervisord.conf
-## 启动 deamon
+##  启动 deamon
 supervisord
-## 后台管理
+##  后台管理
 supervisorctl
 supervisorctl>
-## 相关命令
+##  相关命令
 start stop reload update
 ```
-##supervisord.conf
+## supervisord.conf
 
 里面注释齐全，自己可以学习。
  

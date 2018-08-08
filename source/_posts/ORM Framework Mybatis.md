@@ -1,18 +1,17 @@
 title: ORM Framework Mybatis
 date: 2015/12/18 02:14:29
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#Mybatis
-##最佳实践
+# Mybatis
+## 最佳实践
 ```language-xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
@@ -41,34 +40,34 @@ tags:
         <sql id="kbObjPropList.where">
         <dynamic prepend=" WHERE ">
             <isNotNull property="id" prepend=" AND ">
-                id=#id#
+                id=# id# 
             </isNotNull>
             <isNotNull property="cid" prepend=" AND ">
-                cid=#cid#
+                cid=# cid# 
             </isNotNull>
             <isNotNull property="pids" prepend=" AND ">
-                pids=#pids#
+                pids=# pids# 
             </isNotNull>
             <isNotNull property="status" prepend=" AND ">
-                status=#status#
+                status=# status# 
             </isNotNull>
             <isNotNull property="nameAbbr" prepend=" AND ">
-                name_abbr=#nameAbbr#
+                name_abbr=# nameAbbr# 
             </isNotNull>
             <isNotNull property="name" prepend=" AND ">
-                name=#name#
+                name=# name# 
             </isNotNull>
             <isNotNull property="source" prepend=" AND ">
-                source=#source#
+                source=# source# 
             </isNotNull>
             <isNotNull property="lock" prepend=" AND ">
-                `lock`=#lock#
+                `lock`=# lock# 
             </isNotNull>
             <isNotNull property="weight" prepend=" AND ">
-                weight=#weight#
+                weight=# weight# 
             </isNotNull>
             <isNotNull property="editor" prepend=" AND ">
-                editor=#editor#
+                editor=# editor# 
             </isNotNull>
         </dynamic>
     </sql>
@@ -79,7 +78,7 @@ tags:
         FROM kb_obj_prop
         WHERE
         <iterate conjunction="OR" open="(" close=")" property="name" >
-        (name= #name[].name# and cid=  #name[].cid#)
+        (name= # name[].name#  and cid=  # name[].cid# )
         </iterate>
 
     </select>
@@ -91,7 +90,7 @@ tags:
     <sql id="limit">
         <dynamic prepend=" LIMIT  ">
             <isNotNull property="page">
-                #page.startRow#,#page.offsetRow#
+                # page.startRow# ,# page.offsetRow# 
             </isNotNull>
         </dynamic>
     </sql>

@@ -1,13 +1,12 @@
 title: Spring-datasource
 date: 2015/11/23 08:29:53
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 

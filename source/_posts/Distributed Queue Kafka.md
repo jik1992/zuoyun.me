@@ -1,22 +1,21 @@
 title: Distributed Queue Kafka
 date: 2016/01/07 07:15:42
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##简介
+## 简介
 * 特征吞吐量大，消息可能会重复
 http://kafka.apache.org/
 * 监控 JMX
 
-##概念
+## 概念
  * producer   消息的生成者，即发布消息
  * consumer   消息的消费者，即订阅消息
  * broker     节点 id
@@ -25,13 +24,13 @@ http://kafka.apache.org/
 producers通过网络将消息发送到Kafka集群，集群向消费者提供消息
 kafka对消息进行归纳，即topic，也就是说producer发布topic,consumer订阅topic
 
-##三种队列中间件
+## 三种队列中间件
 
 * kafka    scala
 * rabbitMQ erlang 使用 AMQP
 * activeMQ java   使用 STOMP
 
-##使用
+## 使用
 首先启动一个 zk，然后再启动 kafka
 ```language-bash
 bin/kafka-server-start.sh -daemon config/server.propties
@@ -40,11 +39,11 @@ bin/kafka-server-start.sh -daemon config/server.propties
 这里和 logstash 整合启动集群
 
 ```language-bash
-#创建 topic
+# 创建 topic
 ./bin/kafka-topics.sh --zookeeper 10.2.85.26:2181 --topic "test_pretreat_res" --describe
-#写入数据
+# 写入数据
 ./bin/kafka-console-producer.sh --broker-list 10.2.85.26:9092 --topic test_task_oneinall_1 < /tmp/xhtest/data1.txt
-#读取数据
+# 读取数据
 ./bin/kafka-console-consumer.sh --topic test_task_oneinall_1 --bootstrap-server 10.2.85.26:9092 > /home/gf_stream/c.txt
 
 ```

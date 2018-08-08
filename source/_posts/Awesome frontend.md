@@ -1,18 +1,17 @@
 title: Awesome frontend
 date: 2014/12/19 17:58:25
 categories:
+ - tryghost
 
+tags:
  - about 
 
 
-tags:
-
-- tryghost
 
 ---
 
 这个月逛了一个月的github,基本上上班没事就点两下,发现真的是个宝库,我都快成点赞狂魔了,里面很多不错的组件希望以后能够用到,这里收集了一下做下总结.
-###高级组件
+### 高级组件
 
 1.pace
 >一个ajax动态进度条的组件,也就是ghost后台用的顶部一个小```progress bar```,发现国外网站都支持这个组件, 淘宝网也用到了<br/>
@@ -114,7 +113,7 @@ tags:
 >公告栏插件<br/>
 >http://www.aakashweb.com/demos/jquery-easy-ticker/
 
-###图标类
+### 图标类
 1.Material Design Icons
 >Google开源的material风格的开源图标
 
@@ -133,7 +132,7 @@ tags:
 
 
 
-###敏捷开发
+### 敏捷开发
 
 1.coffeejs/docco
 >这是个不错的语法糖,和koala组合可以实时编译, 跳js坑.  同样发现 微软的typescript和Google的dirtjs也都不错.docco是coffee的文档构建工具<br/>
@@ -158,7 +157,7 @@ tags:
 >js的文档构建工具<br/>
 >https://github.com/jsdoc3/jsdoc
 
->http://apidocjs.com/example/#api-User-PutUser
+>http://apidocjs.com/example/# api-User-PutUser
 
 6.nodejieba
 >jieba分词的的nodejs版本<br/>
@@ -176,7 +175,7 @@ tags:
 >静态blog生成<br/>
 >https://github.com/netease-youdao/hex
 
-###angularjs系列
+### angularjs系列
 
 1.material 
 >material风格的anglurjs ui设计库,动画效果赞!<br/>
@@ -201,7 +200,7 @@ tags:
 >angular图标组件<br/>
 >https://github.com/carlcraig/tc-angular-chartjs
 
-###教程
+### 教程
 
 1.http-api-assigin
 >介绍restful风格的http api设计,很短,干货<br/>
@@ -219,7 +218,7 @@ tags:
 >各种前端语言api refence guide<br/>
 >http://devdocs.io/cpp/
 
-###推荐网站
+### 推荐网站
 
 1.大数据分析,可以对接Google分析
 >kissmetrics.com

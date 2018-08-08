@@ -1,30 +1,29 @@
 title: profile JProfiler9
 date: 2015/11/23 02:00:52
 categories:
+ - tryghost
 
+tags:
  - manage 
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#官网
+# 官网
 
 jprofiler9新版，支持remote ssh tunnel，跳版机...JVM界的idea
 [www.ej-technologies.com/products/jprofiler/overview.html
 ]()
 
-##破解:
-key L-Larry_Lau@163.com#36573-fdkscp15axjj6#25257
+## 破解:
+key L-Larry_Lau@163.com# 36573-fdkscp15axjj6# 25257
 
-##使用
+## 使用
 下载两份包，一份 gui，一份 linux agent
 
-###gui 相关
+### gui 相关
 
  * session->ide integrations
  * telemetries->各种监控面板，可以添加自定义 MBeans
@@ -47,7 +46,7 @@ key L-Larry_Lau@163.com#36573-fdkscp15axjj6#25257
 学会查看cpu 占用百分比，找出性能瓶颈，根据28定律优化到最佳。
 内存问题查看class cpu profile，很多时候 cglib 不会造成内存泄露，但是 load 过高，内存自然无法释放。找出 io、net io、cpu 、sql的瓶颈尝试优化。
 
-###agent
+### agent
 相关教程
 
 http://blog.ej-technologies.com/2015/11/remote-profiling-through-ssh-tunnel.html

@@ -1,13 +1,12 @@
 title: LogAnalyize rsyslog
 date: 2015/12/02 02:15:50
 categories:
+ - tryghost
 
+tags:
  - python 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -16,25 +15,25 @@ tags:
 
 
 ```language-bash
-#开启
+# 开启
 service rsyslog start
-#查看状态
+# 查看状态
 /etc/init.d/rsyslog status
-#测试
+# 测试
 logger  "hello "
 ```
 
 配置相关
 ```language-bash
-#配置
+# 配置
 vim /etc/rsyslog.conf
 
 开启 UDP
-# provides UDP syslog reception
-#$ModLoad imudp
-#$UDPServerRun 514
+#  provides UDP syslog reception
+# $ModLoad imudp
+# $UDPServerRun 514
 
-# provides TCP syslog reception
+#  provides TCP syslog reception
 $ModLoad imtcp
 $InputTCPServerRun 514
 

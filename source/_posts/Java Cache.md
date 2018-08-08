@@ -1,23 +1,22 @@
 title: Java Cache
 date: 2015/11/25 18:24:53
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#heap内存相关
-##concurrenthashmap
+# heap内存相关
+## concurrenthashmap
 ```language-java
 public Map<String, String> dict = new ConcurrentHashMap<String, String>();
 ```
 
-##guava-cache
+## guava-cache
 
 https://github.com/google/guava/wiki
 ```language-java
@@ -34,8 +33,8 @@ https://github.com/google/guava/wiki
     cahceBuilder.put("zuoyun", "123456");
 ```
 
-# 分布式内存网格
-##hazelcast
+#  分布式内存网格
+## hazelcast
 https://hazelcast.com/products/
 ```language-java
 
@@ -64,8 +63,8 @@ pom.xml
         </dependency>
 ```
 
-#off-heap 内存相关
-#mapdb
+# off-heap 内存相关
+# mapdb
  * 支持事务，隔离
 
 http://www.infoq.com/cn/news/2014/07/mapdb-java
@@ -76,7 +75,7 @@ DB db = DBMaker
         .transactionDisable()
         .make();
 ```
-#redis
+# redis
 
  * 单线程
  * 缓存会话集群
@@ -88,7 +87,7 @@ DB db = DBMaker
         </dependency>
 ```
 
-#memcached
+# memcached
  * 多线程
 
 

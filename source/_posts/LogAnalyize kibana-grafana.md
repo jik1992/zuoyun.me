@@ -1,24 +1,23 @@
 title: LogAnalyize kibana/grafana
 date: 2015/12/18 02:37:24
 categories:
+ - tryghost
 
+tags:
  - store 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#kibana
+# kibana
 >https://www.elastic.co/products/kibana
 新版本的改进了很多地方
 
 查询语法
 http://segmentfault.com/a/1190000002972420
 
-#grafana
+# grafana
 >http://grafana.org
 
  * 默认账号密码 admin admin
@@ -34,7 +33,7 @@ http://segmentfault.com/a/1190000002972420
  * 有面板分享，账号邀请功能
  * 混合datasource排版
 
-#其他选项？
+# 其他选项？
 
 * splunk  http://10data.com/splunk/
 * logentries https://logentries.com/

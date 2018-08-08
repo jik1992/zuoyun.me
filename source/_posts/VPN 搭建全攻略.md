@@ -1,41 +1,40 @@
 title: VPN 搭建全攻略
 date: 2014/12/22 00:47:22
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#方案一 PPTP
+# 方案一 PPTP
 ```language-bash
-#安装
+# 安装
 sudo apt-get install pptpd
-#配置ip分配
+# 配置ip分配
 sudo vi /etc/pptpd.conf  
 localip 192.168.0.1
 remoteip 192.168.0.234-238,192.168.0.245
-#配置dns路由
+# 配置dns路由
 sudo vi /etc/ppp/pptpd-options 
 ms-dns 8.8.8.8
 ms-dns 8.8.4.4
-#配置登录账号
+# 配置登录账号
 sudo vi /etc/ppp/chap-secrets 
 admin pptpd admin *
 
-#重启
+# 重启
 sudo /etc/init.d/pptpd restart 
-#开启转发
+# 开启转发
 vi /etc/sysctl.conf
 net.ipv4.ip_forward=1
-#生效
+# 生效
 sudo sysctl -p 
 
-#安装iptables
+# 安装iptables
 sudo apt-get install iptables 
 sudo iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE
 sudo iptables-save > /etc/iptables-rules
@@ -46,11 +45,11 @@ sudo iptables-save > /etc/iptables-rules
 ```
 ![](https://dn-zuoyun.qbox.me/image/6/26/cf20b4298ee7ab0b40724d2238954.jpg)
 
-#方案二 L2TP
+# 方案二 L2TP
 https://github.com/sockeye44/instavpn
 **端口映射 UDP 1701 500 4500**
 
-#方案三 Shadowsocks
+# 方案三 Shadowsocks
 * 端口 ：1080
 * 服务端
 https://github.com/jik1992/fork-shadowsocks
@@ -66,7 +65,7 @@ sudo ssserver -p 443 -k password -m aes-256-cfb --user nobody -d start
 * 浏览器端 
  * SwitchyOmega
 
-#方案四 SSH
+# 方案四 SSH
 https://github.com/apenwarr/sshuttle
 
 

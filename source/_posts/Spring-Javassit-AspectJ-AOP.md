@@ -1,26 +1,25 @@
 title: Spring-Javassit/AspectJ/AOP
 date: 2015/11/20 17:38:02
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-#引言
+# 引言
 基于 jvm 的静态语言的动态实现一般有几种方法， 其中分两大类，jvm 的动态代理和字节码编程。其中 jvm 动态代理 proxydynmic 面对接口编程，字节码编程主要对应的包是 cglib 和 javassit，cglib 性能很好，有很多约束条件，如需要默认的初始化构造方法。javassit 相对来说更加好用，由于 classloader 默认一个类只能够加载一次，也需要 agent 支持或者自定义 classloader。
 
-#代理类
+# 代理类
  
 1.5之后的特性, JVM级别做了AOP支持，核心Instrumentation接口。
 使用
 -javaagent:daemon.jar 
 
-#字节码增强
+# 字节码增强
 ![](https://dn-zuoyun.qbox.me/image/c/b2/50383d59d486d145365d6fd0e2db6.png)
 
  * cglib
@@ -28,7 +27,7 @@ tags:
 
 
 
-#一些工具 
+# 一些工具 
  * Btree
 
 https://github.com/jbachorik/btrace2
@@ -37,7 +36,7 @@ http://www.iteye.com/topic/1005918
  * beanutils
 
 
-#注意
+# 注意
 动态代理类生成的对象会占用PermGen 内存，而PermGen内存是极难回收的，吃完就会 OOM。
  spring 的反射是基于 cglib 的，aop 也是基于 cglib 的，那么如果PermGen 内存溢出请检查反射是否使用不当，或者性能问题导致代理类无法及时释放。
 
@@ -45,7 +44,7 @@ claasloader 要求同一个类只能注册一次， 如果需要做到类重载�
 
 ![](https://dn-zuoyun.qbox.me/image/6/bb/2a5ab206a6c4103f666017b41604c.png)
 
-#Javassist 使用
+# Javassist 使用
 ```language-java
 public class JavassistDemo1 {
 
@@ -285,7 +284,7 @@ public class JavassistDemo3 {
     b.setName("xxx");
 ```
 
-#引用资料
+# 引用资料
 
 https://blog.newrelic.com/2014/09/29/diving-bytecode-manipulation-creating-audit-log-asm-javassist/
 
@@ -294,7 +293,7 @@ http://zhxing.iteye.com/blog/1703305
 http://yonglin4605.iteye.com/blog/1396494
 
 
-#AspectJ
+# AspectJ
 cglib 需要做字节码修改必须要有一个默认的构造方法.
 
 写一个切面
@@ -363,7 +362,7 @@ pom.xml
         </dependency>
 
 ```
-http://docs.spring.io/spring/docs/2.5.x/reference/aop.html#aop-choosing
+http://docs.spring.io/spring/docs/2.5.x/reference/aop.html# aop-choosing
 
 
 

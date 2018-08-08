@@ -1,18 +1,17 @@
 title: Enviroment java diff versions env switch
 date: 2015/05/09 08:06:23
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
 
-###config
+### config
 ```language-bash
 sudo vim ~/.bashrc
 ```
@@ -32,7 +31,7 @@ alias jdk6='export JAVA_HOME=$JAVA_6_HOME'
 source ~/.bashrc
 ```
 
-####how to use
+#### how to use
 
 
 

@@ -1,19 +1,18 @@
 title: Maven git-commit-id-plugin
 date: 2016/12/20 17:35:43
 categories:
+ - tryghost
 
+tags:
  - java 
 
 
-tags:
-
-- tryghost
 
 ---
 
-##地址
+## 地址
 https://github.com/ktoso/maven-git-commit-id-plugin 
-##使用
+## 使用
 
 
 ```language-xml
@@ -64,7 +63,7 @@ https://github.com/ktoso/maven-git-commit-id-plugin
             </plugin>
 ```
 
-##引用
+## 引用
 http://www.tuicool.com/articles/JJry2a
 
 

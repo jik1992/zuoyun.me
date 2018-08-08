@@ -1,13 +1,12 @@
 title: Linux Bash
 date: 2014/12/23 17:54:17
 categories:
+ - tryghost
 
+tags:
  - devops 
 
 
-tags:
-
-- tryghost
 
 ---
 
@@ -63,10 +62,10 @@ software
 
 修改系统参数 
 ```language-bash
-#临时生效
+# 临时生效
 ulimit -a
 ulimit -n 406960
-#永久生效
+# 永久生效
 vim /etc/security/limits.conf
 ```
 
@@ -116,8 +115,8 @@ awk语言的最基本功能是在文件或者字符串中基于指定规则浏�
   
 
 ```
-#cat /etc/passwd |awk  -F ':'  '{print $1}'  
-#cat /etc/passwd |awk  -F ':'  'BEGIN {print "name,shell"}  {print $1","$7} END {print "blue,/bin/nosh"}'
+# cat /etc/passwd |awk  -F ':'  '{print $1}'  
+# cat /etc/passwd |awk  -F ':'  'BEGIN {print "name,shell"}  {print $1","$7} END {print "blue,/bin/nosh"}'
  
 ```
 
@@ -149,13 +148,13 @@ sudo service ntp start
 
 wathc -n 1 ntpq -p
 
-#修改时间
+# 修改时间
 date –s 10:10:10
 date -s 07/01/2016
 clock –w
 ```
 
-#常用脚本
+# 常用脚本
 杀死进程
 ```language-bash
 ps -ef | grep procedure_name | grep -v grep | awk '{print $2}' | xargs kill -9
@@ -166,7 +165,7 @@ du -h --max-depth=1 /data/logs/
 ```
 后台跑进程
 ```language-bash
-!#bin/bash
+!# bin/bash
 nohup sh xxx.sh >dev/null 2>1 &
 ```
 登陆失败
@@ -175,11 +174,11 @@ sudo cat /var/log/auth.log |grep failure |wc -l
 ```
 增加账号
 ```language-bash
-#add group
+# add group
 addgroup demo
-#add user
+# add user
 adduser demo -g demo
-#config sudoer
+# config sudoer
 sudo vim /etc/sudoers
 demo ALL=(ALL)  NOPASSWD: ALL
 :wq!
@@ -208,15 +207,15 @@ sed -n '/20\/Jun\/2016/,$p' access.log |grep download.html |wc -l
 ```
 
 gcc编译
-rpm -ivh ppl-0.10.2-11.el6.x86_64.rpm                                 #ppl(libppl.so.7、libppl_c.so.2)
-rpm -ivh cloog-ppl-0.15.7-1.2.el6.x86_64.rpm                       #cloog-ppl
-rpm -ivh mpfr-2.4.1-6.el6.x86_64.rpm                                  #libmpcfr.so.1
-rpm -ivh cpp-4.4.7-17.el6.x86_64.rpm                                  #cpp
-rpm -ivh kernel-headers-2.6.32-642.el6.x86_64.rpm              #kernel-headers
-rpm -ivh glibc-headers-2.12-1.192.el6.x86_64.rpm                #glibc-headers
-rpm -ivh glibc-devel-2.12-1.192.el6.x86_64.rpm                    #glibc-devel
-rpm -ivh libgomp-4.4.7-17.el6.x86_64.rpm                           #libgomp(libgomp、libgomp.so.1)
-rpm -ivh gcc-4.4.7-17.el6.x86_64.rpm                                  #gcc
+rpm -ivh ppl-0.10.2-11.el6.x86_64.rpm                                 # ppl(libppl.so.7、libppl_c.so.2)
+rpm -ivh cloog-ppl-0.15.7-1.2.el6.x86_64.rpm                       # cloog-ppl
+rpm -ivh mpfr-2.4.1-6.el6.x86_64.rpm                                  # libmpcfr.so.1
+rpm -ivh cpp-4.4.7-17.el6.x86_64.rpm                                  # cpp
+rpm -ivh kernel-headers-2.6.32-642.el6.x86_64.rpm              # kernel-headers
+rpm -ivh glibc-headers-2.12-1.192.el6.x86_64.rpm                # glibc-headers
+rpm -ivh glibc-devel-2.12-1.192.el6.x86_64.rpm                    # glibc-devel
+rpm -ivh libgomp-4.4.7-17.el6.x86_64.rpm                           # libgomp(libgomp、libgomp.so.1)
+rpm -ivh gcc-4.4.7-17.el6.x86_64.rpm                                  # gcc
 
 
 
