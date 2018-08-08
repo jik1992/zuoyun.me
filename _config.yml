@@ -68,7 +68,8 @@ theme: next
 menu:
   home: /
   archives: /archives
-
+  tags: /tags
+  categories: /categories
 # Favicon
 favicon: /favicon.ico
 
