@@ -1,0 +1,33 @@
+language: node_js
+node_js: stable
+
+# S: Build Lifecycle
+install:
+  - npm install
+
+cache:
+    apt: true
+    directories:
+        - node_modules # 缓存不经常更改的内容
+
+script:
+  - hexo clean  #清除
+  - hexo g
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "chinajik"
+  - git config user.email "chinajik@gmail.com"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${token}@${GH_REF}" master:blog-resource
+# E: Build LifeCycle
+
+branches:
+  only:
+    - master
+env:
+ global:
+   - GH_REF: github.com/jik1992/zuoyun.me.git
+
