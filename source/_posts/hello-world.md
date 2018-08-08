@@ -17,6 +17,7 @@ title: 博客迁移
  2. 对master分支设置GitHub page 和 CNAME，域名重定向
  3. 对blog-resouce分支导入hexo和.travis.yml文件
  4. 生成github token在travis-ci里面配置对应的库，完成ci配置
+ 
 #后记 
 ## travis.yml文件
 
