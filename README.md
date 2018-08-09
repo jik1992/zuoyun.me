@@ -1,4 +1,9 @@
-## title: 博客迁移
+
+<a href="#" id="status-image-popup" title="Latest push build on default branch: passed" name="status-images" class="open-popup" data-ember-action="" data-ember-action-48="48">
+        <img src="https://travis-ci.org/jik1992/zuoyun.me.svg?branch=master" alt="build:passed">
+</a>
+    
+## 博客迁移
 
 这里把原来tryghost的blog全部迁移到hexo上面来了，新的方案使用github+travisCI+hexo。
 说一下整体过程
