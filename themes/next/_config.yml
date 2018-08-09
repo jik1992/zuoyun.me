@@ -237,7 +237,7 @@ post_wordcount:
 # Wechat Subscriber
 wechat_subscriber:
   enabled: true
-  qcode: https://dn-zuoyun.qbox.me/20180809153380181724439.png
+  qcode: https://dn-zuoyun.qbox.me/20180810153383220856641.jpg
   description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！
 
 # Reward
