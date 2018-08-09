@@ -31,8 +31,8 @@ favicon:
   medium: /images/favicon-32x32-next.png
   apple_touch_icon: /images/apple-touch-icon-next.png
   safari_pinned_tab: /images/logo.svg
-  #android_manifest: /images/manifest.json
-  #ms_browserconfig: /images/browserconfig.xml
+  android_manifest: /images/manifest.json
+  ms_browserconfig: /images/browserconfig.xml
 
 # Set default keywords (Use a comma to separate)
 keywords: ""
@@ -45,7 +45,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  #since: 2015
+  since: 2014
 
   # Icon between year and copyright info.
   icon: heart
@@ -72,7 +72,7 @@ footer:
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
 # Tips: Before you open this tag, remember set up your URL in hexo _config.yml ( ex. url: http://yourdomain.com )
-canonical: true
+canonical: false
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
 seo: false
@@ -97,9 +97,9 @@ menu:
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  schedule: /schedule/ || calendar
-  sitemap: /sitemap.xml || sitemap
-  commonweal: /404/ || heartbeat
+  # schedule: /schedule/ || calendar
+  # sitemap: /sitemap.xml || sitemap
+  # commonweal: /404/ || heartbeat
 
 # Enable/Disable menu icons.
 menu_icons:
@@ -128,7 +128,7 @@ scheme: Muse
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/jik1992 || github
-  E-Mail: chinajik@gmail.com || E-Mail
+  E-Mail: mailto:chinajik@gmail.com || mail
   #Google: https://plus.google.com/yourname || google
   Twitter: https://twitter.com/Jik1992 || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
@@ -140,7 +140,7 @@ social:
 
 social_icons:
   enable: true
-  icons_only: false
+  icons_only: true
   transition: false
 
 # Blog rolls
@@ -249,7 +249,7 @@ post_wordcount:
 
 # Declare license on posts
 post_copyright:
-  enable: true
+  enable: false
   license: CC BY-NC-SA 3.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
@@ -407,8 +407,8 @@ gitment:
   lazy: false # Comments lazy loading with a button
   cleanly: false # Hide 'Powered by ...' on footer, and more
   language: # Force language, or auto switch by theme
-  github_user: chinajik
-  github_repo: zuoyun.me
+  github_user: jik1992
+  github_repo: jik1992/zuoyun.me
   client_id: ebe0b2fc17171f1ff37e
   client_secret: 82bdd433c5d15a1f525b1c39ccbecee7510d056c
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
@@ -446,19 +446,19 @@ gitment:
 needmoreshare2:
   enable: Trebuchet
   postbottom:
-    enable: true
+    enable: false
     options:
       iconStyle: box
       boxForm: horizontal
       position: bottomCenter
-      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+      networks: Wechat,Twitter
   float:
     enable: true
     options:
       iconStyle: box
       boxForm: horizontal
       position: middleRight
-      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+      networks: Wechat,Twitter
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
@@ -486,7 +486,7 @@ needmoreshare2:
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
-  ua_enable: true
+  ua_enable: false
   admin_enable: false
   user_id: 0
   #admin_nickname: Author
@@ -549,7 +549,7 @@ firestore:
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
-  enable: true
+  enable: false
   # custom uv span for the whole site
   site_uv: true
   site_uv_header: <i class="fa fa-user"></i>
@@ -611,6 +611,11 @@ local_search:
   # show top n results per article, show all results by setting to -1
   top_n_per_article: 1
 
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # ---------------------------------------------------------------
 # Tags Settings
