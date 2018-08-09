@@ -128,7 +128,7 @@ scheme: Muse
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/jik1992 || github
-  E-Mail: mailto:chinajik@gmail.com || mail
+  E-Mail: mailto:chinajik@gmail.com || stack-overflow
   #Google: https://plus.google.com/yourname || google
   Twitter: https://twitter.com/Jik1992 || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
@@ -154,7 +154,7 @@ links_layout: block
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
-#avatar: /images/avatar.gif
+avatar: https://dn-zuoyun.qbox.me/20180809153380021758140.jpg
 
 # Table Of Contents in the Sidebar
 toc:
@@ -408,7 +408,7 @@ gitment:
   cleanly: false # Hide 'Powered by ...' on footer, and more
   language: # Force language, or auto switch by theme
   github_user: jik1992
-  github_repo: jik1992/zuoyun.me
+  github_repo: zuoyun.me
   client_id: ebe0b2fc17171f1ff37e
   client_secret: 82bdd433c5d15a1f525b1c39ccbecee7510d056c
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
