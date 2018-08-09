@@ -81,4 +81,9 @@ fancybox: true
 # Specify the date when the site was setup
 since: 2014
 
+feed: # RSS订阅插件
+  type: atom
+  path: atom.xml
+  limit: 0
+
 plugins: hexo-generate-feed
