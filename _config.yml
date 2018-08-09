@@ -80,3 +80,5 @@ fancybox: true
 
 # Specify the date when the site was setup
 since: 2014
+
+plugins: hexo-generate-feed
