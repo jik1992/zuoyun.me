@@ -27,6 +27,18 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
+
+index_generator:
+  per_page: 5
+
+archive_generator:
+  per_page: 200
+  yearly: true
+  monthly: false
+
+tag_generator:
+  per_page: 100
+
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post

@@ -113,8 +113,8 @@ menu_icons:
 # Schemes
 # scheme: Muse
 # scheme: Mist
-scheme: Pisces
-#scheme: Gemini
+# scheme: Pisces
+scheme: Gemini
 
 
 # ---------------------------------------------------------------
@@ -349,7 +349,7 @@ mathjax:
 han: false
 
 # Swiftype Search API Key
-#swiftype_key:
+swiftype_key: PxUbAtB78fRrHuPnVyCA
 
 # Baidu Analytics ID
 #baidu_analytics:
@@ -603,19 +603,13 @@ algolia_search:
 # Local search
 # Dependencies: https://github.com/flashlab/hexo-generator-search
 local_search:
-  enable: true
+  enable: false
   # if auto, trigger search by changing input
   # if manual, trigger search by pressing enter key or search button
   trigger: auto
   # show top n results per article, show all results by setting to -1
   top_n_per_article: 1
 
-
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000
 
 # ---------------------------------------------------------------
 # Tags Settings
@@ -817,13 +811,3 @@ images: images
 # Theme version
 version: 5.1.4
 
-index_generator:
-  per_page: 5
-
-archive_generator:
-  per_page: 200
-  yearly: true
-  monthly: false
-
-tag_generator:
-  per_page: 10
