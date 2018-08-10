@@ -1,4 +1,4 @@
-title: mysql-迁移恢复方案
+title: mysql-迁移恢复方案
 date: 2015/12/01 18:01:05
 categories:
  - tryghost
