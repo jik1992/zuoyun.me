@@ -32,7 +32,6 @@ tags:
   * [Menus, Cursors, and the Dock](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870791) 菜单光标和 dock
   * [Windows, Panels, and Screens](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870788) 窗口面板屏幕
   * [Accessibility](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870795) 授权
-  * [Touch Bar](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870792) 
   * [Animation](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870793) 动画
   * [Drag and Drop](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870794) 拖拽支持库
   * [Sound, Speech, and Haptics](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870796) 声音，语音，和触觉
@@ -42,7 +41,6 @@ tags:
   * [Drawing](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870822)  绘图
   * [Color](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2880984)  颜色
   * [Printing](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870823)  打印
-  * [Text Display](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870799) 显示文本并检查拼写
   * [TextKit](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870801)
   * [Fonts](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870802) 字体
 
@@ -103,12 +101,37 @@ let db = try Connection("\(path)/db.sqlite3")
 
 ```
 
-# xib 和storyboard 的区别使用
+
+
+#UI 控件设计
+
+## xib 的使用
 
 * xib 和 NSViewController 两个成对使用，绑定一个 UI 对应的交互行为，做 macOS 开发的时候常用
-* storyboard官方希望替代 xib 的策略
 
+  ```
+  //注意这里声明的时候作为成员变量，防止引用对象被释放
+  var demoWindow: NSWidowController
+  
+  demoWindow=DemoWindow();
+  demoWindow.showWindows(nil);
+  ```
 
+  
+
+## storyboards使用
+
+storyboard官方希望替代 xib 的策略，ios 常用
+
+1. 新建 storyboards，并设置为 main
+
+2. 点击圆球右键拖拽至下一个 Scene，设置 Segue 的 Kind
+
+3. 页面跳转两种方案，设置 button 直接右键连接下一个 Scene；或者设置Segue的Identifier，然后设置一个 button 的 event，调用
+
+4. ```
+   self.performSegue( withIdentifier: NSStoryboardSegue.Identifier(rawValue: "123123"), sender: "11")
+   ```
 
 # Swift4.0 调用 oc 模块
 
