@@ -1,4 +1,4 @@
-title: Mac 开发漫游
+title: Xcode 开发漫游
 date: 2018/08/10 15:24:36
 categories:
 
@@ -101,7 +101,7 @@ let db = try Connection("\(path)/db.sqlite3")
 
 
 
-#UI 控件设计
+# UI 控件设计
 
 ## xib 的使用
 
@@ -131,11 +131,11 @@ storyboard官方希望替代 xib 的策略，ios 常用
    self.performSegue( withIdentifier: NSStoryboardSegue.Identifier(rawValue: "123123"), sender: "11")
    ```
 
-
-
 # Swift4.0 调用 oc 模块
 
+# Swift4.0 调用 SQLite
 
+# Swift4.0 调用 Alamofire
 
 # 参考
 
