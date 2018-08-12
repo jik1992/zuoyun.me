@@ -23,13 +23,25 @@ tags:
 
 ## 新建项目
 
+* UI 控件 Acitvity、res->layout->activity_main.xml
+
+* 授权文件 manifests->xml 文件
+
+  
+
 ## 使用Gradle
+
+
+
+# 控件-WebView和 JSBright
 
 
 
 # 关于网络翻墙
 
-google 的镜像库很扯，各种 timeout，几个地方设置代理，SSR 的通道
+google 的镜像库很扯，各种 timeout，几个地方设置代理，SSR 的通道。发现一个规律，这个谷歌的服务器在美国的白天极其的快，估计他们那边晚上会减小带宽。所以要 cache 就只能通宵搞了。
+
+
 
 * Proxifier 代理，设置 HTTPS 代理 0.0.0.0 1087 HTTPS
 
