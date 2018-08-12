@@ -2,12 +2,12 @@ title: Mac 开发漫游
 date: 2018/08/10 15:24:36
 categories:
 
-- AndroidStudio 开发漫游
+- AndroidStudio 开发
 
 tags:
 
--  android
--  develop 
+-  android 
+-  入门
 
 ---
 

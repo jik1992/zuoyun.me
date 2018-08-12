@@ -1,8 +1,8 @@
-title: WXApplet 开发
+title: WXApplet 第三方平台开发
 date: 2018/08/13 01:51:04
 categories:
 
-- wechat
+- Third-party platform
 
 tags:
 

@@ -2,13 +2,14 @@ title: Xcode 开发漫游
 date: 2018/08/10 15:24:36
 categories:
 
-- Xcode 开发入门
+- Xcode 开发
 
 tags:
 
 -  swift
 -  ios
 - macos 
+- 入门
 
 ---
 
