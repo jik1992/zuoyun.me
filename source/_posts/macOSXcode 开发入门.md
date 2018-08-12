@@ -12,6 +12,8 @@ tags:
 
 ---
 
+
+
 # Swift
 
 基础语法
@@ -23,7 +25,6 @@ tags:
 整个 xcode 的集成开发包，其中有几个常见的库介绍，在 help 里面找 document 可以看具体对象的说明
 
 * AppKit
-
   * [Core App](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870785) 核心库
   * [Data Management](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2871784) 数据管理
   * [Resource Management](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870786) 资源管理
@@ -43,15 +44,12 @@ tags:
   * [Printing](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870823)  打印
   * [TextKit](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870801)
   * [Fonts](https://link.jianshu.com?t=apple-reference-documentation%3A%2F%2Ftc2870802) 字体
-
 * UIKit
-
 * Foundation
-
   * NSArray
   * NSDict
 
-  
+
 
 # Xcode 开发
 
@@ -117,7 +115,7 @@ let db = try Connection("\(path)/db.sqlite3")
   demoWindow.showWindows(nil);
   ```
 
-  
+
 
 ## storyboards使用
 
@@ -132,6 +130,8 @@ storyboard官方希望替代 xib 的策略，ios 常用
 4. ```
    self.performSegue( withIdentifier: NSStoryboardSegue.Identifier(rawValue: "123123"), sender: "11")
    ```
+
+
 
 # Swift4.0 调用 oc 模块
 
