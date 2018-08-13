@@ -132,6 +132,39 @@ storyboard官方希望替代 xib 的策略，ios 常用
    self.performSegue( withIdentifier: NSStoryboardSegue.Identifier(rawValue: "123123"), sender: "11")
    ```
 
+##### 直接显式调用
+
+```swift
+import Cocoa
+
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
+    private var windowController: NSWindowController!
+
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        createMenu()
+        windowController = WindowController()
+        windowController.showWindow(self)
+    }
+
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
+    }
+
+    private func createMenu() {
+        let mainMenu = NSMenu(title: "MainMenu")
+        let applicationMenuItem = mainMenu.addItem(withTitle: "Application", action: nil, keyEquivalent: "")
+        let applicationSubmenu = NSMenu(title: "Application")
+        let quitMenuItem = applicationSubmenu.addItem(withTitle: "Quit", action:#selector(NSApplication.terminate(_:)), keyEquivalent:"q")
+        quitMenuItem.target = NSApp
+        mainMenu.setSubmenu(applicationSubmenu, for: applicationMenuItem)
+        NSApp.mainMenu = mainMenu
+    }
+}
+
+```
+
+
+
 # UIWebView 和 JSBright
 
 # 调用第三方库

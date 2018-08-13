@@ -39,15 +39,13 @@ tags:
 
 # 关于网络翻墙
 
-google 的镜像库很扯，各种 timeout，几个地方设置代理，SSR 的通道。发现一个规律，这个谷歌的服务器在美国的白天极其的快，估计他们那边晚上会减小带宽。所以要 cache 就只能通宵搞了。
-
-
+google 的[镜像库](https://dl.google.com/dl/android/maven2/index.html)很扯，各种 timeout，几个地方设置代理，SSR 的通道。发现一个规律，这个谷歌的服务器在美国的白天极其的快，估计他们那边晚上会减小带宽。所以要 cache 就只能通宵搞了。
 
 * Proxifier 代理，设置 HTTPS 代理 0.0.0.0 1087 HTTPS
 
 * Settings HTTPS Proxy
 
-* gradle.properties 增加参数代理 google() response
+* gradle.properties 增加参数代理 maven google()
 
   ```
   systemProp.https.proxyHost=0.0.0.0
