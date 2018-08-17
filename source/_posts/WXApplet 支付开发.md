@@ -11,9 +11,31 @@ tags:
 
 ---
 
-# 支付接口
+# 引言
 
-# 关于微信支付商户
+​	这里提供一套支付开发的申请到开发，以及上线的整体流程
+
+
+
+# 资源申请
+
+* 服务号（300块认证）
+* 小程序 
+* 微信商户号
+
+
+
+# 账号初始化
+
+* 小程序可信域添加
+
+* 商户号 密钥生成 32位
+
+* 商户号 安全证书浏览器绑定
+
+  
+
+# 微信支付商户号设置，以及与小程序绑定
 
 1. 不需要提供微信支付商户账号，只需要提供
 
@@ -28,7 +50,9 @@ tags:
 
 ![20180817153449825024823.png](https://dn-zuoyun.qbox.me/20180817153449825024823.png)
 
-# 微信支付核心流程
+# 微信支付开发
+
+## 核心流程
 
 ![20180817153449826219468.png](https://dn-zuoyun.qbox.me/20180817153449826219468.png)
 
@@ -67,22 +91,26 @@ tags:
    
    ```
 
-   
+   核心接口类
 
-2. 发起预支付订单
-
-3. ```
+  ```
    创建预支付订单，这个方法包含生成统一支付订单，和再次签名返回
    WxPayService.orderInfo
        #支付统一下单
        WxPayService.unifiedOrder
        #返回 prepay_id以后再次签名
        WxPayService.createSign
-   ```
+  ```
+
+   响应头
 
    ![20180817153449850065970.jpg](https://dn-zuoyun.qbox.me/20180817153449850065970.jpg)
 
-4. 前端拿到5参数+sign 正式调用支付 <https://developers.weixin.qq.com/miniprogram/dev/api/api-pay.html#wxrequestpaymentobject>
+   
+
+   
+
+2.  前端拿到5参数+sign 正式调用支付 <https://developers.weixin.qq.com/miniprogram/dev/api/api-pay.html#wxrequestpaymentobject>
 
 ```
 wx.requestPayment({
@@ -98,10 +126,12 @@ wx.requestPayment({
 })
 ```
 
-1. 支付完成后，微信商户平台会回调用户 server对订单状态更新完毕
 
-   ![20180817153449853786870.jpg](https://dn-zuoyun.qbox.me/20180817153449853786870.jpg)
 
-2. 前端支付成功跳转分享页
+3. 支付完成后，微信商户平台会回调用户 server对订单状态更新完毕
+
+![20180817153449853786870.jpg](https://dn-zuoyun.qbox.me/20180817153449853786870.jpg)
+
+4. 前端支付成功跳转分享页
 
  
