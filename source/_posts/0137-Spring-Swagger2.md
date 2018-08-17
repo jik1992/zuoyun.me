@@ -1,89 +1,39 @@
-title: Spring-Swagger2
+title: SpringBoot-Swagger2-Markdown 
 date: 2016/05/31 08:02:30
 categories:
  - tryghost
 
 tags:
- - java 
+ - java-doc
 
 
 
 ---
 
-基于 Java 注解的 RestFul API文档生成工具，注意这个工具的 Spring3.x 和 Spring4.x的依赖使用方法不一样，一下流程基于 Spring4.x
+基于 Java 注解的 RestFul API文档生成工具，基于 springboot 的 doc 文档生成
 
 # 官网
-http://swagger.io/
+* http://swagger.io/
+* https://github.com/springfox/springfox
+* https://asciidoctor.org/docs/asciidoctor-maven-plugin/
 
 # 依赖
 ```language-xml
-        <!--json-->
+             <!--doc文档-->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-            <scope>runtime</scope>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
         </dependency>
 
-            <!--spring-fox-->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-petstore</artifactId>
-                <version>2.2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-staticdocs</artifactId>
-                <version>2.2.2</version>
-                <scope>test</scope>
-            </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
 ```
 
 # 配置
-1.spring-servlet.xml
-```language-xml
-
-    <!-- 启用默认配置 -->
-    <mvc:annotation-driven>
-        <mvc:message-converters register-defaults="true">
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>text/html;charset=UTF-8</value>
-                        <value>application/json</value>
-                    </list>
-                </property>
-                <property name="objectMapper" ref="jacksonObjectMapper"/>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
-    <bean id="jacksonObjectMapper" class="com.gxb.config.MyJsonMapper"/>
-    <bean id="mySwaggerConfig" class="com.gxb.config.MySwaggerConfig"/>
-
-
-    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
-    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-
-```
-
 2.MyJsonMapper.java
 ```language-java
 public class MyJsonMapper extends ObjectMapper {
@@ -97,62 +47,53 @@ public class MyJsonMapper extends ObjectMapper {
 3.MySwaggerConfig.java
 ```language-java
 @Configuration
-@EnableWebMvc //NOTE: Only needed in a non-springboot application
-@EnableSwagger2 //Enable swagger 2.0 spec
-@ComponentScan(basePackages = {
-    "com.gxb.controller"
-})
-
-public class MySwaggerConfig implements InitializingBean {
+@EnableSwagger2
+public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
   @Bean
-  public Docket appApi() {
+  public Docket createRestApi() {
+    ApiInfo apiInfo = new ApiInfoBuilder()
+        .title("API文档")
+        .description("接口文档")
+        .version("0.0.1")
+        .build();
+    List<ResponseMessage> msg = Lists.newArrayList();
+
+    for (StatusConstant statusConstant : StatusConstant.values()) {
+      msg.add(new ResponseMessageBuilder()
+                  .code(statusConstant.val())
+                  .message(statusConstant.msg())
+                  .responseModel(new ModelRef("Error")).build());
+    }
+
     return new Docket(DocumentationType.SWAGGER_2)
-        .groupName("app")
-        .apiInfo(apiInfo())
-        .forCodeGeneration(true)
+        .apiInfo(apiInfo)
         .select()
-        .paths(appPaths())
-        .build();
+        .apis(RequestHandlerSelectors.basePackage("com.zhuyun.slff.api"))
+        .paths(PathSelectors.any())
+        .build()
+        .globalResponseMessage(RequestMethod.GET, msg)
+        .globalResponseMessage(RequestMethod.POST, msg)
+        .useDefaultResponseMessages(false);
   }
 
-  private Predicate<String> appPaths() {
-    return or(
-        regex("/.*"));
+
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler("swagger-ui.html")
+        .addResourceLocations("classpath:/META-INF/resources/");
+
+    registry.addResourceHandler("/webjars/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/");
   }
 
-  private ApiInfo apiInfo() {
-    return new ApiInfoBuilder()
-        .title("文档显示标题 (REST API)")
-        .description("文档显示说明")
-        .termsOfServiceUrl("http://www.example.com")
-        .contact("admin@example.com")
-        .license("Apache License Version 2.0")
-        .licenseUrl("https://github.com/springfox/springfox/blob/master/LICENSE")
-        .version("版本")
-        .build();
-  }
 
-  @Bean
-  public Docket configSpringfoxDocket_all() {
-    return new Docket(DocumentationType.SWAGGER_2)
-        .produces(Sets.newHashSet("application/json"))
-        .consumes(Sets.newHashSet("application/json"))
-        .protocols(Sets.newHashSet("http", "https"))
-        .forCodeGeneration(true)
-        .apiInfo(apiInfo())
-        .select().paths(regex(".*"))
-        .build();
-  }
-
-  public void afterPropertiesSet() throws Exception {
-
-  }
 }
 
 ```
 # 访问地址
-/v2/api-docs
+
+0.0.0.0:8080/swagger-ui.html
 
 # 常用注解
 ```language-java
@@ -182,51 +123,44 @@ public class MySwaggerConfig implements InitializingBean {
 
 # 静态文档生成
 
+1. 依赖
+
+   ```xml
+           <dependency>
+               <groupId>io.github.swagger2markup</groupId>
+               <artifactId>swagger2markup</artifactId>
+               <version>1.3.3</version>
+           </dependency>
+   ```
+
+   
+
+2. Test
+
 ```language-java
 /**
- * Created by ZuoYun on 5/17/16. Time: 9:03 AM Information:
+ * Created by ZuoYun on 2018/8/14. Time: 10:12 AM Information:
  */
-@WebAppConfiguration
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(value = {"classpath:spring-servlet.xml",
-                               "classpath:spring/spring-*.xml"})
-
-public class ApiDocs {
-
-  @Autowired
-  private WebApplicationContext context;
-
-
-  private MockMvc mockMvc;
-
-  @Before
-  public void setUp() {
-    this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
-  }
-
-//  @Test
-//  public void convertSwaggerToAsciiDoc() throws Exception {
-//    this.mockMvc.perform(MockMvcRequestBuilders.get("/v2/api-docs")
-//                             .accept(MediaType.APPLICATION_JSON))
-//        .andDo(Swagger2MarkupResultHandler.outputDirectory("src/docs/asciidoc/generated").build())
-//        .andExpect(MockMvcResultMatchers.status().isOk());
-//  }
+public class AppTest {
 
   @Test
-  public void convertSwaggerToMarkdown() throws Exception {
-    this.mockMvc.perform(MockMvcRequestBuilders.get("/v2/api-docs")
-                             .accept(MediaType.APPLICATION_JSON))
-        .andDo(Swagger2MarkupResultHandler.outputDirectory("src/docs/markdown/generated")
-                   .withMarkupLanguage(MarkupLanguage.MARKDOWN).build())
-        .andExpect(MockMvcResultMatchers.status().isOk());
+  public void main() throws MalformedURLException {
+    URL remoteSwaggerFile = new URL("http://0.0.0.0:8080/v2/api-docs");
+    Path outputDirectory = Paths.get("slff-resource/asciidoc");
+
+    Swagger2MarkupConfig config = new Swagger2MarkupConfigBuilder()
+        .withMarkupLanguage(MarkupLanguage.MARKDOWN)
+//        .withOutputLanguage(Language.ZH)
+//        .withPathsGroupedBy(GroupBy.TAGS)
+        .build();
+
+    Swagger2MarkupConverter.from(remoteSwaggerFile)
+        .withConfig(config)
+        .build()
+        .toFolder(outputDirectory);
   }
-
-
 }
 ```
 # 其他
- * spring-restful-doc 项目
-
-
-
-
+ * 注意这里 doc 在解析泛型的时候支持有限，局限于 Spring Spec没有办法工作，所以取巧的方法是用 List 包装一下
+ * <https://github.com/swagger-api/swagger-core/issues/498> 

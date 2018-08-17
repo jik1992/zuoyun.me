@@ -1,4 +1,4 @@
-title: WXApplet 第三方平台开发
+title:  WXApplet 入口绑定
 date: 2018/08/13 01:51:04
 categories:
 
@@ -286,8 +286,6 @@ public class WXAppletUtils {
 }
 
 ```
-
-
 
 # 引用
 
