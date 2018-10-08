@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="devops," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="发行版 Tengine https://github.com/alibaba/tengine OpenResty http://openresty.org/cn/installation.html  API-GATEWAY https://github.com/sumory/orange https://github.com/Mashape/kong  编译安装123456./configurem">
+<meta name="keywords" content="devops">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API-Nginx-Lua">
+<meta property="og:url" content="http://yoursite.com/2016/02/26/0109-API-Nginx-Lua/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="发行版 Tengine https://github.com/alibaba/tengine OpenResty http://openresty.org/cn/installation.html  API-GATEWAY https://github.com/sumory/orange https://github.com/Mashape/kong  编译安装123456./configurem">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-08T05:53:51.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="API-Nginx-Lua">
+<meta name="twitter:description" content="发行版 Tengine https://github.com/alibaba/tengine OpenResty http://openresty.org/cn/installation.html  API-GATEWAY https://github.com/sumory/orange https://github.com/Mashape/kong  编译安装123456./configurem">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>API-Nginx-Lua | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'aLL3a6YjY8gW9MjFicEy','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/02/26/0109-API-Nginx-Lua/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.zuoyun.me/20180809153380021758140.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">API-Nginx-Lua</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-02-26T05:51:02+00:00">
+                2016-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tryghost/" itemprop="url" rel="index">
+                    <span itemprop="name">tryghost</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/02/26/0109-API-Nginx-Lua/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2016/02/26/0109-API-Nginx-Lua/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,084
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="发行版"><a href="#发行版" class="headerlink" title="发行版"></a>发行版</h1><ul>
+<li>Tengine <a href="https://github.com/alibaba/tengine" target="_blank" rel="noopener">https://github.com/alibaba/tengine</a></li>
+<li>OpenResty <a href="http://openresty.org/cn/installation.html" target="_blank" rel="noopener">http://openresty.org/cn/installation.html</a></li>
+</ul>
+<h1 id="API-GATEWAY"><a href="#API-GATEWAY" class="headerlink" title="API-GATEWAY"></a>API-GATEWAY</h1><ul>
+<li><a href="https://github.com/sumory/orange" target="_blank" rel="noopener">https://github.com/sumory/orange</a></li>
+<li><a href="https://github.com/Mashape/kong" target="_blank" rel="noopener">https://github.com/Mashape/kong</a></li>
+</ul>
+<h1 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">ln -s &#123;绝对路径&#125; /usr/bin/nginx</span><br><span class="line">nginx</span><br><span class="line">nginx -s stop/reload/start</span><br></pre></td></tr></table></figure>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ps  -ef | grep nginx</span><br><span class="line">nginx -s start</span><br><span class="line">nginx -s reload</span><br><span class="line"># 查看配置信息</span><br><span class="line">nginx -t </span><br><span class="line"># 查看版本</span><br><span class="line">nginx -v</span><br></pre></td></tr></table></figure>
+<h1 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">location  = / &#123;</span><br><span class="line">  #  精确匹配 / ，主机名后面不能带任何字符串</span><br><span class="line">  [ configuration A ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location  / &#123;</span><br><span class="line">  #  因为所有的地址都以 / 开头，所以这条规则将匹配到所有请求</span><br><span class="line">  #  但是正则和最长字符串会优先匹配</span><br><span class="line">  [ configuration B ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /documents/ &#123;</span><br><span class="line">  #  匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  #  只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration C ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~ /documents/Abc &#123;</span><br><span class="line">  #  匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索</span><br><span class="line">  #  只有后面的正则表达式没有匹配到时，这一条才会采用这一条</span><br><span class="line">  [ configuration CC ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ^~ /images/ &#123;</span><br><span class="line">  #  匹配任何以 /images/ 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。</span><br><span class="line">  [ configuration D ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~* \.(gif|jpg|jpeg)$ &#123;</span><br><span class="line">  #  匹配所有以 gif,jpg或jpeg 结尾的请求</span><br><span class="line">  #  然而，所有请求 /images/ 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则</span><br><span class="line">  [ configuration E ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /images/ &#123;</span><br><span class="line">  #  字符匹配到 /images/，继续往下，会发现 ^~ 存在</span><br><span class="line">  [ configuration F ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /images/abc &#123;</span><br><span class="line">  #  最长字符匹配到 /images/abc，继续往下，会发现 ^~ 存在</span><br><span class="line">  #  F与G的放置顺序是没有关系的</span><br><span class="line">  [ configuration G ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~ /images/abc/ &#123;</span><br><span class="line">  #  只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用</span><br><span class="line">    [ configuration H ] </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~* /js/.*/\.js</span><br></pre></td></tr></table></figure>
+<h1 id="配置Nginx-conf"><a href="#配置Nginx-conf" class="headerlink" title="配置Nginx.conf"></a>配置Nginx.conf</h1><h2 id="自用配置"><a href="#自用配置" class="headerlink" title="自用配置"></a>自用配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name zuoyun.me;</span><br><span class="line">    rewrite ^(.*)$  https://$host$1 permanent;</span><br><span class="line">    # return 301 https://$host$request_uri;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server&#123;</span><br><span class="line">    listen              443 ssl spdy;</span><br><span class="line">    server_name zuoyun.me;</span><br><span class="line">    ssl on;</span><br><span class="line">    ssl_certificate     /root/cert/1_zuoyun.me_bundle.crt;</span><br><span class="line">    ssl_certificate_key /root/cert/2_zuoyun.me.key;</span><br><span class="line"></span><br><span class="line">    ssl_session_cache    shared:SSL:10m;</span><br><span class="line">    ssl_session_timeout  10m;</span><br><span class="line"></span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_stapling on;</span><br><span class="line"></span><br><span class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">    add_header Strict-Transport-Security &quot;max-age=63072000; includeSubdomains; preload&quot;;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://localhost:2368;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header Host $http_host;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">        proxy_buffering off;</span><br><span class="line">        #  客户端上传文件大小</span><br><span class="line">        client_max_body_size    10m;</span><br><span class="line">        #  限流</span><br><span class="line">        limit_rate 300k;</span><br><span class="line">        #  限制每个 ip 最大连接数</span><br><span class="line">        limit_conn ctohome_zone 2;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">add_header &apos;Access-Control-Allow-Origin&apos; &apos;*&apos;;</span><br><span class="line">add_header &apos;Access-Control-Allow-Credentials&apos; &apos;true&apos;;</span><br><span class="line">add_header &apos;Access-Control-Allow-Methods&apos; &apos;*&apos;;</span><br><span class="line"></span><br><span class="line">add_header Access-Control-Allow-Origin *;</span><br><span class="line">location / &#123;</span><br><span class="line">    if ($request_method = &apos;OPTIONS&apos;) &#123; </span><br><span class="line">        add_header Access-Control-Allow-Origin *; </span><br><span class="line">        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;</span><br><span class="line">        return 204; </span><br><span class="line">    &#125;</span><br><span class="line">    index index.php;</span><br><span class="line">    try_files $uri @rewriteapp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="详解Nginx-conf"><a href="#详解Nginx-conf" class="headerlink" title="详解Nginx.conf"></a>详解Nginx.conf</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"># 运行用户</span><br><span class="line">user www-data;    </span><br><span class="line"># 启动进程,通常设置成和cpu的数量相等</span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line"># 全局错误日志及PID文件</span><br><span class="line">error_log  /var/log/nginx/error.log;</span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"># 工作模式及连接数上限</span><br><span class="line">events &#123;</span><br><span class="line">    use   epoll;             # epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能</span><br><span class="line">    worker_connections  1024;# 单个后台worker process进程的最大并发链接数</span><br><span class="line">    #  multi_accept on; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 设定http服务器，利用它的反向代理功能提供负载均衡支持</span><br><span class="line">http &#123;</span><br><span class="line">     # 设定mime类型,类型由mime.type文件定义</span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    # 设定日志格式</span><br><span class="line">    access_log    /var/log/nginx/access.log;</span><br><span class="line"></span><br><span class="line">    # sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，</span><br><span class="line">    # 必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.</span><br><span class="line">    sendfile        on;</span><br><span class="line">    # tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">    # 连接超时时间</span><br><span class="line">    # keepalive_timeout  0;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    tcp_nodelay        on;</span><br><span class="line">    </span><br><span class="line">    # 开启gzip压缩</span><br><span class="line">    gzip  on;</span><br><span class="line">    gzip_disable &quot;MSIE [1-6]\.(?!.*SV1)&quot;;</span><br><span class="line"></span><br><span class="line">    # 设定请求缓冲</span><br><span class="line">    client_header_buffer_size    1k;</span><br><span class="line">    large_client_header_buffers  4 4k;</span><br><span class="line"></span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">    include /etc/nginx/sites-enabled/*;</span><br><span class="line"></span><br><span class="line">    # 设定负载均衡的服务器列表</span><br><span class="line">     upstream mysvr &#123;</span><br><span class="line">    # weigth参数表示权值，权值越高被分配到的几率越大</span><br><span class="line">    # 本机上的Squid开启3128端口</span><br><span class="line">    server 192.168.8.1:3128 weight=5;</span><br><span class="line">    server 192.168.8.2:80  weight=1;</span><br><span class="line">    server 192.168.8.3:80  weight=6;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   server &#123;</span><br><span class="line">    # 侦听80端口</span><br><span class="line">        listen       80;</span><br><span class="line">        # 定义使用www.xx.com访问</span><br><span class="line">        server_name  www.xx.com;</span><br><span class="line"></span><br><span class="line">        # 设定本虚拟主机的访问日志</span><br><span class="line">        access_log  logs/www.xx.com.access.log  main;</span><br><span class="line"></span><br><span class="line">    # 默认请求</span><br><span class="line">    location / &#123;</span><br><span class="line">          root   /root;      # 定义服务器的默认网站根目录位置</span><br><span class="line">          index index.php index.html index.htm;   # 定义首页索引文件的名称</span><br><span class="line"></span><br><span class="line">          fastcgi_pass  www.xx.com;</span><br><span class="line">         fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name; </span><br><span class="line">          include /etc/nginx/fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    #  定义错误提示页面</span><br><span class="line">    error_page   500 502 503 504 /50x.html;  </span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">        root   /root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 静态文件，nginx自己处理</span><br><span class="line">    location ~ ^/(images|javascript|js|css|flash|media|static)/ &#123;</span><br><span class="line">        root /var/www/virtual/htdocs;</span><br><span class="line">        # 过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。</span><br><span class="line">        expires 30d;</span><br><span class="line">    &#125;</span><br><span class="line">    # PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.</span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        root /root;</span><br><span class="line">        fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME /home/www/www$fastcgi_script_name;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">    # 设定查看Nginx状态的地址</span><br><span class="line">    location /NginxStatus &#123;</span><br><span class="line">        stub_status            on;</span><br><span class="line">        access_log              on;</span><br><span class="line">        auth_basic              &quot;NginxStatus&quot;;</span><br><span class="line">        auth_basic_user_file  conf/htpasswd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~* \.(gif|jpg|png)$ &#123;</span><br><span class="line">       valid_referers none blocked server_names;</span><br><span class="line">       if ($invalid_referer) &#123;</span><br><span class="line">          return 403;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">    # 禁止访问 .htxxx 文件</span><br><span class="line">    location ~ /\.ht &#123;</span><br><span class="line">        deny all;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="负载均衡配置"><a href="#负载均衡配置" class="headerlink" title="负载均衡配置"></a>负载均衡配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"># 设定http服务器，利用它的反向代理功能提供负载均衡支持</span><br><span class="line">http &#123;</span><br><span class="line">    # 省略上文有的一些配置节点</span><br><span class="line">    # ....</span><br><span class="line">    # 设定负载均衡的服务器列表</span><br><span class="line">     upstream mysvr &#123;</span><br><span class="line">    # weigth参数表示权值，权值越高被分配到的几率越大</span><br><span class="line">    server 192.168.8.1x:3128 weight=5;# 本机上的Squid开启3128端口</span><br><span class="line">    server 192.168.8.2x:80  weight=1;</span><br><span class="line">    server 192.168.8.3x:80  weight=6;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   # 第一个虚拟服务器</span><br><span class="line">   server &#123;</span><br><span class="line">    # 侦听192.168.8.x的80端口</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  192.168.8.x;</span><br><span class="line"></span><br><span class="line">      # 对aspx后缀的进行负载均衡请求</span><br><span class="line">    location ~ .*\.aspx$ &#123;</span><br><span class="line"></span><br><span class="line">         root   /root;      # 定义服务器的默认网站根目录位置</span><br><span class="line">          index index.php index.html index.htm;   # 定义首页索引文件的名称</span><br><span class="line"></span><br><span class="line">          proxy_pass  http://mysvr ;# 请求转向mysvr 定义的服务器列表</span><br><span class="line"></span><br><span class="line">          # 以下是一些反向代理的配置可删除.</span><br><span class="line"></span><br><span class="line">          proxy_redirect off;</span><br><span class="line"></span><br><span class="line">          # 后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span><br><span class="line">          proxy_set_header Host $host;</span><br><span class="line">          proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">          client_max_body_size 10m;    # 允许客户端请求的最大单文件字节数</span><br><span class="line">          client_body_buffer_size 128k;  # 缓冲区代理缓冲用户端请求的最大字节数，</span><br><span class="line">          proxy_connect_timeout 90;  # nginx跟后端服务器连接超时时间(代理连接超时)</span><br><span class="line">          proxy_send_timeout 90;        # 后端服务器数据回传时间(代理发送超时)</span><br><span class="line">          proxy_read_timeout 90;         # 连接成功后，后端服务器响应时间(代理接收超时)</span><br><span class="line">          proxy_buffer_size 4k;             # 设置代理服务器（nginx）保存用户头信息的缓冲区大小</span><br><span class="line">          proxy_buffers 4 32k;               # proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</span><br><span class="line">          proxy_busy_buffers_size 64k;    # 高负荷下缓冲大小（proxy_buffers*2）</span><br><span class="line">          proxy_temp_file_write_size 64k;  # 设定缓存文件夹大小，大于这个值，将从upstream服务器传</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="OpenResty-相关"><a href="#OpenResty-相关" class="headerlink" title="OpenResty 相关"></a>OpenResty 相关</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    content_by_lua_block&#123;</span><br><span class="line">      ngx.say(&quot;hello world&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen       80;</span><br><span class="line">  server_name www.baidu.com;</span><br><span class="line">  location / &#123;</span><br><span class="line">     auth_basic &quot;secret&quot;;</span><br><span class="line">     auth_basic_user_file /data/nginx/db/passwd.db;</span><br><span class="line">     proxy_pass http://localhost:5601;</span><br><span class="line">     proxy_set_header Host $host:5601;</span><br><span class="line">     proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">     proxy_set_header Via &quot;nginx&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  access_log off;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>1.<a href="http://www.cnblogs.com/xiaogangqq123/archive/2011/03/02/1969006.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiaogangqq123/archive/2011/03/02/1969006.html</a><br>2.<a href="https://segmentfault.com/a/1190000000447180" target="_blank" rel="noopener">https://segmentfault.com/a/1190000000447180</a><br>3.<a href="https://segmentfault.com/a/1190000002797606" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002797606</a><br>4.<a href="https://segmentfault.com/a/1190000004688125" target="_blank" rel="noopener">https://segmentfault.com/a/1190000004688125</a><br>5.<a href="https://www.gitbook.com/book/moonbingbing/openresty-best-practices" target="_blank" rel="noopener">https://www.gitbook.com/book/moonbingbing/openresty-best-practices</a><br>6.<a href="https://wenjs.me/p/note-of-nginx-configure" target="_blank" rel="noopener">https://wenjs.me/p/note-of-nginx-configure</a></p>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="API-GateWay"><a href="#API-GateWay" class="headerlink" title="API-GateWay"></a>API-GateWay</h2><p>1.<a href="https://github.com/sumory/orange" target="_blank" rel="noopener">https://github.com/sumory/orange</a><br>2.<a href="https://github.com/Mashape/kong" target="_blank" rel="noopener">https://github.com/Mashape/kong</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://img.zuoyun.me/20180810153383220856641.jpg" alt="左韵 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.zuoyun.me/20180809153380181724439.png" alt="左韵 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/devops/" rel="tag"># devops</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/24/0108-RaspberryPi2/" rel="next" title="RaspberryPi2">
+                <i class="fa fa-chevron-left"></i> RaspberryPi2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/29/0110-技能书/" rel="prev" title="技能书">
+                技能书 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://img.zuoyun.me/20180809153380021758140.jpg"
+                alt="左韵" />
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">238</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/jik1992" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Linkedin</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#发行版"><span class="nav-number">1.</span> <span class="nav-text">发行版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API-GATEWAY"><span class="nav-number">2.</span> <span class="nav-text">API-GATEWAY</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编译安装"><span class="nav-number">3.</span> <span class="nav-text">编译安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则"><span class="nav-number">5.</span> <span class="nav-text">正则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Nginx-conf"><span class="nav-number">6.</span> <span class="nav-text">配置Nginx.conf</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自用配置"><span class="nav-number">6.1.</span> <span class="nav-text">自用配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#详解Nginx-conf"><span class="nav-number">7.</span> <span class="nav-text">详解Nginx.conf</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#负载均衡配置"><span class="nav-number">8.</span> <span class="nav-text">负载均衡配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OpenResty-相关"><span class="nav-number">9.</span> <span class="nav-text">OpenResty 相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">10.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展"><span class="nav-number">11.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#API-GateWay"><span class="nav-number">11.1.</span> <span class="nav-text">API-GateWay</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">75.1k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a> 浙ICP备15039570号</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jik1992',
+            repo: 'zuoyun.me',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '82bdd433c5d15a1f525b1c39ccbecee7510d056c',
+            
+                client_id: 'ebe0b2fc17171f1ff37e'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

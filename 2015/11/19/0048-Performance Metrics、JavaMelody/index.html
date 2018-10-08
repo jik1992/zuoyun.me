@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="核心问题 服务 重试，超时，心跳，熔断，监控，重启。 load/network/database/io 审计日志、线上日志、后台日志 、*nix操作日志    神器！ 指标度量工具https://github.com/dropwizard/metrics 使用写一个 MetricsUtils 方法，对指标定义，如下：12345678910111213141516171819202122232425">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Performance Metrics、JavaMelody">
+<meta property="og:url" content="http://yoursite.com/2015/11/19/0048-Performance Metrics、JavaMelody/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="核心问题 服务 重试，超时，心跳，熔断，监控，重启。 load/network/database/io 审计日志、线上日志、后台日志 、*nix操作日志    神器！ 指标度量工具https://github.com/dropwizard/metrics 使用写一个 MetricsUtils 方法，对指标定义，如下：12345678910111213141516171819202122232425">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.zuoyun.me/image/c/f7/8aad90ae3a37dd9eebf90c5f49cdf.png">
+<meta property="og:updated_time" content="2018-10-08T05:53:51.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Performance Metrics、JavaMelody">
+<meta name="twitter:description" content="核心问题 服务 重试，超时，心跳，熔断，监控，重启。 load/network/database/io 审计日志、线上日志、后台日志 、*nix操作日志    神器！ 指标度量工具https://github.com/dropwizard/metrics 使用写一个 MetricsUtils 方法，对指标定义，如下：12345678910111213141516171819202122232425">
+<meta name="twitter:image" content="http://img.zuoyun.me/image/c/f7/8aad90ae3a37dd9eebf90c5f49cdf.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>Performance Metrics、JavaMelody | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'aLL3a6YjY8gW9MjFicEy','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/19/0048-Performance Metrics、JavaMelody/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.zuoyun.me/20180809153380021758140.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Performance Metrics、JavaMelody</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-19T13:50:54+00:00">
+                2015-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tryghost/" itemprop="url" rel="index">
+                    <span itemprop="name">tryghost</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/19/0048-Performance Metrics、JavaMelody/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2015/11/19/0048-Performance Metrics、JavaMelody/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  930
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h1><ul>
+<li>服务</li>
+<li>重试，超时，心跳，熔断，监控，重启。</li>
+<li>load/network/database/io</li>
+<li>审计日志、线上日志、后台日志 、*nix操作日志  </li>
+</ul>
+<h1 id="神器！-指标度量工具"><a href="#神器！-指标度量工具" class="headerlink" title="神器！ 指标度量工具"></a>神器！ 指标度量工具</h1><p><a href="https://github.com/dropwizard/metrics" target="_blank" rel="noopener">https://github.com/dropwizard/metrics</a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>写一个 MetricsUtils 方法，对指标定义，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">public class MetricUtils &#123;</span><br><span class="line"></span><br><span class="line">  public final static MetricRegistry metrics = new MetricRegistry();</span><br><span class="line"></span><br><span class="line">    //自定义维度</span><br><span class="line">  public final static Counter   COUNTER   = METRICS.counter(&quot;接口 C&quot;);</span><br><span class="line">  public final static Meter     METER     = METRICS.meter(&quot;接口 D&quot;);</span><br><span class="line">  public final static Histogram HISTOGRAM = METRICS.histogram(&quot;接口 B&quot;);</span><br><span class="line">  public final static Timer     TIMER     = METRICS.timer(&quot;接口 A&quot;);</span><br><span class="line"></span><br><span class="line">  //JVM 维度</span><br><span class="line">  public final static MemoryUsageGaugeSet       MEMORY                  = new MemoryUsageGaugeSet();</span><br><span class="line">  public final static GarbageCollectorMetricSet GC                      = new GarbageCollectorMetricSet();</span><br><span class="line">  public final static ThreadStatesGaugeSet      THREAD_STATES_GAUGE_SET = new ThreadStatesGaugeSet();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  static &#123;</span><br><span class="line"></span><br><span class="line">    QuicloudMonitorReporter reporter = QuicloudMonitorReporter.forRegistry(METRICS)</span><br><span class="line">        .addNoitfiers(&quot;接口 A&quot;, new Notifier&lt;Timer&gt;() &#123;</span><br><span class="line">          public void notice(Timer data) &#123;</span><br><span class="line">            if (data.getCount() &gt; 0) &#123;</span><br><span class="line">              System.out.println(&quot;通知!!! 同步个数超过&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .addNoitfiers(&quot;thread.count&quot;, new Notifier&lt;Gauge&gt;() &#123;</span><br><span class="line">          public void notice(Gauge data) &#123;</span><br><span class="line">            if ((Integer) data.getValue() &gt;= 200) &#123;</span><br><span class="line">              System.out.println(&quot;警告线程数超过 200!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        .build();</span><br><span class="line">    //警告!这里不要请不要把数值设置太小,撑爆日志服务器</span><br><span class="line">    reporter.start(1, TimeUnit.MINUTES);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ConsoleReporter reporter = ConsoleReporter.forRegistry(metrics)</span><br><span class="line">        .convertRatesTo(TimeUnit.SECONDS)</span><br><span class="line">        .convertDurationsTo(TimeUnit.MILLISECONDS)</span><br><span class="line">        .build();</span><br><span class="line">//    reporter.start(1, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">    JmxReporter jmxReporter = JmxReporter.forRegistry(metrics).build();</span><br><span class="line">    jmxReporter.start();</span><br><span class="line"></span><br><span class="line">    Slf4jReporter slf4jReporter = Slf4jReporter.forRegistry(metrics)</span><br><span class="line">        .outputTo(LoggerFactory.getLogger(&quot;com.raycloud.express.metrics&quot;))</span><br><span class="line">        .convertRatesTo(TimeUnit.SECONDS)</span><br><span class="line">        .convertDurationsTo(TimeUnit.MILLISECONDS)</span><br><span class="line">        .build();</span><br><span class="line">    slf4jReporter.start(1, TimeUnit.MINUTES);  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="暴露数据到-webapi"><a href="#暴露数据到-webapi" class="headerlink" title="暴露数据到 webapi"></a>暴露数据到 webapi</h2><p>声明两个 listener<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class TJHealthCheckServletContextListener extends HealthCheckServlet.ContextListener &#123;</span><br><span class="line"></span><br><span class="line">  public static final HealthCheckRegistry HEALTH_CHECK_REGISTRY = new HealthCheckRegistry();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected HealthCheckRegistry getHealthCheckRegistry() &#123;</span><br><span class="line"></span><br><span class="line">    HEALTH_CHECK_REGISTRY.register(&quot;thread&quot;, new ThreadDeadlockHealthCheck());</span><br><span class="line"></span><br><span class="line">    return HEALTH_CHECK_REGISTRY;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static</span><br><span class="line">  private void registerAll(String prefix, MetricSet metricSet, MetricRegistry registry) &#123;</span><br><span class="line">    for (Map.Entry&lt;String, Metric&gt; entry : metricSet.getMetrics().entrySet()) &#123;</span><br><span class="line">      if (entry.getValue() instanceof MetricSet) &#123;</span><br><span class="line">        registerAll(prefix + &quot;.&quot; + entry.getKey(), (MetricSet) entry.getValue(), registry);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        registry.register(prefix + &quot;.&quot; + entry.getKey(), entry.getValue());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class TJMetricsServletContextListener extends MetricsServlet.ContextListener &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected MetricRegistry getMetricRegistry() &#123;</span><br><span class="line">    return MetricUtils.metrics;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>绑定在 web.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;com.raycloud.express.knowledge.web.listener.TJMetricsServletContextListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt; &lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;com.raycloud.express.knowledge.web.listener.TJHealthCheckServletContextListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;metrics&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;com.codahale.metrics.servlets.AdminServlet&lt;/servlet-class&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;metrics&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/metrics/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<p>pom.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.dropwizard.metrics&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;metrics-servlets&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.1.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.dropwizard.metrics&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;metrics-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;project.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.codahale.metrics&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;metrics-jvm&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后在业务里面打点就好了，这里使用很简单。</p>
+<p>访问路由：<br><a href="http://127.0.0.1/metrics/[metrics|ping|thread|health]" target="_blank" rel="noopener">http://127.0.0.1/metrics/[metrics|ping|thread|health]</a></p>
+<p>常见的指标：</p>
+<ol>
+<li>Timer（以下所有）</li>
+<li>Meter（m1-m15）</li>
+<li>Histogram（p66-p999）</li>
+<li>Gauge（一个维度值）</li>
+<li>Count (统计个数)</li>
+</ol>
+<p><a href="https://github.com/elastic/elasticsearch-metrics-reporter-java" target="_blank" rel="noopener">https://github.com/elastic/elasticsearch-metrics-reporter-java</a></p>
+<p>更多文档：<br><a href="http://metrics.dropwizard.io/3.1.0/" target="_blank" rel="noopener">http://metrics.dropwizard.io/3.1.0/</a><br>还看到了一些不错的插件集成 spring 、aspcetj、elasticsearch 的。</p>
+<h1 id="monitoring-of-JavaEE-applications"><a href="#monitoring-of-JavaEE-applications" class="headerlink" title="monitoring of JavaEE applications"></a>monitoring of JavaEE applications</h1><p><a href="https://github.com/javamelody/javamelody" target="_blank" rel="noopener">https://github.com/javamelody/javamelody</a><br>关键指标全部都有，配置起来比较简单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;javamelody&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;net.bull.javamelody.MonitoringFilter&lt;/filter-class&gt;</span><br><span class="line">    &lt;async-supported&gt;true&lt;/async-supported&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;javamelody&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">    &lt;dispatcher&gt;REQUEST&lt;/dispatcher&gt;</span><br><span class="line">    &lt;!--&lt;dispatcher&gt;ASYNC&lt;/dispatcher&gt;--&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;net.bull.javamelody.SessionListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br></pre></td></tr></table></figure></p>
+<p>pom.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- javamelody-core --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;net.bull.javamelody&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;javamelody-core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.58.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- itext, option to add PDF export --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.lowagie&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;itext&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.1.7&lt;/version&gt;</span><br><span class="line">    &lt;exclusions&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;artifactId&gt;bcmail-jdk14&lt;/artifactId&gt;</span><br><span class="line">            &lt;groupId&gt;bouncycastle&lt;/groupId&gt;</span><br><span class="line">        &lt;/exclusion&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;artifactId&gt;bcprov-jdk14&lt;/artifactId&gt;</span><br><span class="line">            &lt;groupId&gt;bouncycastle&lt;/groupId&gt;</span><br><span class="line">        &lt;/exclusion&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;artifactId&gt;bctsp-jdk14&lt;/artifactId&gt;</span><br><span class="line">            &lt;groupId&gt;bouncycastle&lt;/groupId&gt;</span><br><span class="line">        &lt;/exclusion&gt;</span><br><span class="line">    &lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.thoughtworks.xstream&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;xstream&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.4.9&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.zuoyun.me/image/c/f7/8aad90ae3a37dd9eebf90c5f49cdf.png" alt=""></p>
+<h3 id="路由请求地址"><a href="#路由请求地址" class="headerlink" title="路由请求地址"></a>路由请求地址</h3><p><a href="http://127.0.0.1:8888/monitoring" target="_blank" rel="noopener">http://127.0.0.1:8888/monitoring</a></p>
+<h3 id="api-说明文档"><a href="#api-说明文档" class="headerlink" title="api 说明文档"></a>api 说明文档</h3><p><a href="http://127.0.0.1:8888/monitoring?resource=help/api.html" target="_blank" rel="noopener">http://127.0.0.1:8888/monitoring?resource=help/api.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://img.zuoyun.me/20180810153383220856641.jpg" alt="左韵 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.zuoyun.me/20180809153380181724439.png" alt="左韵 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/18/0047-运维-File Sync/" rel="next" title="运维-File Sync">
+                <i class="fa fa-chevron-left"></i> 运维-File Sync
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/19/0049-Deploy Tomcat/" rel="prev" title="Deploy Tomcat">
+                Deploy Tomcat <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://img.zuoyun.me/20180809153380021758140.jpg"
+                alt="左韵" />
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">238</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/jik1992" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Linkedin</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#核心问题"><span class="nav-number">1.</span> <span class="nav-text">核心问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神器！-指标度量工具"><span class="nav-number">2.</span> <span class="nav-text">神器！ 指标度量工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴露数据到-webapi"><span class="nav-number">2.2.</span> <span class="nav-text">暴露数据到 webapi</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#monitoring-of-JavaEE-applications"><span class="nav-number">3.</span> <span class="nav-text">monitoring of JavaEE applications</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路由请求地址"><span class="nav-number">3.0.1.</span> <span class="nav-text">路由请求地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#api-说明文档"><span class="nav-number">3.0.2.</span> <span class="nav-text">api 说明文档</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">75.1k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a> 浙ICP备15039570号</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jik1992',
+            repo: 'zuoyun.me',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '82bdd433c5d15a1f525b1c39ccbecee7510d056c',
+            
+                client_id: 'ebe0b2fc17171f1ff37e'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="查看 jvm 常用的命令 ps -ef| grep name （查询进程 pid） netstate -tupln (查询端口占用) jinfo   -lmvV（查询所有环境变量）  调整 jvm 参数1234567891011121314# 生产模式-server # 堆空间，这两个相同-Xms1024M-Xmx1024M# (S0+S1+Eden)：Old，默认1-XX:NewRatio=1">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-JVM&#x2F;MissionControl">
+<meta property="og:url" content="http://yoursite.com/2014/12/31/0017-Java-JVM-MissionControl/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="查看 jvm 常用的命令 ps -ef| grep name （查询进程 pid） netstate -tupln (查询端口占用) jinfo   -lmvV（查询所有环境变量）  调整 jvm 参数1234567891011121314# 生产模式-server # 堆空间，这两个相同-Xms1024M-Xmx1024M# (S0+S1+Eden)：Old，默认1-XX:NewRatio=1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/422908/2012073109465349.jpg">
+<meta property="og:image" content="http://img.zuoyun.me/image/d/1a/7ef151c4e7a932447d9e087cce1ca.png">
+<meta property="og:image" content="http://img.zuoyun.me/image/2/02/d487d0df49431b94cfb24836f6713.png">
+<meta property="og:updated_time" content="2018-10-08T05:53:51.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java-JVM&#x2F;MissionControl">
+<meta name="twitter:description" content="查看 jvm 常用的命令 ps -ef| grep name （查询进程 pid） netstate -tupln (查询端口占用) jinfo   -lmvV（查询所有环境变量）  调整 jvm 参数1234567891011121314# 生产模式-server # 堆空间，这两个相同-Xms1024M-Xmx1024M# (S0+S1+Eden)：Old，默认1-XX:NewRatio=1">
+<meta name="twitter:image" content="http://pic002.cnblogs.com/images/2012/422908/2012073109465349.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>Java-JVM/MissionControl | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'aLL3a6YjY8gW9MjFicEy','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/12/31/0017-Java-JVM-MissionControl/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://img.zuoyun.me/20180809153380021758140.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java-JVM/MissionControl</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-31T18:59:43+00:00">
+                2014-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tryghost/" itemprop="url" rel="index">
+                    <span itemprop="name">tryghost</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/12/31/0017-Java-JVM-MissionControl/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2014/12/31/0017-Java-JVM-MissionControl/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,011
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="查看-jvm-常用的命令"><a href="#查看-jvm-常用的命令" class="headerlink" title="查看 jvm 常用的命令"></a>查看 jvm 常用的命令</h1><ul>
+<li>ps -ef| grep name （查询进程 pid）</li>
+<li>netstate -tupln (查询端口占用)</li>
+<li>jinfo  <pid> -lmvV（查询所有环境变量）<br><img src="http://pic002.cnblogs.com/images/2012/422908/2012073109465349.jpg" alt=""></pid></li>
+</ul>
+<h1 id="调整-jvm-参数"><a href="#调整-jvm-参数" class="headerlink" title="调整 jvm 参数"></a>调整 jvm 参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 生产模式</span><br><span class="line">-server </span><br><span class="line"># 堆空间，这两个相同</span><br><span class="line">-Xms1024M</span><br><span class="line">-Xmx1024M</span><br><span class="line"># (S0+S1+Eden)：Old，默认1</span><br><span class="line">-XX:NewRatio=1 </span><br><span class="line"># (S0+S1)：Eden，默认 8</span><br><span class="line">-XX:SurvivorRatio</span><br><span class="line"># 年轻带大小，可以不设置</span><br><span class="line">-XX:NewSize</span><br><span class="line"># 永久带大小，这里理论256M</span><br><span class="line">-XX:PermSize</span><br><span class="line">-XX:MaxPermSize</span><br></pre></td></tr></table></figure>
+<p>一份 G1的样例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-Xms1536m </span><br><span class="line">-Xmx1536m </span><br><span class="line">-XX:MaxPermSize=256m </span><br><span class="line">-XX:PermSize=300m </span><br><span class="line">-XX:+UseG1GC </span><br><span class="line">-XX:MaxGCPauseMillis=2000 </span><br><span class="line">-XX:G1HeapRegionSize=8 </span><br><span class="line">-XX:G1ReservePercent=15 </span><br><span class="line">-XX:NewRatio=3 </span><br><span class="line">-XX:SurvivorRatio=5 </span><br><span class="line">-XX:+AggressiveOpts </span><br><span class="line">-XX:+UseFastAccessorMethods </span><br><span class="line">-XX:+UseBiasedLocking </span><br><span class="line">-XX:+UseCompressedOops </span><br><span class="line">-XX:+HeapDumpOnOutOfMemoryError </span><br><span class="line">-server </span><br><span class="line">-verbose:gc </span><br><span class="line">-XX:+PrintGCTimeStamps </span><br><span class="line">-XX:+PrintGCDetails </span><br><span class="line">-XX:+PrintTenuringDistribution </span><br><span class="line">-Xloggc:logs/gc.log</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://blog.csdn.net/imzoer/article/details/8036699" target="_blank" rel="noopener">http://blog.csdn.net/imzoer/article/details/8036699</a><br><a href="http://www.blogjava.net/dongbule/archive/2011/08/21/356987.html" target="_blank" rel="noopener">http://www.blogjava.net/dongbule/archive/2011/08/21/356987.html</a><br><a href="http://www.cnblogs.com/lingiu/p/3866559.html" target="_blank" rel="noopener">http://www.cnblogs.com/lingiu/p/3866559.html</a><br><a href="http://iamzhongyong.iteye.com/blog/1333100" target="_blank" rel="noopener">http://iamzhongyong.iteye.com/blog/1333100</a><br><a href="http://www.cnblogs.com/lingiu/p/3866559.html" target="_blank" rel="noopener">http://www.cnblogs.com/lingiu/p/3866559.html</a></p>
+<h1 id="查看运行时命令"><a href="#查看运行时命令" class="headerlink" title="查看运行时命令"></a>查看运行时命令</h1><ul>
+<li>java –verbose:[gc|class]</li>
+<li>jmap -heap pid (直接查看堆)</li>
+<li>jmap -histo:live 15304 |more &gt; histo.log （查看 heap 内存, 触发gc）</li>
+<li>jmap -permstat 15304 &gt; permstat.log（查看 no-heap 内存，较慢, stop the world!）</li>
+<li>jmap -dump:format=b,file=mem.hprof <pid> （打印整个内存快照，分析，stop the world!）</pid></li>
+<li>jstat -gcutil pid frequency (实时打印 gc 情况，单位内存所占百分比%)</li>
+<li>jstat -[gccapacity|gcpermcapacity] pid frequency （单位次数）</li>
+<li><p>jstat -class 21806 （类加载数量，所占PermGen空间信息）</p>
+<h1 id="关于内存设置"><a href="#关于内存设置" class="headerlink" title="关于内存设置"></a>关于内存设置</h1></li>
+<li><p>Heap size的值，其初始空间(即-Xms)是物理内存的1/64，最大空间(-Xmx)是物理内存的1/4。</p>
+</li>
+<li>gc一天最好不要超过48次，full GC频率 平均大约半小时1次</li>
+<li>如果你发现每次GC后，Heap的剩余空间会是总空间的50%，这表示你的Heap处于健康状态。</li>
+<li>许多Server端的Java程序每次GC后最好能有65%的剩余空间。</li>
+<li>Server端JVM最好将-Xms和-Xmx设为相同值。</li>
+<li>最好让-Xmn值约等于-Xmx的1/3</li>
+<li>每10到20秒间运行一次GC，每次在半秒之内完成</li>
+<li>-Xmn12m young代大小，sun推荐整个heap的3/8，太大会减少old的大小，引发较频繁 的major gc</li>
+<li>-XX:+CMSClassUnloadingEnabled 允许perm区不够引发full gc时perm区的类卸载</li>
+<li>java的内存=堆内存（Xmx）+ 方法区内存（MaxPermSize）+ 栈内存（Xss,包括虚拟机栈和本地方法栈）*线程数 + NIO direct memory + socket缓存区（receive37KB，send25KB）+ JNI代码 + 虚拟机和GC本身 </li>
+<li>Minor GC执行的很快（小于50ms）</li>
+<li>Minor GC执行的并不频繁（大概10秒一次）</li>
+<li>Full GC执行的很快（小于1s）</li>
+<li>Full GC执行的并不频繁（10分钟一次）<h1 id="查看-CPU-占用最高的线程"><a href="#查看-CPU-占用最高的线程" class="headerlink" title="查看 CPU 占用最高的线程"></a>查看 CPU 占用最高的线程</h1></li>
+<li>一般的 jps -Vv 查找当前 pid</li>
+<li>top -H -p pid 找到cpu 消费最高的线程的 pid</li>
+<li>jstack -p pid |grep 线程 pid 转16进制</li>
+<li><a href="https://github.com/jik1992/fork-jcpu.sh" target="_blank" rel="noopener">https://github.com/jik1992/fork-jcpu.sh</a></li>
+</ul>
+<h1 id="关于-PermGen-OOM"><a href="#关于-PermGen-OOM" class="headerlink" title="关于 PermGen OOM"></a>关于 PermGen OOM</h1><ol>
+<li>pg 一般128-256m 之间已经完全够用，oom 导致可能由于过多的加载类，此类原因调大 PermGen 大小即可，后续趋于稳定。</li>
+<li>还有一种可能DelegatingClassLoader不会回收，由于本地反射使用不当。或者YGC过于频繁,导致无法进入Perm空间的回收事件。</li>
+<li>这里打开 verbose:class 发现一个问题，大量的通过 cglib 生成重复的对象，这些 class 加载是要吃 PermGen 的，基本上就是 ibaties 中使用到，所以内存问题基本确定在 batchinsert 的使用。优化使用事务，取消 ibaties 原型标签。</li>
+</ol>
+<p><img src="http://img.zuoyun.me/image/d/1a/7ef151c4e7a932447d9e087cce1ca.png" alt=""></p>
+<h1 id="远程监控VisualVM"><a href="#远程监控VisualVM" class="headerlink" title="远程监控VisualVM"></a>远程监控VisualVM</h1><p>PS, 两边版本一致。</p>
+<h2 id="远程安装-jstatd"><a href="#远程安装-jstatd" class="headerlink" title="远程安装 jstatd"></a>远程安装 jstatd</h2><p>vim jstatd.policy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant codebase &quot;file:$&#123;java.home&#125;/../lib/tools.jar&quot; &#123;</span><br><span class="line">   permission java.security.AllPermission;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup ./jstatd -J-Djava.security.policy=jstatd.policy -J-Djava.rmi.server.hostname=&lt;外网 IP&gt; &amp;</span><br></pre></td></tr></table></figure>
+<p>最后进VisualVM直接add remote jstatd address</p>
+<h2 id="tomcat-挂载-JMX"><a href="#tomcat-挂载-JMX" class="headerlink" title="tomcat 挂载 JMX"></a>tomcat 挂载 JMX</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=&apos;-Dcom.sun.management.jmxremote.port=8099 </span><br><span class="line">-Dcom.sun.management.jmxremote.ssl=false </span><br><span class="line">-Dcom.sun.management.jmxremote.authenticate=false </span><br><span class="line">-Djava.rmi.server.hostname=&lt;外网 IP&gt;&apos;</span><br></pre></td></tr></table></figure>
+<p>最后进VisualVM直接add remote JMX address</p>
+<p>PS 最后发现 Java8里面的 MissionControl 是可以兼容上面的方案的 :)</p>
+<p><img src="http://img.zuoyun.me/image/2/02/d487d0df49431b94cfb24836f6713.png" alt=""></p>
+<h1 id="MAT"><a href="#MAT" class="headerlink" title="MAT"></a>MAT</h1><p>启动8G内存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -a MemoryAnalyzer --args -vmargs -Xmx8g</span><br></pre></td></tr></table></figure></p>
+<h1 id="文章收集"><a href="#文章收集" class="headerlink" title="文章收集"></a>文章收集</h1><p><a href="http://docs.oracle.com/javase/1.5.0/docs/tooldocs/share/jstat.html# gcutil_option" target="_blank" rel="noopener">Jstat</a></p>
+<p><a href="http://zhaoyanblog.com/?s=G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8" target="_blank" rel="noopener">G1 GC实践</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="http://img.zuoyun.me/20180810153383220856641.jpg" alt="左韵 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.zuoyun.me/20180809153380181724439.png" alt="左韵 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/12/28/0015-Google Translation ToolKits/" rel="next" title="Google Translation ToolKits">
+                <i class="fa fa-chevron-left"></i> Google Translation ToolKits
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/13/0018-Regular + Expression =Regex/" rel="prev" title="Regular + Expression =Regex">
+                Regular + Expression =Regex <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://img.zuoyun.me/20180809153380021758140.jpg"
+                alt="左韵" />
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">238</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/jik1992" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>Linkedin</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#查看-jvm-常用的命令"><span class="nav-number">1.</span> <span class="nav-text">查看 jvm 常用的命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调整-jvm-参数"><span class="nav-number">2.</span> <span class="nav-text">调整 jvm 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看运行时命令"><span class="nav-number">3.</span> <span class="nav-text">查看运行时命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于内存设置"><span class="nav-number">4.</span> <span class="nav-text">关于内存设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看-CPU-占用最高的线程"><span class="nav-number">5.</span> <span class="nav-text">查看 CPU 占用最高的线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于-PermGen-OOM"><span class="nav-number">6.</span> <span class="nav-text">关于 PermGen OOM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程监控VisualVM"><span class="nav-number">7.</span> <span class="nav-text">远程监控VisualVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#远程安装-jstatd"><span class="nav-number">7.1.</span> <span class="nav-text">远程安装 jstatd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tomcat-挂载-JMX"><span class="nav-number">7.2.</span> <span class="nav-text">tomcat 挂载 JMX</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MAT"><span class="nav-number">8.</span> <span class="nav-text">MAT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文章收集"><span class="nav-number">9.</span> <span class="nav-text">文章收集</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">75.1k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a> 浙ICP备15039570号</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jik1992',
+            repo: 'zuoyun.me',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '82bdd433c5d15a1f525b1c39ccbecee7510d056c',
+            
+                client_id: 'ebe0b2fc17171f1ff37e'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
