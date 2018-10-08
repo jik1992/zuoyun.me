@@ -54,7 +54,7 @@ password=123               ; (default is no password (open server))
 command=sh root/echo.sh
 autorestart=true
 ```
-![](https://dn-zuoyun.qbox.me/image/d/63/67eecb51f7eda15f9b7e09749d26e.png)
+![](http://img.zuoyun.me/image/d/63/67eecb51f7eda15f9b7e09749d26e.png)
 
 
 

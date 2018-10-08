@@ -15,7 +15,7 @@ tags:
 * 完整版安装 https://docs.openstack.org/newton/install-guide-ubuntu/# 
 
 ## 理解概念
-![](https://dn-zuoyun.qbox.me/image/7/57/11ac48a6bdac83020ae2677064023.jpg)
+![](http://img.zuoyun.me/image/7/57/11ac48a6bdac83020ae2677064023.jpg)
 
 ## 核心组件
 * keystone授权
@@ -24,7 +24,7 @@ tags:
 * cinder  存储
 * neutron 网络
 * horizon 总控制UI
-![](https://dn-zuoyun.qbox.me/image/1/6c/f2e65ba5dca50ebf9f64f1acd0bae.png)
+![](http://img.zuoyun.me/image/1/6c/f2e65ba5dca50ebf9f64f1acd0bae.png)
 
 # 安装devstack
 安装文档增加stack账户执行.stack.sh之前要对镜像做一些处理。注意虚拟机需要双网卡绑定，内存设置8G以上

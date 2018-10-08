@@ -22,7 +22,7 @@ docker run -d -p 1017:1017 dominate/idea-license-server
 google style for idea 
 https://github.com/darcyliu/google-styleguide/blob/master/intellij-java-google-style.xml
 
-![](https://dn-zuoyun.qbox.me/image/7/b4/dec7fc03a4d4bc8f3a939930af3df.png)
+![](http://img.zuoyun.me/image/7/b4/dec7fc03a4d4bc8f3a939930af3df.png)
 
 ## tips
  * welcome 页面的配置是全局的 

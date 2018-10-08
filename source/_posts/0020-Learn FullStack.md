@@ -73,7 +73,7 @@ PS:https://github.com/phodal/growth-ebook
 
 摘抄一段评论, 一张图, 原文, 自省
 
-![](https://dn-zuoyun.qbox.me/image/7/da/4b6cb1599cf270f5cca3acd6d769d.png)
+![](http://img.zuoyun.me/image/7/da/4b6cb1599cf270f5cca3acd6d769d.png)
 
 >同意作者观点，全栈在设计或者管理层面很容易，拉一个资深架构出来很大程度上能全栈
 

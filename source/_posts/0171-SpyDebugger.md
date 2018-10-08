@@ -21,19 +21,19 @@ spy-debugger
 
 ### 使用
 #### 手机设置代理，端口如下
-![](https://dn-zuoyun.qbox.me/image/9/25/d37ca78121309cf8f4a2a7355a73e.png)
+![](http://img.zuoyun.me/image/9/25/d37ca78121309cf8f4a2a7355a73e.png)
 
 #### 页面调试
 * 调试 weinre
 * 抓包 anyproxy
-![](https://dn-zuoyun.qbox.me/image/8/42/2a71cb8dbfe6003e27dda865116e2.png)
+![](http://img.zuoyun.me/image/8/42/2a71cb8dbfe6003e27dda865116e2.png)
 
 https协议抓包
 
 * 如果手机端，微信扫码，再用sarfi打开下载安装
-![](https://dn-zuoyun.qbox.me/image/f/a5/902d5666dc9b4957e7333c0e295fb.png)
+![](http://img.zuoyun.me/image/f/a5/902d5666dc9b4957e7333c0e295fb.png)
 * 如果mac端，keychain access允许
-![](https://dn-zuoyun.qbox.me/image/7/f3/f61baacfd264c830350dc23602efe.png)
+![](http://img.zuoyun.me/image/7/f3/f61baacfd264c830350dc23602efe.png)
 
 引用
 

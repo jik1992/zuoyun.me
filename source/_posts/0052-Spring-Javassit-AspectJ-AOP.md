@@ -20,7 +20,7 @@ tags:
 -javaagent:daemon.jar 
 
 # 字节码增强
-![](https://dn-zuoyun.qbox.me/image/c/b2/50383d59d486d145365d6fd0e2db6.png)
+![](http://img.zuoyun.me/image/c/b2/50383d59d486d145365d6fd0e2db6.png)
 
  * cglib
  * javaassit
@@ -42,7 +42,7 @@ http://www.iteye.com/topic/1005918
 
 claasloader 要求同一个类只能注册一次， 如果需要做到类重载那么需要自定义一个 classloader。
 
-![](https://dn-zuoyun.qbox.me/image/6/bb/2a5ab206a6c4103f666017b41604c.png)
+![](http://img.zuoyun.me/image/6/bb/2a5ab206a6c4103f666017b41604c.png)
 
 # Javassist 使用
 ```language-java

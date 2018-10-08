@@ -35,7 +35,7 @@ tags:
 
 ## 用法
 
-![](https://dn-zuoyun.qbox.me/image/4/da/89fc6d95c743398233a70b89e46d1.png)
+![](http://img.zuoyun.me/image/4/da/89fc6d95c743398233a70b89e46d1.png)
   
  * 基本上和小时候玩的 VMware 使用方法是一样的， 注意这个软体可以和硬件直通，意味着不是虚拟而是独占一个硬件或者一颗核心。
 

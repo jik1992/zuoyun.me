@@ -154,8 +154,8 @@ cp /usr/local/opt/mysql/support-files/my-default.cnf /etc/my.cnf
 
 #### 陷阱
 0x00
-![](https://dn-zuoyun.qbox.me/image/e/03/7886af0d9d930ee621f712e4ebe43.png)
-![](https://dn-zuoyun.qbox.me/image/c/2f/bab17f82be4d64b98854c4637851d.png)
+![](http://img.zuoyun.me/image/e/03/7886af0d9d930ee621f712e4ebe43.png)
+![](http://img.zuoyun.me/image/c/2f/bab17f82be4d64b98854c4637851d.png)
 
 0x01
 大并发的 batchinsert 操作是不会锁表的，锁表可能就是 auto_increment

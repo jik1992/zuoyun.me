@@ -32,7 +32,7 @@ innobackupex --user=root --password=root --defaults-file=/etc/my.cnf  --copy-bac
 # 增量恢复
   见图一
 ```
-![](https://dn-zuoyun.qbox.me/image/e/f2/b494b97e3a8104f41055f4a4063bb.png)
+![](http://img.zuoyun.me/image/e/f2/b494b97e3a8104f41055f4a4063bb.png)
 
 
 

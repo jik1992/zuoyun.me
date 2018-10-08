@@ -77,7 +77,7 @@ action.auto_create_index: false
 node.master=true/node.data=false
 node.master=false/node.data=true
 node.master=false/node.data=true
-![](https://dn-zuoyun.qbox.me/image/1/12/8aef70686cb67591b510f8e052f44.png)
+![](http://img.zuoyun.me/image/1/12/8aef70686cb67591b510f8e052f44.png)
 ## 暴露api
  * _settings  全局设置
  * _templates 动态模板设定
@@ -239,10 +239,10 @@ metrics
 
 ```
 
-![](https://dn-zuoyun.qbox.me/image/a/8d/00f6416f73b78268990d25073ddce.png)
-![](https://dn-zuoyun.qbox.me/image/4/90/c73ee8e8f0bd11668d0d57ac37fef.png)
-![](https://dn-zuoyun.qbox.me/image/d/40/767720b2fd6a25d217879ded73e76.png)
-![](https://dn-zuoyun.qbox.me/image/2/ae/fe76ca25635f97f221aba2a7ec9ca.png)
+![](http://img.zuoyun.me/image/a/8d/00f6416f73b78268990d25073ddce.png)
+![](http://img.zuoyun.me/image/4/90/c73ee8e8f0bd11668d0d57ac37fef.png)
+![](http://img.zuoyun.me/image/d/40/767720b2fd6a25d217879ded73e76.png)
+![](http://img.zuoyun.me/image/2/ae/fe76ca25635f97f221aba2a7ec9ca.png)
 
 * 更新索引
 

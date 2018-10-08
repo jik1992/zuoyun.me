@@ -21,12 +21,12 @@ tags:
 前者是自己编辑维护的,后者是在翻译过程中生成的(或者使用TM),每个文档可以分别应用这两个模块的配置.
 
 PS: 最反人类的是这个上传按钮...他对应 1,2,3分栏代表着分别上传三种不同模块的文件...自己去试就知道我讲的什么意思了.....
-![](https://dn-zuoyun.qbox.me/image/6/3e/10ebe02b79a4260896f891f0611ce.jpg)
+![](http://img.zuoyun.me/image/6/3e/10ebe02b79a4260896f891f0611ce.jpg)
 
 其他的没什么难的了, 在使用的过程中很容易上手. 当然还有合作分享自己的记忆库和术语库功能就不一一描述.
 
 #### 典型的术语库配置
-![](https://dn-zuoyun.qbox.me/image/a/4f/4ed4ac44be6bc1c1a59da2c445c45.jpg)
+![](http://img.zuoyun.me/image/a/4f/4ed4ac44be6bc1c1a59da2c445c45.jpg)
 
 完
 

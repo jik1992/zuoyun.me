@@ -91,9 +91,9 @@ curl members.3322.org/dyndns/getip
 ```
 
 
-![](https://dn-zuoyun.qbox.me/image/4/27/bb3ab0389244b6d9328eb0431ada8.png)
-![](https://dn-zuoyun.qbox.me/image/9/f6/d31c17347d1cb3bb2fa2b57586b69.png)
-![](https://dn-zuoyun.qbox.me/image/4/5f/9932d95e31aeec8ce751141f57cb7.png)
+![](http://img.zuoyun.me/image/4/27/bb3ab0389244b6d9328eb0431ada8.png)
+![](http://img.zuoyun.me/image/9/f6/d31c17347d1cb3bb2fa2b57586b69.png)
+![](http://img.zuoyun.me/image/4/5f/9932d95e31aeec8ce751141f57cb7.png)
 
 
 awk 使用 

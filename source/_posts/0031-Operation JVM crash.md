@@ -13,7 +13,7 @@ tags:
 # 引言
 基本上， 分两块
 
-![](https://dn-zuoyun.qbox.me/image/d/a6/77de7e70176aa7fb0a5788b26cb68.png)
+![](http://img.zuoyun.me/image/d/a6/77de7e70176aa7fb0a5788b26cb68.png)
 
 
 
@@ -27,11 +27,11 @@ ref
 
 memony 
 	
-![](https://dn-zuoyun.qbox.me/image/1/19/d4ef9d1b34de2f20c8312653ce4b2.png)
+![](http://img.zuoyun.me/image/1/19/d4ef9d1b34de2f20c8312653ce4b2.png)
 
 shallow size/retained size
 
-![](https://dn-zuoyun.qbox.me/image/0/d5/b8e7aaa7c064d0a96e8b070877c4a.png)
+![](http://img.zuoyun.me/image/0/d5/b8e7aaa7c064d0a96e8b070877c4a.png)
 
 
 #### online dump
@@ -96,7 +96,7 @@ jhat -J-Xmx512m a.map					# 分析 map http://localhost:7000
 ```
 
 
-![](https://dn-zuoyun.qbox.me/image/2/ce/78ae16673e1ec537428cd3312c843.png)
+![](http://img.zuoyun.me/image/2/ce/78ae16673e1ec537428cd3312c843.png)
 
 #### referance
 >http://www.oschina.net/question/129540_23220

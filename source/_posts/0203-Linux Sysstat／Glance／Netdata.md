@@ -69,7 +69,7 @@ sar -P ALL
 sadf -P
 sadf -g -T 8 /var/log/sa/sa`date +%d` >/root/project/tomcat8/webapps/dcs.web/output_`date +%d`.svg
 ```
-![20170615149749348774804.png](https://dn-zuoyun.qbox.me/20170615149749348774804.png)
+![20170615149749348774804.png](http://img.zuoyun.me/20170615149749348774804.png)
 
 
 

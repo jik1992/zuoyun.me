@@ -27,7 +27,7 @@ OLAP 工具，类似方案如 tableau 或者 Python + Matplotlib 都是可以的
 select * from demo_copy
 ```
 
-![](https://dn-zuoyun.qbox.me/image/8/75/08c16e4557008ee22b1e314b34011.png)
+![](http://img.zuoyun.me/image/8/75/08c16e4557008ee22b1e314b34011.png)
 
 ## 引用
 * http://zeppelin.apache.org/

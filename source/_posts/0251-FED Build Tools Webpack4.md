@@ -28,7 +28,7 @@ npm install webpack webpack-cli webpack-dev-server --save-dev
 * main.js 入口 js 文件
 * webpack.dev.config.js
 
-![20180625152985796284604.png](https://dn-zuoyun.qbox.me/20180625152985796284604.png)
+![20180625152985796284604.png](http://img.zuoyun.me/20180625152985796284604.png)
 
 ### package.json
 

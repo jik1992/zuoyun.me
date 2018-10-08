@@ -11,7 +11,7 @@ tags:
 ---
 
 ### 基本流程
-![](https://dn-zuoyun.qbox.me/image/b/39/6f77930084ecd65ccea488a8d8ce5.png)
+![](http://img.zuoyun.me/image/b/39/6f77930084ecd65ccea488a8d8ce5.png)
 
 >
 BUG/故障/优化/需求
@@ -67,8 +67,8 @@ SELECT * from information_schema.`PROCESSLIST`  where  COMMAND !='Sleep' and TIM
  * 事故原因: 不明
  * 事后解决: 升级 jdk1.6_24 and later/线上事故跟踪统计
  * 备注:
-![](https://dn-zuoyun.qbox.me/image/d/6b/bf63729aa0b292c8cc6414eb5bae1.png)
-![](https://dn-zuoyun.qbox.me/image/1/cc/9b2a671647afe00ffcfcb48c768a8.png)
+![](http://img.zuoyun.me/image/d/6b/bf63729aa0b292c8cc6414eb5bae1.png)
+![](http://img.zuoyun.me/image/1/cc/9b2a671647afe00ffcfcb48c768a8.png)
 
 
 

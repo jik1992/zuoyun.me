@@ -11,9 +11,9 @@ tags:
 ---
 
 # 流式日志收集基础架构
-![](https://dn-zuoyun.qbox.me/image/6/de/7070f73d53f1186286c6519ae05cb.png)
+![](http://img.zuoyun.me/image/6/de/7070f73d53f1186286c6519ae05cb.png)
 
-![](https://dn-zuoyun.qbox.me/image/c/7d/f539840247f98f8b0a0770fcc28aa.png)
+![](http://img.zuoyun.me/image/c/7d/f539840247f98f8b0a0770fcc28aa.png)
 
 # Logstash
 核心：input->filter->output

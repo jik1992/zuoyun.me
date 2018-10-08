@@ -32,7 +32,7 @@ tags:
   7. IP Rage 增加白名单域，set defualt
   6. foxmail client连接
 
-![](https://dn-zuoyun.qbox.me/image/c/4e/a258bf4ee444a6acda752ffa64e52.jpeg)
+![](http://img.zuoyun.me/image/c/4e/a258bf4ee444a6acda752ffa64e52.jpeg)
 
 
 ### AfterLogic WebMail
@@ -42,7 +42,7 @@ tags:
  3. 管理后台登录, /adminpanel/index.php 设置save
  4. webmail登录，/index.php
 
-![](https://dn-zuoyun.qbox.me/image/0/57/0f86ae9b1fd51f8b9bac95ab55eb8.png)
+![](http://img.zuoyun.me/image/0/57/0f86ae9b1fd51f8b9bac95ab55eb8.png)
 ### 来源
  * https://en.wikipedia.org/wiki/Comparison_of_mail_servers
  * https://www.hmailserver.com/
