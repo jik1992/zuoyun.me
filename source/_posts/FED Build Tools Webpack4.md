@@ -1,27 +1,21 @@
 title: FED Build Tools Webpack4
 date: 2018/06/24 15:03:56
 categories:
- - tryghost
+ - dev
+ - front-end
 
 tags:
- - nodejs 
-
-
+ - webpack 
 
 ---
-
-### 参考
-https://webpack.js.org/guides/getting-started/
-https://webpack.docschina.org/concepts/
-
-### 安装
-```language-bash
+# installation
+```shell
 cd demo
 npm init -y
 npm install webpack webpack-cli webpack-dev-server --save-dev
 ```
 
-### 引用
+# Usage
 需要手动创建的核心文件
 
 * index.html 入口模板文件
@@ -30,7 +24,7 @@ npm install webpack webpack-cli webpack-dev-server --save-dev
 
 ![20180625152985796284604.png](http://img.sandseasoft.com/20180625152985796284604.png)
 
-### package.json
+## package.json
 
 ```language-javascript
 {
@@ -69,7 +63,7 @@ npm install webpack webpack-cli webpack-dev-server --save-dev
 
 ```
 
-### webpack.dev.config.js
+## webpack.dev.config.js
 webpack4的配置文件由几个部分组成
 
 * mode 编译模式，选择 prod 会有优化压缩能力
@@ -78,6 +72,7 @@ webpack4的配置文件由几个部分组成
 * module 编译过程应用的加载模块
 * plugins 构建输出过程的家在模块
 * devServer 开发热重载过程中的模块
+
 ```language-javascript
 const path = require('path');
 const uglify = require('uglifyjs-webpack-plugin');
@@ -171,13 +166,14 @@ module.exports = {
 };
 
 ```
-### .babelrc
+## .babelrc
 ```language-javascript
 {
   "presets":["react","es2015"]
 }
 ```
 
-
-
+# Reference
+https://webpack.js.org/guides/getting-started/
+https://webpack.docschina.org/concepts/
 

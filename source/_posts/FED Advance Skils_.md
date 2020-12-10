@@ -1,28 +1,15 @@
-title: FED Advance Skils
-date: 2020/04/20 01:51:04
+title: FED Advance Skils 
+date: 2020/04/20 01:51:04 
 categories:
-
+- dev
 - front-end
-
 tags:
-
+- react
+- javascript
 ---
 # service work
-
 让js实现多线程
-
 <img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc9a29p33gj312e0k83zm.jpg" style="zoom:50%;" />
-
-
-
-
-
-quote
-
-* https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers
-* https://x5.tencent.com/tbs/guide/serviceworker.html
-* 
-
 # <Canvas> and SVG
 
 | Canvas                                                       | SVG                                                          |
@@ -47,7 +34,7 @@ svg
 
 g
 
-rect fill 
+rect fill
 
 text/span
 
@@ -58,14 +45,14 @@ text/span
 标准的promise函数
 
 ```javascript
-let p=function sleep(ms) {
+let p = function sleep(ms) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve('sleep for ' + ms + ' ms');
         }, ms);
     });
 }
-let result=p.then();
+let result = p.then();
 ```
 
 Async\await 使用
@@ -75,19 +62,17 @@ async function asyncFunction() {
     console.time('asyncFunction total executing:');
     const sleep1 = await sleep(2000);
     console.log('sleep1: ' + sleep1);
-    const [sleep2, sleep3, sleep4]= await Promise.all([sleep(2000), sleep(1000), sleep(1500)]);
+    const [sleep2, sleep3, sleep4] = await Promise.all([sleep(2000), sleep(1000), sleep(1500)]);
     console.log('sleep2: ' + sleep2);
     console.log('sleep3: ' + sleep3);
     console.log('sleep4: ' + sleep4);
     const sleepRace = await Promise.race([sleep(3000), sleep(1000), sleep(1000)]);
     console.log('sleep race: ' + sleepRace);
     console.timeEnd('asyncFunction total executing:');
-    
+
     return 'asyncFunction done.'  // 这个可以不返回，这里只是做个标记，为了显示流程
 }
 ```
-
-
 
 ```javascript
 asyncFunction().then(data => {
@@ -100,46 +85,38 @@ console.log('after asyncFunction code executing....'); // 这个代表asyncFunct
                                                        // 显示asyncFunction本身会立即返回，不会阻塞主线程
 ```
 
-
-
 # Flex
 
 * https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 ```css
-div{
-	display :flex;
-	flex-direction:column;
-	justify-content: center;
-	align-items: space-between;
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
 }
 
 ```
-
-
 
 # Typescript
 
 基础类型
 
-* number 
-* string 
-* class 
+* number
+* string
+* class
 
 关键字
 
-* let 
+* let
 * const
 
 范形
 
 * <T>
 
-
-
 # Web Assembly .Wasm
-
-
 
 # unit: px rem vh
 
@@ -149,14 +126,12 @@ div{
 
 ### Quote
 
-http://www.typescriptlang.org/docs/home.html
-https://www.runoob.com/typescript/ts-tutorial.html
-https://www.w3cschool.cn/typescript/
-https://ts.xcatliu.com/basics/type-of-function
-
-
-
-
+* http://www.typescriptlang.org/docs/home.html
+* https://www.runoob.com/typescript/ts-tutorial.html
+* https://www.w3cschool.cn/typescript/
+* https://ts.xcatliu.com/basics/type-of-function
+* https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers
+* https://x5.tencent.com/tbs/guide/serviceworker.html
 
 # React PDF方案
 
