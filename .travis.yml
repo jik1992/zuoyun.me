@@ -1,5 +1,5 @@
 language: node_js
-node_js: stable
+node_js: v10.21.0
 
 # S: Build Lifecycle
 install:
@@ -22,6 +22,8 @@ after_script:
   - git config user.email "chinajik@gmail.com"
   - git add .
   - git commit -m "Update docs"
+  - cat CNAME
+  - echo 'exit'
   - git push --force --quiet "https://${token}@${GH_REF}" master:master
 # E: Build LifeCycle
 
