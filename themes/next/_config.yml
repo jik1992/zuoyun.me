@@ -63,7 +63,7 @@ footer:
     version: false
   # -------------------------------------------------------------
   # Any custom text can be defined here.
-  custom_text: Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a> 浙ICP备15039570号 
+  custom_text: Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a> 浙ICP备15039570号
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -153,7 +153,7 @@ links_layout: block
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
-avatar: http://img.zuoyun.me/20180809153380021758140.jpg
+avatar: http://img.sandseasoft.com/20180809153380021758140.jpg
 
 # Table Of Contents in the Sidebar
 toc:
@@ -231,18 +231,18 @@ post_wordcount:
   item_text: true
   wordcount: true
   min2read: true
-  totalcount: true  
+  totalcount: true
   separated_meta: true
 
 # Wechat Subscriber
 wechat_subscriber:
   enabled: true
-  qcode: http://img.zuoyun.me/20180810153383220856641.jpg
+  qcode: http://img.sandseasoft.com/20180810153383220856641.jpg
   description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！
 
 # Reward
 reward_comment: 请我喝个咖啡 Thanks♪(･ω･)ﾉ
-wechatpay: http://img.zuoyun.me/20180809153380181724439.png
+wechatpay: http://img.sandseasoft.com/20180809153380181724439.png
 # alipay: /images/alipay.jpg
 #bitcoin: /images/bitcoin.png
 
