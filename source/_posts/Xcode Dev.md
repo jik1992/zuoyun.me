@@ -1,15 +1,12 @@
-title: Xcode 开发漫游
+title: Xcode Dev
 date: 2018/08/10 15:24:36
 categories:
-
-- Xcode 开发
-
+- dev
 tags:
-
--  swift
--  ios
+- swift
+- ios
 - macos 
-- 入门
+- guide
 
 ---
 

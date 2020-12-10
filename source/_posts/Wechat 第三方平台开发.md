@@ -1,13 +1,9 @@
 title: Wechat 第三方平台开发
 date: 2018/08/13 01:51:04
 categories:
-
-- Third-party platform
-
+- dev
 tags:
-
 -  wechat
-
 ------
 
 # 开发步骤

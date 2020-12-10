@@ -1,13 +1,13 @@
 title:  小程序 微信支付开发
 date: 2018/08/17 01:51:04
 categories:
-
-- Third-party platform
+- dev
+- build_env
 
 tags:
 
--  WXApplet
--  pay
+- pay
+- wechat
 
 ---
 
@@ -44,7 +44,7 @@ tags:
 
 2. 产品中心->API授权管理->新增授权申请单，提交小程序的APPID。(小程序必须保证账号主体和支付商户号账号主体一致) 申请绑定关系的时候注意小程序必须上线，而且有可以核实的业务
 
-   ![20180817153449846527776.jpg](http://img.sandseasoft.com/20180817153449846527776.jpg)
+![20180817153449846527776.jpg](http://img.sandseasoft.com/20180817153449846527776.jpg)
 
 ![20180817153449824271289.png](http://img.sandseasoft.com/20180817153449824271289.png)
 

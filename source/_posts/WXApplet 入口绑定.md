@@ -1,13 +1,10 @@
 title:  WXApplet 入口绑定
 date: 2018/08/13 01:51:04
 categories:
-
-- Third-party platform
-
+- build_env
+- dev
 tags:
-
--  WXApplet
-
+- wechat
 ---
 
 # how to use
