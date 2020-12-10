@@ -3,9 +3,10 @@ node_js: stable
 
 # S: Build Lifecycle
 install:
-  - npm install
+  - yarn install
 
 cache:
+    yarn: true
     apt: true
     directories:
         - node_modules # 缓存不经常更改的内容
