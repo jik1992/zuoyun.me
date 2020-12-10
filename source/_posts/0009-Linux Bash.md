@@ -11,7 +11,7 @@ tags:
 ---
 
 常用
- 
+
  * history  !
  * cd ~
  * install yum/apt-get 
@@ -22,24 +22,24 @@ tags:
  * & jobs fg bg
  * tab
 
- 
+
 权限
 
  * chmod -R 775 /     drwxrwxrwx(类型/用户/用户组/其他用户)
  * chown jik test/ 更改所有权
 
 搜索
- 
+
  * locate/updatedb
  * find / -name "xxx" -print
- 
+
 文本
- 
+
  * cat/tail/more    (tail -fn200 error.log)
  * wc -l/sort/diff
- 
+
 监控
- 
+
  * df -h/du -h
  * ps -ef
  * top -d 5
@@ -47,13 +47,13 @@ tags:
  * iostat 3
  * netstat -tanp | less
  * kill -9 xxx
- 
+
 网络
- 
+
  * wget -N/curl/scp/nfs/sshfs
- 
+
 software
- 
+
  * irssi/mail/mutt
  * unzip
  * lrzsz->rz-be sz
@@ -75,7 +75,7 @@ vim /etc/security/limits.conf
  * last -a/who -u 最后登录/当前登录
 
 防火墙
- 
+
  * iptables
 
 c compile
@@ -112,7 +112,7 @@ awk语言的最基本功能是在文件或者字符串中基于指定规则浏�
 
   * -F ':' =制定分隔符
   * $0/$1/$n=当行匹配/一列匹配/第 n 列匹配
-  
+
 
 ```
 # cat /etc/passwd |awk  -F ':'  '{print $1}'  
@@ -138,7 +138,7 @@ curl 使用
  * --data-urlencode  "param1=value1&param2=value"   post 请求
  * -X DELETE 制定其他协议
  * --form "fileupload=@filename.txt"  上传文件
- 
+
 
 时钟同步
 ```language-bash
@@ -216,6 +216,32 @@ rpm -ivh glibc-headers-2.12-1.192.el6.x86_64.rpm                # glibc-headers
 rpm -ivh glibc-devel-2.12-1.192.el6.x86_64.rpm                    # glibc-devel
 rpm -ivh libgomp-4.4.7-17.el6.x86_64.rpm                           # libgomp(libgomp、libgomp.so.1)
 rpm -ivh gcc-4.4.7-17.el6.x86_64.rpm                                  # gcc
+
+
+
+增加一个sudo用户
+
+```
+#root 
+useradd -m jik1992
+passwd jik1992
+chmod u+w /etc/sudoers
+jik1992 ALL(ALL) ALL
+chmod u-w /etc/sudoers
+
+su jik1992	
+```
+
+
+
+增加文件可执行权限
+
+```
+chmod 774 xxx.sh
+chown root:root xxx.sh
+```
+
+
 
 
 

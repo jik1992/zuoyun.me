@@ -12,37 +12,34 @@ tags:
 
 ### 官网
 https://caddyserver.com/docs
-https://segmentfault.com/a/1190000008722666
 
-没什么好讲的，很简单, 默认自动认证HTTPS。
 
-写一个Caddyfile就可以使用
-```language-bash
-yd.index.tech84.com {
- gzip
- root   /var/www/html/
- fastcgi / 127.0.0.1:9000 php
-}
-db.zuoyun.me {
-   gzip
-   proxy / 0.0.0.0:8080 {
+
+已经出caddy2了，更好用。
+
+1. 直接复制binary到/usr/bin
+
+2. 提权 chmod 774 /usr/bin/caddy
+
+3. sudo caddy run 
+
+4. 编写Caddyfile
+
+   ```
+   appnode.sandseasoft.com {
+       respond "Hello, world!"
    }
-}
-dav.zuoyun.me {
-    filemanager /   {
-      allowCommands true
-      allowEdit true
-      allowNew true
-      allow_publish true
-      commands git svn
-      locale en
-    }
-}
-```
-chmod -x caddy
-caddy -service install  -conf /root/caddy/Caddyfile
-caddy -service start
- 
+   www.sandseasoft.com {
+       respond "Hello, world!"
+   }
+   ```
+
+5. sudo caddy start 
+
+6. sudo caddy reload
+
+
+
 
 
 

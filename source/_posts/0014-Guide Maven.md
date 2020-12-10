@@ -160,7 +160,12 @@ mvn deploy:deploy-file
 -Dversion=20160127   
 -Dfile=taobao-sdk-java-auto_1453878322044-20160127.jar 
 -Dsource=taobao-sdk-java-auto_1453878322044-20160127-source.jar
+
+
+mvn install:install-file -Dfile=/root/build/guohai-report-server/guohai-report-server/lib/ojdbc7-12.1.0.2.0.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.2.0 -Dpackaging=jar
 ```
+
+
 
 ## deploy
 ```language-xml
