@@ -1,16 +1,10 @@
-
-
-
-
 title: MCU Ardunio Codes
 date: 2020/02/25 00:00:00
 categories:
-
- - mcu
- - arduino
-
+ - soc
 tags:
- - devops 
+ - mcu
+ - arduino 
 
 
 

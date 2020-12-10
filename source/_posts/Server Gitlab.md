@@ -1,11 +1,11 @@
 title: Server Gitlab
 date: 2020/04/03 06:09:46
 categories:
- - tryghost
+ - ops
 
 tags:
- - manage 
-
+ - git
+ - gitlab
 
 
 ---

@@ -1,13 +1,13 @@
 title: FED Reacts
 date: 2020/04/10 01:51:04
 categories:
-
+- dev
 - front-end
 
 tags:
-
+- react
 ---
-Lift Time
+# Life Cycle
 
 ![](https://miro.medium.com/max/4532/1*lINPzI9FsJnay2_fm4vmzA.png)
 
@@ -19,7 +19,37 @@ Lift Time
 | render                    | 🐶        | 🐶     |
 | componentDidUpdate        | 🐶        | 🐶     |
 
-```react
+```
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+  
+  }
+  static getDerivedStateFromProps(props, state) {    
+			return {}
+  }
+  componentDidMount() {}
+  componentDidUpdate() {}
+  componentWillUnMount() {}
+```
+
+# Route
+
+# Inline CSS style component
+```javascript
+const ReactionInfoContainer = styled.div`
+    width: 95%;
+    margin-top: 38px;
+    position: absolute;
+    bottom: ${props => `${props.bottom}px`};
+    height: ${props => `${props.height !== null ? props.height : 'auto'}`} 
+`;
+
+const OtherContainert = styled(props =><Form {...props}>)`
+    width: 12px;
+`;
+```
+# Component
+
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
@@ -50,12 +80,7 @@ export default class xxx extends React.PureComponent<IProps,IStates>{
   }
 }
 ```
-
-
-
-
-
-react-redux
+# react-redux
 
 * action
 * Statetoprops
@@ -95,38 +120,15 @@ export default connect(
 )(PageHeaderContainer);
 ```
 
+# useHook
 
-
-
-
-
-
-
-
-https://juejin.im/post/5b6f1800f265da282d45a79a
-
-
-
-best practices
-
+# Tips
+## best practices
 * https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#side-effects-on-props-change
 * https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
 
-
-
-生命周期使用
-
-```
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-  
-  }
-  static getDerivedStateFromProps(props, state) {    
-			return {}
-  }
-  componentDidMount() {}
-  componentDidUpdate() {}
-  componentWillUnMount() {}
-```
+# Quote
+* https://juejin.im/post/5b6f1800f265da282d45a79a
 
 
 

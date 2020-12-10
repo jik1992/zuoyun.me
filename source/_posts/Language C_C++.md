@@ -2,10 +2,11 @@ title: Language C/C++
 date: 2020/2/26 00:00:00
 categories:
 
- - c
+ - dev
 
 tags:
- - 未归档 
+ - c
+ - c++
 
 
 

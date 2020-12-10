@@ -1,13 +1,10 @@
 title: Language Python Ansible
 date: 2015/12/31 03:39:24
 categories:
- - tryghost
-
+ - ops
 tags:
- - devops 
+ - ansible 
  - python 
-
-
 
 ---
 

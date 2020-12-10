@@ -1,14 +1,9 @@
 title: MCU Digital Circuits Guide
 date: 2020/02/26 00:00:00
 categories:
-
- - mcu
-
+- soc
 tags:
- - devops 
-
-
-
+- mcu
 ---
 
 ## 数字电路知识

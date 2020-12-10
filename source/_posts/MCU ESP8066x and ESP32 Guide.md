@@ -1,15 +1,10 @@
 title: MCU ESP8066x and ESP32 Guide
 date: 2020/02/20 00:00:00
 categories:
-
- - mcu
- - Esp
-
+- soc
 tags:
- - devops 
-
-
-
+- mcu
+- Esp
 ---
 
 # 背景

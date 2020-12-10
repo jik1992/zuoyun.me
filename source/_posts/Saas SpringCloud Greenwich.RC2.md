@@ -1,18 +1,16 @@
 title:  Saas SpringCloud Greenwich.RC2
 date: 2019/01/20 16:55:48
 categories:
-
-- Java
-
+- dev
 tags:
-
-- saas
+- java
+- distribution
 
 ---
 
 # 参考版本
 
-```
+```xml
   	<parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -36,7 +34,6 @@ tags:
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 ```
 
 # 遇到一些坑

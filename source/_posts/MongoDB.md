@@ -2,20 +2,16 @@ title: MongoDB
 date: 2020/04/10 00:00:00
 categories:
 
+ - dev
  - db
 
 tags:
- - devops 
-
-
-
+ - mongodb
 ---
-
-# 1
 
 * Grammar 
 
-```json
+```
 .update_one()
 # $set/$unset
 { _id: 100 },

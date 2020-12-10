@@ -1,11 +1,9 @@
 title: Language Python Cheatsheet
 date: 2019/12/24 02:30:01
 categories:
-
- - tryghost
-
+ - dev
 tags:
- - 未归档 
+ - python 
 
 
 

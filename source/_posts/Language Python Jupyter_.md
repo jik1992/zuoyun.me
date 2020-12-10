@@ -1,13 +1,11 @@
 title: Language Python Jupyter
 date: 2015/12/24 04:40:52
 categories:
- - tryghost
-
+- build_env
+- dev
 tags:
- - 未归档 
-
-
-
+- python
+- jupyter
 ---
 
 # Anaconda
