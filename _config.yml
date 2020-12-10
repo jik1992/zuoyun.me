@@ -93,12 +93,19 @@ fancybox: true
 # Specify the date when the site was setup
 since: 2014
 
-feed: # RSS订阅插件
+feed:
+  enable: true
   type: atom
   path: atom.xml
-  limit: 0
-
-plugins: [ 'hexo-generate-feed','hexo-generator-searchdb' ]
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
 
 search:
   path: search.xml
