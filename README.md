@@ -2,11 +2,9 @@
 <a href="#" id="status-image-popup" title="Latest push build on default branch: passed" name="status-images" class="open-popup" data-ember-action="" data-ember-action-48="48">
         <img src="https://travis-ci.org/jik1992/zuoyun.me.svg?branch=master" alt="build:passed">
 </a>
-    
-## 博客迁移
 
-这里把原来tryghost的blog全部迁移到hexo上面来了，新的方案使用github+travisCI+hexo。
-说一下整体过程
+# 博客迁移
+这里把原来tryghost的blog全部迁移到hexo上面来了，新的方案使用github+travisCI+hexo。 说一下整体过程
 
 # 原因
 
@@ -30,17 +28,22 @@
 
 # 后记
 
+## 注意事项
+
+* CNAME 文件放到 theme/next/source 下
+
 ## .travis.yml文件
 
 ```
 language: node_js
-node_js: stable
+node_js: v10.21.0
 
 # S: Build Lifecycle
 install:
-  - npm install
+  - yarn install
 
 cache:
+    yarn: true
     apt: true
     directories:
         - node_modules # 缓存不经常更改的内容
@@ -69,4 +72,4 @@ env:
 
 ## 引用
 
-- https://www.jianshu.com/p/5691815b81b6
+* https://www.jianshu.com/p/5691815b81b6
