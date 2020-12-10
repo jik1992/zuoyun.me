@@ -4,11 +4,11 @@
 
 # Site
 title: Jik92
-subtitle: 
+subtitle:
 description: using J2EE/Web,CD/CI, microservice
 author: 左韵
 language: zh-Hans
-timezone:
+timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -98,4 +98,10 @@ feed: # RSS订阅插件
   path: atom.xml
   limit: 0
 
-plugins: hexo-generate-feed
+plugins: [ 'hexo-generate-feed','hexo-generator-searchdb' ]
+
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
