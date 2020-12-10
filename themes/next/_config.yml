@@ -63,7 +63,7 @@ footer:
     version: false
   # -------------------------------------------------------------
   # Any custom text can be defined here.
-  custom_text: Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a> 浙ICP备15039570号
+  custom_text: Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a>
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -130,11 +130,11 @@ social:
   GitHub: https://github.com/jik1992 || github
   Mail: mailto:chinajik@gmail.com || stack-overflow
   Twitter: https://twitter.com/Jik1992 || twitter
-  Linkedin: https://www.linkedin.com/in/jik1992 || facebook
+  Instagram: https://instagram.com/yunzuo92 || instagram
+  #  Linkedin: https://www.linkedin.com/in/jik1992 || facebook
   #VK Group: https://vk.com/yourname || vk
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
   #YouTube: https://youtube.com/yourname || youtube
-  #Instagram: https://instagram.com/yourname || instagram
   #Skype: skype:yourname?call|chat || skype
 
 social_icons:
@@ -153,7 +153,7 @@ links_layout: block
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
-avatar: http://img.sandseasoft.com/20180809153380021758140.jpg
+avatar: http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim
 
 # Table Of Contents in the Sidebar
 toc:
@@ -193,7 +193,7 @@ sidebar:
   b2t: false
 
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
   # Enable sidebar on narrow view (only for Muse | Mist).
   onmobile: false
@@ -236,7 +236,7 @@ post_wordcount:
 
 # Wechat Subscriber
 wechat_subscriber:
-  enabled: true
+  enabled: false
   qcode: http://img.sandseasoft.com/20180810153383220856641.jpg
   description: 欢迎您扫一扫上面的微信公众号，订阅我的博客！
 
@@ -349,7 +349,7 @@ mathjax:
 han: false
 
 # Swiftype Search API Key
-swiftype_key: aLL3a6YjY8gW9MjFicEy
+#swiftype_key:
 
 # Baidu Analytics ID
 #baidu_analytics:
@@ -400,7 +400,7 @@ valine:
 # Introduction: https://imsun.net/posts/gitment-introduction/
 # You can get your Github ID from https://api.github.com/users/<Github username>
 gitment:
-  enable: true
+  enable: false
   mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
   count: true # Show comments count in post meta area
   lazy: false # Comments lazy loading with a button
@@ -417,8 +417,8 @@ gitment:
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-# baidushare:
- # type: button
+#baidushare:
+#  type: button
 
 # Share
 # This plugin is more useful in China, make sure you known how to use it.
@@ -603,7 +603,7 @@ algolia_search:
 # Local search
 # Dependencies: https://github.com/flashlab/hexo-generator-search
 local_search:
-  enable: false
+  enable: true
   # if auto, trigger search by changing input
   # if manual, trigger search by pressing enter key or search button
   trigger: auto
@@ -627,7 +627,7 @@ note:
   #  - modern    bs-callout new (v2-v3) alert style.
   #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
   #  - disabled  disable all CSS styles import of note tag.
-  style: simple
+  style: disabled
   icons: false
   border_radius: 3
   # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
