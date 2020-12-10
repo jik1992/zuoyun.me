@@ -12,7 +12,7 @@ tags:
 
 ## 背景
 盗一张图来解释hadoop目前生态
-![](http://img.zuoyun.me/image/b/6a/1033fc27e1d8e8f774bb07db1422b.png)
+![](http://img.sandseasoft.com/image/b/6a/1033fc27e1d8e8f774bb07db1422b.png)
 其中这些领域有很好的第三方替代
 
 * 性能分析监控领域（intel Hadoop Manager）eagle http://eagle.apache.org/

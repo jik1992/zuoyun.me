@@ -59,8 +59,8 @@ cat 11>>/usr/local/etc/openssl/cert.pem
 可以了
 
  * 网络
-![](http://img.zuoyun.me/image/3/8c/0baf1f2e9d77b9213d634fc7cdb5b.png)
-![](http://img.zuoyun.me/image/5/27/ca38e9e701636fed5f36bdb6691cc.png)
+![](http://img.sandseasoft.com/image/3/8c/0baf1f2e9d77b9213d634fc7cdb5b.png)
+![](http://img.sandseasoft.com/image/5/27/ca38e9e701636fed5f36bdb6691cc.png)
 
 
 ### 80转发

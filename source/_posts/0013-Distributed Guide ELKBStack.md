@@ -16,10 +16,10 @@ http://kibana.logstash.es/content/elasticsearch/performance/curator.html
 
 http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/36356.pdf
 
-![](http://img.zuoyun.me/image/d/1d/eec4d7a8cf301951b06803cf58ef1.png)
-![](http://img.zuoyun.me/image/a/09/f763260c13f1182a43a3fe65385ad.png)
-![](http://img.zuoyun.me/image/a/86/37a4b036c32bc86686835497497ff.png)
-![](http://img.zuoyun.me/image/1/5f/312493b3df09c4b9631879f1d15d0.png)
+![](http://img.sandseasoft.com/image/d/1d/eec4d7a8cf301951b06803cf58ef1.png)
+![](http://img.sandseasoft.com/image/a/09/f763260c13f1182a43a3fe65385ad.png)
+![](http://img.sandseasoft.com/image/a/86/37a4b036c32bc86686835497497ff.png)
+![](http://img.sandseasoft.com/image/1/5f/312493b3df09c4b9631879f1d15d0.png)
 
 ## kibana/grafana
 概念
@@ -108,8 +108,8 @@ http://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archiv
 </table>
 
 ### 架构
-![](http://img.zuoyun.me/image/a/c8/83a7f99820a9df249b54229cbe8cd.png)
-![](http://img.zuoyun.me/image/5/b4/4cd6202022b3b6e14abd2720ab743.png)
+![](http://img.sandseasoft.com/image/a/c8/83a7f99820a9df249b54229cbe8cd.png)
+![](http://img.sandseasoft.com/image/5/b4/4cd6202022b3b6e14abd2720ab743.png)
 
 ### Dapper 原理项目实现
 https://github.com/naver/pinpoint

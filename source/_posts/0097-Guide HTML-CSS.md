@@ -54,7 +54,7 @@ https://caniuse.com/
 
 # CSS 基础
 ## 布局
-![](http://img.zuoyun.me/image/d/27/f5aa50324e397583670d494304520.png)
+![](http://img.sandseasoft.com/image/d/27/f5aa50324e397583670d494304520.png)
 ## 元素分类
 
  * 块级元素
@@ -89,7 +89,7 @@ div > .id{
 
 # Cheatsheet
 联系我代码
-![](http://img.zuoyun.me/image/0/99/2bd4ac14d316300e5b2517ba0eb26.png)
+![](http://img.sandseasoft.com/image/0/99/2bd4ac14d316300e5b2517ba0eb26.png)
 
 ```language-html
 <h6 style="text-align:center;">有问题请联系:

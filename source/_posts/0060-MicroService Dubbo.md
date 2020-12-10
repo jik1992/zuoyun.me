@@ -23,7 +23,7 @@ https://github.com/Percy0601/boot-dubbo
 
 ## 核心
 
-![](http://img.zuoyun.me/image/0/5d/a45bcf1d641b55c4ab805c6e634b9.png)
+![](http://img.sandseasoft.com/image/0/5d/a45bcf1d641b55c4ab805c6e634b9.png)
 ### 模块解释
 >单个服务坐标， app-name+group+version+name
 

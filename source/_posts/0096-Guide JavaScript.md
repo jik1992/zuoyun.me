@@ -63,7 +63,7 @@ MDN: https://developer.mozilla.org/zh-CN/docs/Web/
 DevTools: http://devdocs.io/
 ## Cheatsheet
 小心使用数字的动态转换，超界请使用字符串存储
-![](http://img.zuoyun.me/image/7/07/2ce3348a619cdd7d96ede99a82acc.jpg)
+![](http://img.sandseasoft.com/image/7/07/2ce3348a619cdd7d96ede99a82acc.jpg)
 
 sleep 代码
 ```language-javascript

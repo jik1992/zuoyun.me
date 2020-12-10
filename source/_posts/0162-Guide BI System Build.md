@@ -33,17 +33,17 @@ tags:
 ## 技术方向
 ### 前端选型： GrowingIO
 * 优势：无埋点／全端支持／实时报告／热点图／Quick运营报告／产品迭代
-![](http://img.zuoyun.me/image/6/34/a3688bd82ba1c1823464d64cf4e2c.png)
+![](http://img.sandseasoft.com/image/6/34/a3688bd82ba1c1823464d64cf4e2c.png)
 ### 后端选型： QuickBI／Redis／CallBack
 * 优势
  * QuickBI： 将t_cfp_txnjnl, log* 同步到QuickBI，然后做N*N纬度分析出运营实时报表数据
  * Redis： 通过带TTL的ADD函数统计在线人数
  * CallBack：图片，超链类似 www.xx.com?callback=58gxb.com/xxx&param1=key1&param2=key2 打通html5入口跟踪链
-![](http://img.zuoyun.me/image/8/5c/14aba83a009af09b8064140ee550a.png)
+![](http://img.sandseasoft.com/image/8/5c/14aba83a009af09b8064140ee550a.png)
 
-![](http://img.zuoyun.me/image/2/99/26efb7f8b24feb1cc8921e8db59d1.png)
+![](http://img.sandseasoft.com/image/2/99/26efb7f8b24feb1cc8921e8db59d1.png)
 
-![](http://img.zuoyun.me/image/3/d8/aae26455910361b7d7b4542e34edb.png)
+![](http://img.sandseasoft.com/image/3/d8/aae26455910361b7d7b4542e34edb.png)
 
 ### 运营数据存储：MySQL／AccessLog／HDFS／ElasticSearch／SLS
 ## 总结

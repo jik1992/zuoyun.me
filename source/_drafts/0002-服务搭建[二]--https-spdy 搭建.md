@@ -52,7 +52,7 @@ nginx -s reload
 #### 4. enjoy it!
 检测spdy开启 [http://spdycheck.org/# jik92.com](http://spdycheck.org/# jik92.com)
 
-![](http://img.zuoyun.me/image/3/80/add4152e8660166bdab252e0c6528.jpg)
+![](http://img.sandseasoft.com/image/3/80/add4152e8660166bdab252e0c6528.jpg)
 
 
 

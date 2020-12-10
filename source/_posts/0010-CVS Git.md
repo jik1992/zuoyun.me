@@ -15,7 +15,7 @@ git
 
 >非常好的版本控制系统
 
-![](http://img.zuoyun.me/image/7/6f/60376e015ea1836d1fc152594e99a.png)
+![](http://img.sandseasoft.com/image/7/6f/60376e015ea1836d1fc152594e99a.png)
 
 #### 必装软件
 SourceTree by Bitbucket

@@ -44,7 +44,7 @@ top
 # 重置所有被asm改变的类
 reset
 ```
-![20171129151195349134768.png](http://img.zuoyun.me/20171129151195349134768.png)
+![20171129151195349134768.png](http://img.sandseasoft.com/20171129151195349134768.png)
 
 ## Javosize
 ```language-bash

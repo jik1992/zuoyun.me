@@ -12,7 +12,7 @@ tags:
 ---
 
 ## 背景
-![](http://img.zuoyun.me/image/8/27/e8ceb60d99b8c659065515c9a01c4.png)
+![](http://img.sandseasoft.com/image/8/27/e8ceb60d99b8c659065515c9a01c4.png)
 
 基于HDFS的NoSQL数据库
 ```language-base

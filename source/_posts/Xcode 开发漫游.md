@@ -56,7 +56,7 @@ tags:
 
 ## 新建项目
 
-![image-20180810152631378](http://img.zuoyun.me/20180810153388798150971.png)
+![image-20180810152631378](http://img.sandseasoft.com/20180810153388798150971.png)
 
 1. 打开 xcode
 2. 结构体如上，xxxTests和xxxUITests 是测试文件夹，Products 是成品包，app文件直接放入DropDMG 直接可以打包，第一个文件夹就是代码文件了，其中*.storyboard 是 UI 设计的文件

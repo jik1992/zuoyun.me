@@ -30,9 +30,9 @@ http://docs.codehaus.org/display/GROOVY/Home
  
  
 #### 包结构
-![](http://img.zuoyun.me/image/7/5b/11fd893574d211fb27e67231032d7.jpg)
+![](http://img.sandseasoft.com/image/7/5b/11fd893574d211fb27e67231032d7.jpg)
 
-![](http://img.zuoyun.me/image/0/8d/941d564e82d6bc1ea46a4fc65b9c6.jpg)
+![](http://img.sandseasoft.com/image/0/8d/941d564e82d6bc1ea46a4fc65b9c6.jpg)
  
  过几天准备探索spring和maven的整合
 

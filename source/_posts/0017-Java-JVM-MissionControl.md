@@ -104,7 +104,7 @@ http://www.cnblogs.com/lingiu/p/3866559.html
 2. 还有一种可能DelegatingClassLoader不会回收，由于本地反射使用不当。或者YGC过于频繁,导致无法进入Perm空间的回收事件。
 3. 这里打开 verbose:class 发现一个问题，大量的通过 cglib 生成重复的对象，这些 class 加载是要吃 PermGen 的，基本上就是 ibaties 中使用到，所以内存问题基本确定在 batchinsert 的使用。优化使用事务，取消 ibaties 原型标签。
 
-![](http://img.zuoyun.me/image/d/1a/7ef151c4e7a932447d9e087cce1ca.png)
+![](http://img.sandseasoft.com/image/d/1a/7ef151c4e7a932447d9e087cce1ca.png)
 
 # 远程监控VisualVM
 
@@ -136,7 +136,7 @@ JAVA_OPTS='-Dcom.sun.management.jmxremote.port=8099
 
 PS 最后发现 Java8里面的 MissionControl 是可以兼容上面的方案的 :)
 
-![](http://img.zuoyun.me/image/2/02/d487d0df49431b94cfb24836f6713.png)
+![](http://img.sandseasoft.com/image/2/02/d487d0df49431b94cfb24836f6713.png)
 
 # MAT
 启动8G内存

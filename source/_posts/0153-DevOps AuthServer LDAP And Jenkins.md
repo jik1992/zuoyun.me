@@ -37,8 +37,8 @@ PS:移除 ${home}/.jenkins文件夹
 # 默认配置
 1. 默认账号uid=admin,ou=system 密码secret，找到对应账号修改密码
 2. 安装ldap插件和 Role-based Authorization Strategy 插件
-3. 安装jenkins，进入安全设置选择ldap插件，配置ldap链接![20171030150929657198688.png](http://img.zuoyun.me/20171030150929657198688.png)
-4. 配置安全组策略![2017103015092970478380.png](http://img.zuoyun.me/2017103015092970478380.png)
+3. 安装jenkins，进入安全设置选择ldap插件，配置ldap链接![20171030150929657198688.png](http://img.sandseasoft.com/20171030150929657198688.png)
+4. 配置安全组策略![2017103015092970478380.png](http://img.sandseasoft.com/2017103015092970478380.png)
 
 
 # 常用插件

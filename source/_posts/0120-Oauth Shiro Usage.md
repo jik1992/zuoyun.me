@@ -14,7 +14,7 @@ tags:
 http://shiro.apache.org/
 
 ### 架构
-![](http://img.zuoyun.me/image/e/88/be4e36b79102864554476e69c4483.png)
+![](http://img.sandseasoft.com/image/e/88/be4e36b79102864554476e69c4483.png)
 
 ![](http://img.blog.csdn.net/20160114233958301)
 - Subject 当前用户操作 

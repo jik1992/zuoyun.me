@@ -68,7 +68,7 @@ mysqlbinlog --start-date="2005-04-20 10:01:00" --stop-date="2005-04-20 10:05:00"
 mysqlbinlog --start-date="2005-04-20 10:01:00" --stop-date="2005-04-20 10:05:00" mysql-bin.000003 >/tmp/restore.sql
 ```
 
-![](http://img.zuoyun.me/image/e/4b/f2755584878df485a04b65fe8b0b6.png)
+![](http://img.sandseasoft.com/image/e/4b/f2755584878df485a04b65fe8b0b6.png)
 ### 引用
 这篇文章讲的很好
 http://www.cnblogs.com/feichexia/p/MysqlDataBackup.html

@@ -25,11 +25,11 @@ java -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 
 
 idea 增加 remote 配置,修改对应画红圈位置的信息，启动
 
-![20190128154865824254851.png](http://img.zuoyun.me/20190128154865824254851.png)
+![20190128154865824254851.png](http://img.sandseasoft.com/20190128154865824254851.png)
 
 完事
 
-![20190128154865831862908.png](http://img.zuoyun.me/20190128154865831862908.png)
+![20190128154865831862908.png](http://img.sandseasoft.com/20190128154865831862908.png)
 
 ### 参考
 

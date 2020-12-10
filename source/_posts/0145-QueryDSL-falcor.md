@@ -16,7 +16,7 @@ https://github.com/facebook/graphql
 https://github.com/Netflix/falcor
 
 >One Model, Available Everywhere.
-![](http://img.zuoyun.me/image/4/26/af8a65e4305096d5af100290ceecd.png)
+![](http://img.sandseasoft.com/image/4/26/af8a65e4305096d5af100290ceecd.png)
 
 
 

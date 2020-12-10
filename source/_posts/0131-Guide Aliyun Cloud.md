@@ -10,7 +10,7 @@ tags:
 
 ---
 
-![](http://img.zuoyun.me/image/0/10/68abdf71fa73a46a5241a95c8c959.png)
+![](http://img.sandseasoft.com/image/0/10/68abdf71fa73a46a5241a95c8c959.png)
 # 配置价格
 * 1x SLB 5M 158/m
 * 2x ECS 2核4G 1M 300G 300x2/m

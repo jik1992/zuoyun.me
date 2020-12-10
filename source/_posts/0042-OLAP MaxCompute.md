@@ -11,7 +11,7 @@ tags:
 ---
 
 # 简介
-![](http://img.zuoyun.me/image/f/04/b4f69fb11a18fca1c71c56deaff67.png)
+![](http://img.sandseasoft.com/image/f/04/b4f69fb11a18fca1c71c56deaff67.png)
 
 入口
 

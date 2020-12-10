@@ -50,7 +50,7 @@ tags:
  
 ### 移动端监控
 * 服务端暴露端口到外网
-![](http://img.zuoyun.me/image/b/aa/ba207cba465683ed61c471e72dd18.png)
+![](http://img.sandseasoft.com/image/b/aa/ba207cba465683ed61c471e72dd18.png)
 
 * 移动端配置proxy 转发
 * 本地资源目录动态映射

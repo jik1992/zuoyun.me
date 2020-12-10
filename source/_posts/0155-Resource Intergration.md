@@ -36,8 +36,8 @@ tags:
 * Auxre
 
 # 硬件
-![](http://img.zuoyun.me/image/6/63/ed4b88e8a1527b493c26d24be2b05.png)
-![](http://img.zuoyun.me/image/3/a2/7171967861ca40e788341b595151b.png)
+![](http://img.sandseasoft.com/image/6/63/ed4b88e8a1527b493c26d24be2b05.png)
+![](http://img.sandseasoft.com/image/3/a2/7171967861ca40e788341b595151b.png)
 
 ## 耗材
 * 戴尔（DELL） U2412M

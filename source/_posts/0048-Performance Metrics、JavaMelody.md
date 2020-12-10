@@ -235,7 +235,7 @@ pom.xml
         </dependency>
 ```
 
-![](http://img.zuoyun.me/image/c/f7/8aad90ae3a37dd9eebf90c5f49cdf.png)
+![](http://img.sandseasoft.com/image/c/f7/8aad90ae3a37dd9eebf90c5f49cdf.png)
 
 ### 路由请求地址
 http://127.0.0.1:8888/monitoring

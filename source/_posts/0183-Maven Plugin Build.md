@@ -86,7 +86,7 @@ public class Car extends AbstractMojo {
 ```
 
 最后 clean package deploy 可以正常使用
-![](http://img.zuoyun.me/201701041283450C8B04F-2D37-4938-8DCE-043E9F77A2A1.png)
+![](http://img.sandseasoft.com/201701041283450C8B04F-2D37-4938-8DCE-043E9F77A2A1.png)
 
 ## 参考
 

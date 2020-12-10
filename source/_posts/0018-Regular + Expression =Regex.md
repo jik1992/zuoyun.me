@@ -28,7 +28,7 @@ tags:
 
 ***断言*** 
 ![](http://p0.qhimg.com/t011c3f5504955269d3.png)
-![](http://img.zuoyun.me/image/e/22/3512a79894ea2a719d09284785d8e.jpg)
+![](http://img.sandseasoft.com/image/e/22/3512a79894ea2a719d09284785d8e.jpg)
  * 零宽lookahead ancyent (?=ma) or ancyent(?\!ma)
  * 零宽lookbehind (?<=ancyent) marinert or ?<\!ancyent) marinert
  >lookbehind 必须固定长度,不支持* + ? 且使用|逻辑时必须等长(无法判断回溯)

@@ -105,7 +105,7 @@ jdbc-template
   }
 ```
 
-![](http://img.zuoyun.me/image/d/b0/cc88f852d1f1fd1d9a6cfa8f9d2b9.png)
+![](http://img.sandseasoft.com/image/d/b0/cc88f852d1f1fd1d9a6cfa8f9d2b9.png)
 
 
 

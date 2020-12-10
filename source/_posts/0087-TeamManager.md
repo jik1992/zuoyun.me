@@ -28,7 +28,7 @@ tags:
 
  * 敏捷开发
 
-![](http://img.zuoyun.me/image/e/72/5e1bb2f1b6062695527fa0c38029f.jpg)
+![](http://img.sandseasoft.com/image/e/72/5e1bb2f1b6062695527fa0c38029f.jpg)
 idea
 
  1. 人的自律 scrum
@@ -85,7 +85,7 @@ idea
 
 ## 马斯洛需求层次理论
 
-![](http://img.zuoyun.me/image/0/01/778897be182ea714c2d0cb2d748cb.jpg)
+![](http://img.sandseasoft.com/image/0/01/778897be182ea714c2d0cb2d748cb.jpg)
 
 
 
