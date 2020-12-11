@@ -1,19 +1,20 @@
 title: API Gateway Caddy
 date: 2017/11/20 02:32:20
 categories:
- - tryghost
+ - ops
 
 tags:
- - devops 
+ - caddy
 
 
 
 ---
 
-### 官网
-https://caddyserver.com/docs
+#  Officer Index
 
+* https://caddyserver.com/docs/
 
+# Usage
 
 已经出caddy2了，更好用。
 
