@@ -243,6 +243,20 @@ chown root:root xxx.sh
 
 
 
+```
+#/bin/bash
+while true;
+do
+  count=`ps -ef | grep test.jar | grep -v grep|wc -l`
+  if [ ${count} -lt 1 ]; then
+    nohup java -jar test.jar &
+  else
+    echo "process is running"
+  fi
+  sleep 3
+done
+```
+
 
 
 
