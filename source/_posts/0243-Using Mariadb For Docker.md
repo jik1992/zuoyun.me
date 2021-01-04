@@ -1,10 +1,10 @@
 title: Using Mariadb For Docker
 date: 2018/03/01 03:31:00
 categories:
- - tryghost
+ - ops
 
 tags:
- - devops 
+ - mariadb
 
 
 

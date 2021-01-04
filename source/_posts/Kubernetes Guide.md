@@ -259,6 +259,13 @@ kubectl logs weave-net-gq9pn -p -c weave -n kube-system
 kubectl get deployments --all-namespaces
 kubectl delete deployment xxx
 
+kubectl scale deployments/notepad --replicas=100
+kubectl set image deployments/notepad notepad=yhlben/notepad:new
+kubectl rollout undo deployments/notepad
+
+kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1
+kubectl deployment "nginx-deployment" image updated
+
 ```
 
 ### Docker Private Registry

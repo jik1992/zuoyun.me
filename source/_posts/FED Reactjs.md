@@ -122,7 +122,86 @@ export default connect(
 
 # useHook
 
+# Geninic
+
+```shell
+function identity <T, U>(value: T, message: U) : T {
+  console.log(message);
+  return value;
+}
+
+console.log(identity(68, "Semlinker"));
+
+#
+interface GenericInterface<U> {
+  value: U
+  getIdentity: () => U
+}
+
+class IdentityClass<T> implements GenericInterface<T> {
+  value: T
+
+  constructor(value: T) {
+    this.value = value
+  }
+
+  getIdentity(): T {
+    return this.value
+  }
+
+}
+
+const myNumberClass = new IdentityClass<Number>(68);
+console.log(myNumberClass.getIdentity()); // 68
+
+const myStringClass = new IdentityClass<string>("Semlinker!");
+console.log(myStringClass.getIdentity()); // Semlinker!
+
+#
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+#
+async function stringPromise() {
+  return "Hello, Semlinker!";
+}
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+async function personPromise() {
+  return { name: "Semlinker", age: 30 } as Person;
+}
+
+type PromiseType<T> = (args: any[]) => Promise<T>;
+type UnPromisify<T> = T extends PromiseType<infer U> ? U : never;
+
+type extractStringPromise = UnPromisify<typeof stringPromise>; // string
+type extractPersonPromise = UnPromisify<typeof personPromise>; // Person
+
+
+
+# tools
+type Partial<T> = {
+    [P in keyof T]?: T[P];
+};
+type Record<K extends keyof any, T> = {
+    [P in K]: T;
+};
+type Pick<T, K extends keyof T> = {
+    [P in K]: T[P];
+};
+type Exclude<T, U> = T extends U ? never : T;
+type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+
+```
+
+
+
 # Tips
+
 ## best practices
 * https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#side-effects-on-props-change
 * https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html

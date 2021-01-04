@@ -1,26 +1,40 @@
 title: Server Gitlab
-date: 2016/03/03 06:09:46
+date: 2020/12/20 06:09:46
 categories:
- - tryghost
+
+ - ops
 
 tags:
- - manage 
-
-
+ - gitlab
+ - gitlab-runner
 
 ---
 
-## 官网
+## Comcept
 
-https://about.gitlab.com/gitlab-com/
+* root
+* control version system
+ * Files
+ * Comments
+ * MergeRequests
+* CI/CD
+ * Builds
+ * Graph
+* project manage
+ * Milestones
+ * Issues
+* document
+ * Wiki
+ * Snippts
+ * Labels
 
-## Ominibus 一键安装包
+# Instalation
+
+## All in One Step
+
 https://about.gitlab.com/downloads/# ubuntu1404
 https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/
 
-
-
-## 安装
 ```language-bash
 # 安装
 rpm -i gitlab-7.7.2omnibus.5.4.2.ci-1.el6.x8664.rpm 
@@ -41,7 +55,8 @@ gitlab-ctl upgrade
 查看：https://about.gitlab.com/upgrade-to-package-repository/
 ```
 
-## 修改邮箱收发
+## Updated Configuaration
+
 ```language-bash
  gitlab_rails['gitlab_email_enabled'] = true
  gitlab_rails['gitlab_email_from'] = 'xxxxx@58gxb.com'
@@ -57,19 +72,28 @@ gitlab-ctl upgrade
  gitlab_rails['smtp_enable_starttls_auto'] = false
 ```
 
-## Gitlab-CI
-* 安装
-参考：https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/blob/master/docs/install/linux-repository.md
+## Gitlab-runner
+
+* Installation https://docs.gitlab.com/runner/
 ```language-bash
-sudo yum install gitlab-ci-multi-runner
-sudo gitlab-ci-multi-runner register
+# https://gitlab-runner-downloads.s3.amazonaws.com/latest/index.html
+rpm -i xxx.rpm
+dpkg -i xxx.deb
+# 
+gitlab-runner register
+# select shell mode
 ```
 * .gitlab-ci.yml
 ```language-bash
+stages
+	- complie
+	- build
+	- deploy
+
 job_name:
+  stage: test
   script:
     - echo hello
-  stage: test
   only:
     - master
   except:
@@ -77,29 +101,11 @@ job_name:
   tags:
     - demo
   allow_failure: true
+  when: manual
 ```
 
-## 相关概念
-* 默认账号 root
-* 版本控制
- * Files
- * Comments
- * MergeRequests
-* CI 构建
- * Builds
- * Graph
-* 项目管理
- * Milestones
- * Issues
-* 文档
- * Wiki
- * Snippts
- * Labels
+# Quete
 
-
-
-
-
-
+* https://about.gitlab.com/gitlab-com/
 
 

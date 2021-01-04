@@ -56,7 +56,10 @@ SET PASSWORD FOR root=PASSWORD('123456');
 ```language-sql
 # 将 discuz 数据库的所有权限授权给 ted 这个用户，允许 ted 用户在 123.123.123.123 这个 IP 进行远程登陆，并设置 ted 用户的密码为 123456 
 grant all PRIVILEGES on discuz.* to ted@'123.123.123.123' identified by '123456';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'passwd' WITH GRANT OPTION;
+
+# create account for all domain
+create user jik1992@'%' identified by 'xxxx';
+grant all privileges on *.* to jik1992@'%' with grant option;
 flush privileges;
 ```
 
