@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+  <meta name="keywords" content="mcu,arduino,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="背景​    目前拿到的MCU有ESP8266、ESP32 、Arduino Nano、ESP 8266 01 四块，都能够基于ardunio做传感器实验  使用IDEClion install Arduino IDE  install CP210x driver  install VScode , PlatformIO Plugin  new sketch file , set c++ 14 ,">
+<meta name="keywords" content="mcu,arduino">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MCU Ardunio Codes">
+<meta property="og:url" content="http://yoursite.com/2020/02/25/MCU Arduino Codes/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="背景​    目前拿到的MCU有ESP8266、ESP32 、Arduino Nano、ESP 8266 01 四块，都能够基于ardunio做传感器实验  使用IDEClion install Arduino IDE  install CP210x driver  install VScode , PlatformIO Plugin  new sketch file , set c++ 14 ,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gc98zjrr7gj30u60lctba.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gc9571cmcwj317g0qygn4.jpg">
+<meta property="og:image" content="https://atts.w3cschool.cn/attachments/tuploads/arduino/board_description.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcbbqdypi4j31e50u042v.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gcab3qgmtaj30xc0hhdh2.jpg">
+<meta property="og:image" content="https://startingelectronics.org/tutorials/arduino/modules/OLED-128x64-I2C-display/arduino-oled-connection.jpg">
+<meta property="og:image" content="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2016/10/rtc.png?resize=714%2C393&ssl=1">
+<meta property="og:image" content="https://www.electronics-lab.com/wp-content/uploads/2018/05/servo_bb-schematics.png">
+<meta property="og:image" content="https://howtomechatronics.com/wp-content/uploads/2019/04/Arduino-and-MPU6050-Circuit-Diagram.png">
+<meta property="og:image" content="https://hackster.imgix.net/uploads/attachments/495697/F3DDJQ4IAP6UGTG.png?auto=compress%2Cformat&w=680&h=510&fit=max">
+<meta property="og:image" content="https://www.yiboard.com/data/attachment/forum/201908/17/145506ev5e97e4h94x2h2m.png">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gc840jxmucj30rs0fsta8.jpg">
+<meta property="og:updated_time" content="2021-01-04T04:14:12.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MCU Ardunio Codes">
+<meta name="twitter:description" content="背景​    目前拿到的MCU有ESP8266、ESP32 、Arduino Nano、ESP 8266 01 四块，都能够基于ardunio做传感器实验  使用IDEClion install Arduino IDE  install CP210x driver  install VScode , PlatformIO Plugin  new sketch file , set c++ 14 ,">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gc98zjrr7gj30u60lctba.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>MCU Ardunio Codes | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/MCU Arduino Codes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MCU Ardunio Codes</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-25T00:00:00+00:00">
+                2020-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/soc/" itemprop="url" rel="index">
+                    <span itemprop="name">soc</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,187
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>​    目前拿到的MCU有ESP8266、ESP32 、Arduino Nano、ESP 8266 01 四块，都能够基于ardunio做传感器实验</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc98zjrr7gj30u60lctba.jpg" alt></p>
+<h1 id="使用IDE"><a href="#使用IDE" class="headerlink" title="使用IDE"></a>使用IDE</h1><h2 id="Clion"><a href="#Clion" class="headerlink" title="Clion"></a>Clion</h2><ol>
+<li><p>install Arduino IDE</p>
+</li>
+<li><p>install CP210x driver</p>
+</li>
+<li><p>install VScode , PlatformIO Plugin</p>
+</li>
+<li><p>new sketch file , set c++ 14 , buard 9600, run [project]-upload</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc9571cmcwj317g0qygn4.jpg" alt></p>
+</li>
+</ol>
+<h2 id="PlatformIO-VSCode-recommend"><a href="#PlatformIO-VSCode-recommend" class="headerlink" title="PlatformIO VSCode (recommend)"></a>PlatformIO VSCode (recommend)</h2><ol>
+<li>install vscode</li>
+<li>install platformio plugin</li>
+<li>new sketch , arduino nano amega318/9600 buard</li>
+<li>use build/upload/monitor</li>
+<li>configure <code>platformio.ini</code> ,set <code>lib_deps</code></li>
+</ol>
+<h2 id="Arduino-Cli"><a href="#Arduino-Cli" class="headerlink" title="Arduino Cli"></a>Arduino Cli</h2><ul>
+<li><a href="https://github.com/arduino/arduino-cli" target="_blank" rel="noopener">https://github.com/arduino/arduino-cli</a></li>
+</ul>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><ul>
+<li>design <code>https://fritzing.org/download/</code></li>
+</ul>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><ul>
+<li><a href="https://www.w3cschool.cn/arduino" target="_blank" rel="noopener">https://www.w3cschool.cn/arduino</a></li>
+</ul>
+<h2 id="引脚"><a href="#引脚" class="headerlink" title="引脚"></a>引脚</h2><p><img src="https://atts.w3cschool.cn/attachments/tuploads/arduino/board_description.jpg" alt="Arduino UNO板"></p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcbbqdypi4j31e50u042v.jpg" alt></p>
+<p>用例</p>
+<ul>
+<li><a href="https://github.com/jik1992/training_arduino" target="_blank" rel="noopener">https://github.com/jik1992/training_arduino</a></li>
+<li><a href="https://github.com/arduino/arduino-cli" target="_blank" rel="noopener">https://github.com/arduino/arduino-cli</a></li>
+</ul>
+<h3 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">  #引脚使用</span><br><span class="line">	pinMode(<span class="number">13</span>, OUTPUT);</span><br><span class="line">	digitalWrite(pin, value) </span><br><span class="line">  <span class="meta">#random</span></span><br><span class="line">	randomSeed(analogRead(<span class="number">0</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="meta">#others</span></span><br><span class="line">  delay(<span class="number">1000</span>); </span><br><span class="line">  </span><br><span class="line">  #COM串口通信</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  Serial.println(sensorValue);</span><br><span class="line">  Serial.read();</span><br><span class="line">  <span class="keyword">int</span> sensorValue = analogRead(A0);</span><br><span class="line">  Serial.println(sensorValue);</span><br><span class="line"></span><br><span class="line">  #PWM</span><br><span class="line">  #analogRead values go from <span class="number">0</span> to <span class="number">1023</span>, analogWrite values 	from <span class="number">0</span> to <span class="number">255</span></span><br><span class="line">  <span class="meta">#https:<span class="comment">//www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/</span></span></span><br><span class="line">  val = analogRead(analogPin);  <span class="comment">// read the input pin</span></span><br><span class="line">  analogWrite(ledPin, val / <span class="number">4</span>); </span><br><span class="line">  </span><br><span class="line">  randNumber = random(<span class="number">10</span>, <span class="number">20</span>);<span class="comment">// print a random number from 10 to 19</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="常用库"><a href="#常用库" class="headerlink" title="常用库"></a>常用库</h1><h2 id="DHT11"><a href="#DHT11" class="headerlink" title="DHT11"></a>DHT11</h2><ul>
+<li><a href="https://platformio.org/lib/show/19/DHT sensor library/examples" target="_blank" rel="noopener">https://platformio.org/lib/show/19/DHT%20sensor%20library/examples</a></li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gcab3qgmtaj30xc0hhdh2.jpg" alt></p>
+<h3 id="U8g2-OLED"><a href="#U8g2-OLED" class="headerlink" title="U8g2 OLED"></a>U8g2 OLED</h3><p>U8G2_SSD1306_128X64_NONAME_1_HW_I2C</p>
+<ul>
+<li><a href="https://github.com/olikraus/u8g2" target="_blank" rel="noopener">https://github.com/olikraus/u8g2</a></li>
+</ul>
+<p><img src="https://startingelectronics.org/tutorials/arduino/modules/OLED-128x64-I2C-display/arduino-oled-connection.jpg" alt="How to Connect the Geekcreit 0.96 Inch OLED I2C Display to Arduino - Wiring Diagram"></p>
+<h2 id="Clock-DS3231"><a href="#Clock-DS3231" class="headerlink" title="Clock DS3231"></a>Clock DS3231</h2><ul>
+<li><a href="https://platformio.org/lib/show/1197/RTCLib/examples" target="_blank" rel="noopener">https://platformio.org/lib/show/1197/RTCLib/examples</a></li>
+</ul>
+<p><img src="https://i2.wp.com/randomnerdtutorials.com/wp-content/uploads/2016/10/rtc.png?resize=714%2C393&amp;ssl=1" alt="img"></p>
+<h2 id="SG90"><a href="#SG90" class="headerlink" title="SG90"></a>SG90</h2><ul>
+<li><a href="https://platformio.org/lib/show/883/Servo?utm_source=platformio&amp;utm_medium=piohome" target="_blank" rel="noopener">https://platformio.org/lib/show/883/Servo?utm_source=platformio&amp;utm_medium=piohome</a></li>
+</ul>
+<p><img src="https://www.electronics-lab.com/wp-content/uploads/2018/05/servo_bb-schematics.png" alt="img"></p>
+<h2 id="JoyStick"><a href="#JoyStick" class="headerlink" title="JoyStick"></a>JoyStick</h2><h3 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h3><ul>
+<li>VCC -&gt; 5V</li>
+<li>GND -&gt; GND</li>
+<li>VRx -&gt; A0</li>
+<li>VRy -&gt; A1</li>
+<li>SW -&gt; D2</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> VRx = A0;</span><br><span class="line"><span class="keyword">int</span> VRy = A1;</span><br><span class="line"><span class="keyword">int</span> SW = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> xPosition = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> yPosition = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> SW_state = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> mapX = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> mapY = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>); </span><br><span class="line">  </span><br><span class="line">  pinMode(VRx, INPUT);</span><br><span class="line">  pinMode(VRy, INPUT);</span><br><span class="line">  pinMode(SW, INPUT_PULLUP); </span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  xPosition = analogRead(VRx);</span><br><span class="line">  yPosition = analogRead(VRy);</span><br><span class="line">  SW_state = digitalRead(SW);</span><br><span class="line">  mapX = <span class="built_in">map</span>(xPosition, <span class="number">0</span>, <span class="number">1023</span>, <span class="number">-512</span>, <span class="number">512</span>);</span><br><span class="line">  mapY = <span class="built_in">map</span>(yPosition, <span class="number">0</span>, <span class="number">1023</span>, <span class="number">-512</span>, <span class="number">512</span>);</span><br><span class="line">  </span><br><span class="line">  Serial.print(<span class="string">"X: "</span>);</span><br><span class="line">  Serial.print(mapX);</span><br><span class="line">  Serial.print(<span class="string">" | Y: "</span>);</span><br><span class="line">  Serial.print(mapY);</span><br><span class="line">  Serial.print(<span class="string">" | Button: "</span>);</span><br><span class="line">  Serial.println(SW_state);</span><br><span class="line"></span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="MPU6050"><a href="#MPU6050" class="headerlink" title="MPU6050"></a>MPU6050</h2><ul>
+<li><a href="https://platformio.org/lib/show/221/MPU6050?utm_source=platformio&amp;utm_medium=piohome" target="_blank" rel="noopener">https://platformio.org/lib/show/221/MPU6050?utm_source=platformio&amp;utm_medium=piohome</a></li>
+</ul>
+<p><img src="https://howtomechatronics.com/wp-content/uploads/2019/04/Arduino-and-MPU6050-Circuit-Diagram.png" alt="Arduino and MPU6050 Circuit Diagram" style="zoom:80%;"></p>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><h2 id="Buzzer"><a href="#Buzzer" class="headerlink" title="Buzzer"></a>Buzzer</h2><h3 id="Connection-1"><a href="#Connection-1" class="headerlink" title="Connection"></a>Connection</h3><ul>
+<li>VCC</li>
+<li>D4</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Arduino.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> pinBuzzer = <span class="number">4</span>; <span class="comment">//管脚D3连接到蜂鸣器模块的信号脚</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(pinBuzzer, OUTPUT); <span class="comment">//设置pinBuzzer脚为输出状态</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123; </span><br><span class="line">   <span class="keyword">long</span> frequency = <span class="number">300</span>; <span class="comment">//频率, 单位Hz</span></span><br><span class="line"> </span><br><span class="line">   <span class="comment">//用tone()函数发出频率为frequency的波形</span></span><br><span class="line">   tone(pinBuzzer, frequency );</span><br><span class="line">   delay(<span class="number">1000</span>); <span class="comment">//等待1000毫秒</span></span><br><span class="line">   </span><br><span class="line">   noTone(pinBuzzer);<span class="comment">//停止发声</span></span><br><span class="line">   delay(<span class="number">2000</span>); <span class="comment">//等待2000毫秒</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://hackster.imgix.net/uploads/attachments/495697/F3DDJQ4IAP6UGTG.png?auto=compress%2Cformat&amp;w=680&amp;h=510&amp;fit=max" alt="img"></p>
+<h1 id="IR-sensor"><a href="#IR-sensor" class="headerlink" title="IR sensor"></a>IR sensor</h1><ul>
+<li><a href="https://platformio.org/lib/show/4/IRremote?utm_source=platformio&amp;utm_medium=piohome" target="_blank" rel="noopener">https://platformio.org/lib/show/4/IRremote?utm_source=platformio&amp;utm_medium=piohome</a></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;IRremote.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> RECV_PIN = <span class="number">11</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">IRrecv <span class="title">irrecv</span><span class="params">(RECV_PIN)</span></span>;</span><br><span class="line">decode_results results;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  Serial.begin(<span class="number">9600</span>);</span><br><span class="line">  Serial.println(<span class="string">"Enabling IRin"</span>);</span><br><span class="line">  irrecv.enableIRIn(); <span class="comment">// Start the receiver</span></span><br><span class="line">  Serial.println(<span class="string">"Enabled IRin"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IRsend irsend;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (irrecv.decode(&amp;results)) &#123;</span><br><span class="line">    Serial.println(results.value, HEX);</span><br><span class="line">    irrecv.resume(); <span class="comment">// Receive the next value</span></span><br><span class="line">  &#125;</span><br><span class="line">  delay(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">		irsend.sendSony(<span class="number">0x4AB0F7B6</span>, <span class="number">12</span>);</span><br><span class="line">		delay(<span class="number">40</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.yiboard.com/data/attachment/forum/201908/17/145506ev5e97e4h94x2h2m.png" alt="img" style="zoom:80%;"></p>
+<h1 id="BigSound"><a href="#BigSound" class="headerlink" title="BigSound"></a>BigSound</h1><ul>
+<li>D0 ( Digital output ) –&gt; Digital 3</li>
+<li>+ –&gt; 5V</li>
+<li>G ( ground ) –&gt; GND</li>
+<li>AO ( Analog output ) –&gt; Analog 0</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> Analog_Pin = A0; </span><br><span class="line"><span class="keyword">int</span> Digital_Pin = <span class="number">3</span>; </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  pinMode(Analog_Pin, INPUT);</span><br><span class="line">  pinMode(Digital_Pin, INPUT);</span><br><span class="line">       </span><br><span class="line">  Serial.begin (<span class="number">9600</span>); </span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">float</span> Analog;</span><br><span class="line">  <span class="keyword">int</span> Digital;</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">  Analog = analogRead (Analog_Pin);</span><br><span class="line">  Digital = digitalRead (Digital_Pin);</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">  Serial.print(<span class="string">"Analog voltage :"</span>); </span><br><span class="line">  Serial.print(Analog, <span class="number">4</span>);  </span><br><span class="line">  Serial.print(<span class="string">"V, "</span>);</span><br><span class="line">  Serial.print(<span class="string">"Limit :"</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(Digital==<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">      Serial.println(<span class="string">" reached "</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">      Serial.println(<span class="string">" Not yet reached "</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Serial.println(<span class="string">"----------------------------------------------------------------"</span>);</span><br><span class="line">  delay (<span class="number">200</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Blink"><a href="#Blink" class="headerlink" title="Blink"></a>Blink</h3><p><a href="https://github.com/blinker-iot/blinker-doc" target="_blank" rel="noopener">https://github.com/blinker-iot/blinker-doc</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BLINKER_WIFI</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Blinker.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> auth[] = <span class="string">"0a54e5d24068"</span>;</span><br><span class="line"><span class="keyword">char</span> ssid[] = <span class="string">"Home_901"</span>;</span><br><span class="line"><span class="keyword">char</span> pswd[] = <span class="string">"Aa123456"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新建组件对象</span></span><br><span class="line"><span class="function">BlinkerButton <span class="title">Button1</span><span class="params">(<span class="string">"btn-abc"</span>)</span></span>;</span><br><span class="line"><span class="function">BlinkerNumber <span class="title">Number1</span><span class="params">(<span class="string">"num-abc"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按下按键即会执行该函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">button1_callback</span><span class="params">(<span class="keyword">const</span> String &amp; state)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BLINKER_LOG(<span class="string">"get button state: "</span>, state);</span><br><span class="line">    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果未绑定的组件被触发，则会执行其中内容</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dataRead</span><span class="params">(<span class="keyword">const</span> String &amp; data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BLINKER_LOG(<span class="string">"Blinker readString: "</span>, data);</span><br><span class="line">    counter++;</span><br><span class="line">    Number1.print(counter);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 初始化串口</span></span><br><span class="line">    Serial.begin(<span class="number">115200</span>);</span><br><span class="line">    BLINKER_DEBUG.stream(Serial);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 初始化有LED的IO</span></span><br><span class="line">    pinMode(LED_BUILTIN, OUTPUT);</span><br><span class="line">    digitalWrite(LED_BUILTIN, HIGH);</span><br><span class="line">    <span class="comment">// 初始化blinker</span></span><br><span class="line">    Blinker.begin(auth, ssid, pswd);</span><br><span class="line">    Blinker.attachData(dataRead);</span><br><span class="line"></span><br><span class="line">    Button1.attach(button1_callback);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Blinker.run();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Relay"><a href="#Relay" class="headerlink" title="## Relay"></a>## Relay</h3><p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc840jxmucj30rs0fsta8.jpg" alt></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   Relay</span></span><br><span class="line"><span class="comment">   继电器控制，通过串口控制继电器开关LED灯</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> incomedate = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> relayPin = <span class="number">13</span>; <span class="comment">//继电器引脚</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  pinMode(relayPin, OUTPUT);</span><br><span class="line">  Serial.begin(<span class="number">9600</span>); <span class="comment">//设置串口波特率9600</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (Serial.available() &gt; <span class="number">0</span>)<span class="comment">//串口接收到数据</span></span><br><span class="line">  &#123;</span><br><span class="line">    incomedate = Serial.read();<span class="comment">//获取串口接收到的数据</span></span><br><span class="line">    <span class="keyword">if</span> (incomedate == <span class="string">'H'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      digitalWrite(relayPin, HIGH);</span><br><span class="line">      Serial.println(<span class="string">"LED OPEN!"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (incomedate == <span class="string">'L'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      digitalWrite(relayPin, LOW);</span><br><span class="line">      Serial.println(<span class="string">"LED CLOSE!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Light"><a href="#Light" class="headerlink" title="Light"></a>Light</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> D7 = <span class="number">13</span>; <span class="comment">//D7 pin</span></span><br><span class="line"><span class="keyword">int</span> state = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// put your setup code here, to run once:</span></span><br><span class="line">  Serial.begin(<span class="number">115200</span>);</span><br><span class="line">  pinMode(D7, OUTPUT); <span class="comment">//定义LED灯输入模式；</span></span><br><span class="line">  Serial.println(<span class="string">"v0.1.1"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// put your main code here, to run repeatedly:</span></span><br><span class="line">  delay(<span class="number">1000</span>);</span><br><span class="line">  Serial.print(<span class="string">"toggle: "</span>);</span><br><span class="line">  Serial.println(state);</span><br><span class="line">  <span class="keyword">if</span> (state == <span class="number">0</span>) &#123;</span><br><span class="line">    state = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    state = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (state == <span class="number">1</span>) &#123;</span><br><span class="line">    digitalWrite(D7, <span class="number">50</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    digitalWrite(D7, LOW);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Keyboard"><a href="#Keyboard" class="headerlink" title="Keyboard"></a>Keyboard</h1><ul>
+<li><a href="https://platformio.org/lib/show/891/Keyboard?utm_source=platformio&amp;utm_medium=piohome" target="_blank" rel="noopener">https://platformio.org/lib/show/891/Keyboard?utm_source=platformio&amp;utm_medium=piohome</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="AiThinker-A9G"><a href="#AiThinker-A9G" class="headerlink" title="AiThinker A9G"></a>AiThinker A9G</h2><ul>
+<li><a href="http://wiki.ai-thinker.com/gprs" target="_blank" rel="noopener">http://wiki.ai-thinker.com/gprs</a></li>
+<li></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.sandseasoft.com/20180809153380181724439.png" alt="左韵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mcu/" rel="tag"># mcu</a>
+          
+            <a href="/tags/arduino/" rel="tag"># arduino</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/25/ML  Jetson Nano/" rel="next" title="ML  Jetson Nano">
+                <i class="fa fa-chevron-left"></i> ML  Jetson Nano
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/26/Language C_C++/" rel="prev" title="Language C/C++">
+                Language C/C++ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim" alt="左韵">
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yunzuo92" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用IDE"><span class="nav-number">2.</span> <span class="nav-text">使用IDE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Clion"><span class="nav-number">2.1.</span> <span class="nav-text">Clion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PlatformIO-VSCode-recommend"><span class="nav-number">2.2.</span> <span class="nav-text">PlatformIO VSCode (recommend)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arduino-Cli"><span class="nav-number">2.3.</span> <span class="nav-text">Arduino Cli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Others"><span class="nav-number">2.4.</span> <span class="nav-text">Others</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">3.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引脚"><span class="nav-number">3.1.</span> <span class="nav-text">引脚</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用语法"><span class="nav-number">3.1.1.</span> <span class="nav-text">常用语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用库"><span class="nav-number">4.</span> <span class="nav-text">常用库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DHT11"><span class="nav-number">4.1.</span> <span class="nav-text">DHT11</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#U8g2-OLED"><span class="nav-number">4.1.1.</span> <span class="nav-text">U8g2 OLED</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clock-DS3231"><span class="nav-number">4.2.</span> <span class="nav-text">Clock DS3231</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SG90"><span class="nav-number">4.3.</span> <span class="nav-text">SG90</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JoyStick"><span class="nav-number">4.4.</span> <span class="nav-text">JoyStick</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Connection"><span class="nav-number">4.4.1.</span> <span class="nav-text">Connection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MPU6050"><span class="nav-number">4.5.</span> <span class="nav-text">MPU6050</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">4.6.</span> <span class="nav-text"> </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Buzzer"><span class="nav-number">4.7.</span> <span class="nav-text">Buzzer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Connection-1"><span class="nav-number">4.7.1.</span> <span class="nav-text">Connection</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IR-sensor"><span class="nav-number">5.</span> <span class="nav-text">IR sensor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BigSound"><span class="nav-number">6.</span> <span class="nav-text">BigSound</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Blink"><span class="nav-number">6.0.1.</span> <span class="nav-text">Blink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Relay"><span class="nav-number">6.0.2.</span> <span class="nav-text">## Relay</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Light"><span class="nav-number">7.</span> <span class="nav-text">Light</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Keyboard"><span class="nav-number">8.</span> <span class="nav-text">Keyboard</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AiThinker-A9G"><span class="nav-number">8.1.</span> <span class="nav-text">AiThinker A9G</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">92.2k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+  <meta name="keywords" content="store,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="简介  节点（Node）：节点是一个ES的实例，一般一台主机上部署一个节点- 集群（Cluster）：集群由若干节点组成，和任意节点的通信等价于和集群的  通信 分片（Shard）：一个索引会分成多个分片存储，分片数量在索引建立后不可更改 副本（Replica）：副本是分片的一个拷贝，目的在于提高系统的容错性和搜索的效率 索引（Index）：类似数据库的库 类型（Type）：类似数据库的表 文档（">
+<meta name="keywords" content="store">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Search ElasticSearch">
+<meta property="og:url" content="http://yoursite.com/2015/12/07/0078-Search ElasticSearch/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="简介  节点（Node）：节点是一个ES的实例，一般一台主机上部署一个节点- 集群（Cluster）：集群由若干节点组成，和任意节点的通信等价于和集群的  通信 分片（Shard）：一个索引会分成多个分片存储，分片数量在索引建立后不可更改 副本（Replica）：副本是分片的一个拷贝，目的在于提高系统的容错性和搜索的效率 索引（Index）：类似数据库的库 类型（Type）：类似数据库的表 文档（">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.sandseasoft.com/image/1/12/8aef70686cb67591b510f8e052f44.png">
+<meta property="og:image" content="http://img.sandseasoft.com/image/a/8d/00f6416f73b78268990d25073ddce.png">
+<meta property="og:image" content="http://img.sandseasoft.com/image/4/90/c73ee8e8f0bd11668d0d57ac37fef.png">
+<meta property="og:image" content="http://img.sandseasoft.com/image/d/40/767720b2fd6a25d217879ded73e76.png">
+<meta property="og:image" content="http://img.sandseasoft.com/image/2/ae/fe76ca25635f97f221aba2a7ec9ca.png">
+<meta property="og:updated_time" content="2021-01-04T04:14:12.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Search ElasticSearch">
+<meta name="twitter:description" content="简介  节点（Node）：节点是一个ES的实例，一般一台主机上部署一个节点- 集群（Cluster）：集群由若干节点组成，和任意节点的通信等价于和集群的  通信 分片（Shard）：一个索引会分成多个分片存储，分片数量在索引建立后不可更改 副本（Replica）：副本是分片的一个拷贝，目的在于提高系统的容错性和搜索的效率 索引（Index）：类似数据库的库 类型（Type）：类似数据库的表 文档（">
+<meta name="twitter:image" content="http://img.sandseasoft.com/image/1/12/8aef70686cb67591b510f8e052f44.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>Search ElasticSearch | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/12/07/0078-Search ElasticSearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Search ElasticSearch</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-12-07T05:28:34+00:00">
+                2015-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tryghost/" itemprop="url" rel="index">
+                    <span itemprop="name">tryghost</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,710
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简介</p>
+<ul>
+<li>节点（Node）：节点是一个ES的实例，一般一台主机上部署一个节点-</li>
+<li>集群（Cluster）：集群由若干节点组成，和任意节点的通信等价于和集群的  通信</li>
+<li>分片（Shard）：一个索引会分成多个分片存储，分片数量在索引建立后不可更改</li>
+<li>副本（Replica）：副本是分片的一个拷贝，目的在于提高系统的容错性和搜索的效率</li>
+<li>索引（Index）：类似数据库的库</li>
+<li>类型（Type）：类似数据库的表</li>
+<li>文档（Document）：类似数据库的行，包含一个或多个Field</li>
+<li>字段（Field）：搜索的最小单元，可通过Mapping定义不同的属性（比如可否被搜索）</li>
+</ul>
+<h2 id="基本-CRUD"><a href="#基本-CRUD" class="headerlink" title="基本 CRUD"></a>基本 CRUD</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>启动锁定内存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ES_MIN_MEM=8.5g</span><br><span class="line">ES_MAX_MEM=8.5g</span><br><span class="line">ES_HEAP_SIZE=8G</span><br></pre></td></tr></table></figure></p>
+<p>配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># 名称</span><br><span class="line">cluster.name: my-application</span><br><span class="line"># 节点名称</span><br><span class="line">node.name: node-2</span><br><span class="line"># 是否保存数据</span><br><span class="line">node.data: true</span><br><span class="line">node.master: true</span><br><span class="line"># 分片副本</span><br><span class="line">index.number_of_shards:5 </span><br><span class="line">index.number_of_replicas:1</span><br><span class="line"># 单播节点发现</span><br><span class="line">discovery.zen.ping.unicast.hosts: [&quot;x.x.x.x&quot;, &quot;[::1]&quot;]</span><br><span class="line"># 锁内存</span><br><span class="line">bootstrap.mlockall:true</span><br><span class="line"># 是否禁止 http 访问</span><br><span class="line">http.enabled</span><br><span class="line"># 如果需要开启动态脚本查询，严禁使用 root 启动 es</span><br><span class="line">script.groovy.sandbox.enabled: true</span><br><span class="line">script.inline: on</span><br><span class="line">script.indexed: on</span><br><span class="line">script.search: on</span><br><span class="line">script.engine.groovy.inline.aggs: on</span><br><span class="line"># 慢日志设置 logger.yml 那边要手动开启</span><br><span class="line">index.search.slowlog.level: TRACE</span><br><span class="line"></span><br><span class="line">index.search.slowlog.threshold.query.warn: 10s</span><br><span class="line">index.search.slowlog.threshold.query.info: 5s</span><br><span class="line">index.search.slowlog.threshold.query.debug: 2s</span><br><span class="line">index.search.slowlog.threshold.query.trace: 500ms</span><br><span class="line"></span><br><span class="line">index.search.slowlog.threshold.fetch.warn: 1s</span><br><span class="line">index.search.slowlog.threshold.fetch.info: 800ms</span><br><span class="line">index.search.slowlog.threshold.fetch.debug: 500ms</span><br><span class="line">index.search.slowlog.threshold.fetch.trace: 200ms</span><br><span class="line"></span><br><span class="line"># 关闭自动创建索引、</span><br><span class="line">action.auto_create_index: false</span><br></pre></td></tr></table></figure></p>
+<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><p>集群策略基本上就是一个负载点暴露地址，2N+1个数据集群。<br>node.master=true/node.data=false<br>node.master=false/node.data=true<br>node.master=false/node.data=true<br><img src="http://img.sandseasoft.com/image/1/12/8aef70686cb67591b510f8e052f44.png" alt></p>
+<h2 id="暴露api"><a href="#暴露api" class="headerlink" title="暴露api"></a>暴露api</h2><ul>
+<li>_settings  全局设置</li>
+<li>_templates 动态模板设定</li>
+<li>_cluster  集群操作</li>
+<li>_mappings 索引的 mapping 设定</li>
+<li>_cat 监控数据</li>
+<li>_bluk 批量更新端口</li>
+</ul>
+<h2 id="DSL"><a href="#DSL" class="headerlink" title="DSL"></a>DSL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST http://127.0.0.1:9200/films/md/ -d &apos;&#123; &quot;name&quot;:&quot;hei yi ren&quot;, &quot;tag&quot;: &quot;bad&quot;, &quot;post_date&quot;:&quot;2015-10-29T14:12:12&quot;&#125;&apos;  </span><br><span class="line">curl -XDELETE http://127.0.0.1:9200/films  </span><br><span class="line">curl -XPUT http://127.0.0.1:9200/films/md/1 -d &apos;&#123;&quot;name&quot;:&quot;hei yi ren&quot;, &quot;tag&quot;: &quot;good&quot;&#125;&apos;  </span><br><span class="line">curl http://127.0.0.1:9200/_search?pretty=true  </span><br><span class="line">curl http://127.0.0.1:9200/films/_search  </span><br><span class="line">curl http://127.0.0.1:9200/films/md/_search?pretty=true  </span><br><span class="line">curl http://127.0.0.1:9200/films/md/_search?q=tag:good</span><br></pre></td></tr></table></figure>
+<p>复杂查询</p>
+<p>user:(“xxx” OR “Xxxx”) AND NOT xxx:f?~t*;<br>rtt:&gt;300<br>rtt:[100 to 300]<br><em>exists</em>:user<br><em>missing</em>:user</p>
+<p>更复杂的聚集查询<br><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html</a></p>
+<p>script 查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc[&apos;clientip&apos;].value</span><br></pre></td></tr></table></figure></p>
+<h2 id="mapping配置"><a href="#mapping配置" class="headerlink" title="mapping配置"></a>mapping配置</h2><ul>
+<li>当前字段设置doc_values，不能使用分词，数据直接刷磁盘。</li>
+<li>es 不支持索引的 rename mapping更改操作，只能 reindex</li>
+<li><p>假如你在基准测试中得到单机写入性能在 10000 eps，那么开启一个副本后所能达到的 eps 就只有 5000 了。还想写入 10000 eps 的话，就需要加一倍机器。</p>
+</li>
+<li><p>创建一份索引</p>
+</li>
+</ul>
+<p>put /trace_v1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;settings&quot;: &#123;</span><br><span class="line">    &quot;index.number_of_shards&quot;: 10,</span><br><span class="line">    &quot;index.number_of_replicas&quot;: 1,</span><br><span class="line">    &quot;refresh_interval&quot;: &quot;5s&quot;,</span><br><span class="line">    &quot;index.translog.flush_threshold_ops&quot;: 100000,</span><br><span class="line">    &quot;index.store.compress.stored&quot;: true,</span><br><span class="line">    &quot;index.query.default_field&quot;: &quot;sms&quot;,</span><br><span class="line">    &quot;index.cache.field.type&quot;: &quot;soft&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;mappings&quot;: &#123;</span><br><span class="line">    &quot;_default_&quot;: &#123;</span><br><span class="line">      &quot;_all&quot;: &#123;</span><br><span class="line">        &quot;enabled&quot;: false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;loadbalancer&quot;: &#123;</span><br><span class="line">      &quot;_ttl&quot;: &#123;</span><br><span class="line">        &quot;enabled&quot;: true,</span><br><span class="line">        &quot;default&quot;: &quot;7d&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;logs&quot;: &#123;</span><br><span class="line">      &quot;properties&quot;: &#123;</span><br><span class="line">        &quot;spendTime&quot;: &#123;</span><br><span class="line">          &quot;type&quot;: &quot;long&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;waitTime&quot;: &#123;</span><br><span class="line">          &quot;type&quot;: &quot;long&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;dynamic_templates&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;not_a&quot;: &#123;</span><br><span class="line">            &quot;match&quot;: &quot;event*&quot;,</span><br><span class="line">            &quot;match_mapping_type&quot;: &quot;string&quot;,</span><br><span class="line">            &quot;mapping&quot;: &#123;</span><br><span class="line">              &quot;type&quot;: &quot;string&quot;,</span><br><span class="line">              &quot;index&quot;: &quot;not_analyzed&quot;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;not_b&quot;: &#123;</span><br><span class="line">            &quot;match&quot;: &quot;num*&quot;,</span><br><span class="line">            &quot;match_mapping_type&quot;: &quot;string&quot;,</span><br><span class="line">            &quot;mapping&quot;: &#123;</span><br><span class="line">              &quot;type&quot;: &quot;long&quot;,</span><br><span class="line">              &quot;index&quot;: &quot;not_analyzed&quot;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;not_c&quot;: &#123;</span><br><span class="line">            &quot;match&quot;: &quot;double*&quot;,</span><br><span class="line">            &quot;match_mapping_type&quot;: &quot;string&quot;,</span><br><span class="line">            &quot;mapping&quot;: &#123;</span><br><span class="line">              &quot;type&quot;: &quot;double&quot;,</span><br><span class="line">              &quot;index&quot;: &quot;not_analyzed&quot;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          &quot;not_all&quot;: &#123;</span><br><span class="line">            &quot;match&quot;: &quot;*&quot;,</span><br><span class="line">            &quot;match_mapping_type&quot;: &quot;string&quot;,</span><br><span class="line">            &quot;mapping&quot;: &#123;</span><br><span class="line">              &quot;index&quot;: &quot;not_analyzed&quot;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>metrics<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;settings&quot;: &#123;</span><br><span class="line">    &quot;index.number_of_shards&quot;: 10,</span><br><span class="line">    &quot;index.number_of_replicas&quot;: 1,</span><br><span class="line">    &quot;refresh_interval&quot;: &quot;5s&quot;,</span><br><span class="line">    &quot;index.translog.flush_threshold_ops&quot;: 100000,</span><br><span class="line">    &quot;index.store.compress.stored&quot;: true</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;mappings&quot;: &#123;</span><br><span class="line">    &quot;_default_&quot;: &#123;</span><br><span class="line">      &quot;_all&quot;: &#123;</span><br><span class="line">        &quot;enabled&quot;: false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;loadbalancer&quot;: &#123;</span><br><span class="line">      &quot;_ttl&quot;: &#123;</span><br><span class="line">        &quot;enabled&quot;: true,</span><br><span class="line">        &quot;default&quot;: &quot;7d&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;logs&quot;: &#123;</span><br><span class="line">      &quot;properties&quot;: &#123;</span><br><span class="line">        &quot;host&quot;: &#123;</span><br><span class="line">          &quot;type&quot;: &quot;string&quot;,</span><br><span class="line">          &quot;index&quot;: &quot;not_analyzed&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;message&quot;: &#123;</span><br><span class="line">          &quot;type&quot;: &quot;string&quot;,</span><br><span class="line">          &quot;index&quot;: &quot;not_analyzed&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.sandseasoft.com/image/a/8d/00f6416f73b78268990d25073ddce.png" alt><br><img src="http://img.sandseasoft.com/image/4/90/c73ee8e8f0bd11668d0d57ac37fef.png" alt><br><img src="http://img.sandseasoft.com/image/d/40/767720b2fd6a25d217879ded73e76.png" alt><br><img src="http://img.sandseasoft.com/image/2/ae/fe76ca25635f97f221aba2a7ec9ca.png" alt></p>
+<ul>
+<li>更新索引</li>
+</ul>
+<p>如上文所说，当索引的 mapping 是无法更新的，只能 rebuild。<br>一般的设计方法是，给某个索引设定别名，重新设计一套索引然后更新别名指向。原先的数据让其同步。</p>
+<p>同步数据方法一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import pyes</span><br><span class="line">conn = pyes.es.ES(&quot;http://10.xx.xx.xx:8305/&quot;)</span><br><span class="line">search = pyes.query.MatchAllQuery().search(bulk_read=1000)</span><br><span class="line">hits = conn.search(search, &apos;store_v1&apos;, &apos;client&apos;, scan=True, scroll=&quot;30m&quot;, model=lambda _,hit: hit)</span><br><span class="line">for hit in hits:</span><br><span class="line">     # print hit</span><br><span class="line">     conn.index(hit[&apos;_source&apos;], &apos;store_v2&apos;, &apos;client&apos;, hit[&apos;_id&apos;], bulk=True)</span><br><span class="line">conn.flush()</span><br></pre></td></tr></table></figure></p>
+<p>同步数据方法二<br>logstash 同步<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">    hosts =&gt; [ &quot;192.168.0.2&quot; ]</span><br><span class="line">    port =&gt; &quot;9200&quot;</span><br><span class="line">    index =&gt; &quot;old_index&quot;</span><br><span class="line">    size =&gt; 500</span><br><span class="line">    scroll =&gt; &quot;5m&quot;</span><br><span class="line">    docinfo =&gt; true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">filter &#123;</span><br><span class="line">  mutate &#123;</span><br><span class="line">    remove_field =&gt; [ &quot;@timestamp&quot;, &quot;@version&quot; ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">    host =&gt; &quot;192.168.0.2&quot;</span><br><span class="line">    port =&gt; &quot;9200&quot;</span><br><span class="line">    protocol =&gt; &quot;http&quot;</span><br><span class="line">    index =&gt; &quot;%&#123;[@metadata][_index]&#125;&quot;</span><br><span class="line">    index_type =&gt; &quot;%&#123;[@metadata][_type]&#125;&quot;</span><br><span class="line">    document_id =&gt; &quot;%&#123;[@metadata][_id]&#125;&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更新别名</p>
+<p>post /_aliases<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;actions&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;remove&quot;: &#123;</span><br><span class="line">        &quot;alias&quot;: &quot;trace&quot;,</span><br><span class="line">        &quot;index&quot;: &quot;trace_v1&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;add&quot;: &#123;</span><br><span class="line">        &quot;alias&quot;: &quot;trace&quot;,</span><br><span class="line">        &quot;index&quot;: &quot;trace_v2&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>设定分词器、过滤器<br>PUT /my_index</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">        &quot;analysis&quot;: &#123;</span><br><span class="line">            &quot;char_filter&quot;: &#123;</span><br><span class="line">                &quot;&amp;_to_and&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;mapping&quot;,</span><br><span class="line">                    &quot;mappings&quot;: [&quot;&amp;=&gt; and &quot;]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;filter&quot;: &#123;</span><br><span class="line">                &quot;my_stopwords&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;stop&quot;,</span><br><span class="line">                    &quot;stopwords&quot;: [&quot;the&quot;, &quot;a&quot;]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;analyzer&quot;: &#123;</span><br><span class="line">                &quot;my_analyzer&quot;: &#123;</span><br><span class="line">                    &quot;type&quot;: &quot;custom&quot;,</span><br><span class="line">                    &quot;char_filter&quot;: [&quot;html_strip&quot;, &quot;&amp;_to_and&quot;],</span><br><span class="line">                    &quot;tokenizer&quot;: &quot;standard&quot;,</span><br><span class="line">                    &quot;filter&quot;: [&quot;lowercase&quot;, &quot;my_stopwords&quot;]</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完成索引重建</p>
+<ul>
+<li>删除7天前索引<br>/info  delete<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;logtime&quot;: &quot;[* to now-7d]&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bin/plugin install lmenezes/elasticsearch-kopf  </span><br><span class="line">bin/plugin install mobz/elasticsearch-head</span><br></pre></td></tr></table></figure>
+<h2 id="同步mysql-database"><a href="#同步mysql-database" class="headerlink" title="同步mysql database"></a>同步mysql database</h2><p><a href="https://github.com/jprante/elasticsearch-jdbc" target="_blank" rel="noopener">https://github.com/jprante/elasticsearch-jdbc</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 解压到 lib 文件夹下</span><br><span class="line">http://xbib.org/repository/org/xbib/elasticsearch/plugin/elasticsearch-river-jdbc/1.5.0.5/elasticsearch-river-jdbc-1.5.0.5-plugin.zip </span><br><span class="line"></span><br><span class="line"># 请求同步数据库, 注意要设定主键，会增量同步</span><br><span class="line">curl -XPUT &apos;http://localhost:9200/_river/who_jdbc_river/_meta&apos; -d &apos;&#123;</span><br><span class="line">    &quot;type&quot;: &quot;jdbc&quot;,</span><br><span class="line">    &quot;jdbc&quot;: &#123;</span><br><span class="line">        &quot;driver&quot;: &quot;com.mysql.jdbc.Driver&quot;,</span><br><span class="line">        &quot;url&quot;: &quot;jdbc:mysql://localhost:3306/profile&quot;,</span><br><span class="line">        &quot;user&quot;: &quot;root&quot;,</span><br><span class="line">        &quot;password&quot;: &quot;root&quot;,</span><br><span class="line">        &quot;sql&quot;: &quot;select id as _id,name,login_name from user&quot;,</span><br><span class="line">        &quot;index&quot;: &quot;profile&quot;,</span><br><span class="line">        &quot;type&quot;: &quot;user&quot;,</span><br><span class="line">        &quot;bulk_size&quot;: 100,</span><br><span class="line">        &quot;max_bulk_requests&quot;: 30,</span><br><span class="line">        &quot;bulk_timeout&quot;: &quot;10s&quot;,</span><br><span class="line">        &quot;flush_interval&quot;: &quot;5s&quot;,</span><br><span class="line">        &quot;schedule&quot;: &quot;0 0-59 0-23 ? * *&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 删除相关索引</span><br><span class="line">curl -XDELETE &apos;192.168.1.116:9200/_river/userinfo/_meta&apos;</span><br><span class="line">curl -XDELETE &apos;192.168.1.116:9200/_river/userinfo/_status&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="运维索引Curator"><a href="#运维索引Curator" class="headerlink" title="运维索引Curator"></a>运维索引Curator</h2><p><a href="https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/client/curator/current/index.html</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install elasticsearch-curator</span><br><span class="line">curator delete/show indices --index trace --older-than 7 --time-unit days --timestring %Y.%m.%d</span><br></pre></td></tr></table></figure></p>
+<h2 id="备份恢复"><a href="#备份恢复" class="headerlink" title="备份恢复"></a>备份恢复</h2><p>参考</p>
+<p><a href="http://keenwon.com/1393.html" target="_blank" rel="noopener">http://keenwon.com/1393.html</a><br><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/backup.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/current/backup.html</a><br><a href="http://kibana.logstash.es/" target="_blank" rel="noopener">http://kibana.logstash.es/</a></p>
+<h2 id="集群控制"><a href="#集群控制" class="headerlink" title="集群控制"></a>集群控制</h2><p>POST _cluster/reroute<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;commands&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;move&quot;: &#123;</span><br><span class="line">        &quot;index&quot;: &quot;test&quot;,</span><br><span class="line">        &quot;shard&quot;: 0,</span><br><span class="line">        &quot;from_node&quot;: &quot;node1&quot;,</span><br><span class="line">        &quot;to_node&quot;: &quot;node2&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;cancel&quot;: &#123;</span><br><span class="line">        &quot;index&quot;: &quot;test&quot;,</span><br><span class="line">        &quot;shard&quot;: 0,</span><br><span class="line">        &quot;node&quot;: &quot;node1&quot;,</span><br><span class="line">        &quot;allow_primary&quot;: true</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;allocate&quot;: &#123;</span><br><span class="line">        &quot;index&quot;: &quot;test&quot;,</span><br><span class="line">        &quot;shard&quot;: 1,</span><br><span class="line">        &quot;node&quot;: &quot;node3&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="插件安装-1"><a href="#插件安装-1" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/plugin install lmenezes/elasticsearch-kopf</span><br><span class="line">bin/plugin install head</span><br><span class="line">bin/plugin install elasticsearch/watcher/latest</span><br></pre></td></tr></table></figure>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>白名单权限http-basic 不支持2.1版本，需要做插件兼容</p>
+<h2 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h2><p><a href="http://kibana.logstash.es/" target="_blank" rel="noopener">http://kibana.logstash.es/</a></p>
+<p>elastalert<br>packetbeat</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.sandseasoft.com/20180809153380181724439.png" alt="左韵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/store/" rel="tag"># store</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/06/0077-服务治理/" rel="next" title="服务治理">
+                <i class="fa fa-chevron-left"></i> 服务治理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/08/0079-LogAnalyize Logstash-Beats/" rel="prev" title="LogAnalyize Logstash/Beats">
+                LogAnalyize Logstash/Beats <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim" alt="左韵">
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yunzuo92" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本-CRUD"><span class="nav-number">1.</span> <span class="nav-text">基本 CRUD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">1.1.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群"><span class="nav-number">2.</span> <span class="nav-text">集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴露api"><span class="nav-number">3.</span> <span class="nav-text">暴露api</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DSL"><span class="nav-number">4.</span> <span class="nav-text">DSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapping配置"><span class="nav-number">5.</span> <span class="nav-text">mapping配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装"><span class="nav-number">6.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步mysql-database"><span class="nav-number">7.</span> <span class="nav-text">同步mysql database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运维索引Curator"><span class="nav-number">8.</span> <span class="nav-text">运维索引Curator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份恢复"><span class="nav-number">9.</span> <span class="nav-text">备份恢复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集群控制"><span class="nav-number">10.</span> <span class="nav-text">集群控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-1"><span class="nav-number">11.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TODO"><span class="nav-number">12.</span> <span class="nav-text">TODO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置详解"><span class="nav-number">13.</span> <span class="nav-text">配置详解</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">92.2k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

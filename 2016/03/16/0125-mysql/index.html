@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+  <meta name="keywords" content="未归档,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="概述    本文通过一个实际例子，说明如何使用工具来分析生产环境上的慢查询，并对慢查询进行优化。 发现问题 在生产环境上发现机器load比较高，io %util用满，但是mysql的查询、删除和更新语句数很小 （使用orzdba工具，参考 Linux主机和MySQL监控工具 ------ orzdba），如下  ——– —–load-avg—- —cpu-usage— —swap— ———————">
+<meta name="keywords" content="未归档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql">
+<meta property="og:url" content="http://yoursite.com/2016/03/16/0125-mysql/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="概述    本文通过一个实际例子，说明如何使用工具来分析生产环境上的慢查询，并对慢查询进行优化。 发现问题 在生产环境上发现机器load比较高，io %util用满，但是mysql的查询、删除和更新语句数很小 （使用orzdba工具，参考 Linux主机和MySQL监控工具 ------ orzdba），如下  ——– —–load-avg—- —cpu-usage— —swap— ———————">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-01-04T04:14:12.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql">
+<meta name="twitter:description" content="概述    本文通过一个实际例子，说明如何使用工具来分析生产环境上的慢查询，并对慢查询进行优化。 发现问题 在生产环境上发现机器load比较高，io %util用满，但是mysql的查询、删除和更新语句数很小 （使用orzdba工具，参考 Linux主机和MySQL监控工具 ------ orzdba），如下  ——– —–load-avg—- —cpu-usage— —swap— ———————">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>mysql | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/16/0125-mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-16T08:05:28+00:00">
+                2016-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tryghost/" itemprop="url" rel="index">
+                    <span itemprop="name">tryghost</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,269
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>概述</p>
+<p>   本文通过一个实际例子，说明如何使用工具来分析生产环境上的慢查询，并对慢查询进行优化。</p>
+<p>发现问题</p>
+<pre><code>在生产环境上发现机器load比较高，io %util用满，但是mysql的查询、删除和更新语句数很小 （使用orzdba工具，参考 Linux主机和MySQL监控工具 ------ orzdba），如下
+</code></pre><p> ——– —–load-avg—- —cpu-usage— —swap— ————————-io-usage———————–                     -QPS- -TPS-         -Hit%- ——threads—— —–bytes—-<br>  time  |  1m    5m   15m |usr sys idl iow|   si   so|   r/s    w/s    rkB/s    wkB/s  queue await svctm %util|  ins   upd   del    sel   iud|     lor    hit| run  con  cre  cac|   recv   send|<br>17:52:54| 3.65  4.08  3.98|  5   1  84  10|    0    0|  114.0   27.5  2154.3    680.1   8.0   61.1   6.8  96.6|    0     0     0      2     0|    3361  97.08|  60  111    0    0|     1k   2.3m|<br>17:52:55| 3.65  4.08  3.98|  9   2  80   9|    0    0|   97.2  139.0  2632.3   2422.4 108.4  225.7   4.1  95.7|    0     1     0      1     1|   29049  99.99|  61  111    0    0|    801   2.0m|<br>17:52:56| 3.60  4.07  3.97|  3   2  83  12|    0    0|  102.0  176.5  2717.6   2384.3  89.0  445.4   3.4  95.9|    0     0     0      1     0|       0 100.00|  60  111    0    0|    837   2.9m|<br>17:52:57| 3.60  4.07  3.97|  4   2  84  10|    0    0|  218.5  178.1  6305.5   3121.3  39.2  150.7   2.3  91.8|    0     1     0      1     1|   29034  99.99|  60  111    0    0|     1k   6.0m|<br>17:52:58| 3.60  4.07  3.97|  5   2  84   9|    0    0|  358.4    0.0  9580.4      0.0   2.6    7.2   2.5  88.1|    0     0     0      2     0|       0 100.00|  60  112    1    0|    815   8.5m|<br>17:52:59| 3.60  4.07  3.97| 12   2  76  10|    0    0|  277.4   31.3  5575.6    949.5  32.5   21.8   3.0  91.9|    0     1     0      1     1|  115825  98.45|  61  112    0    0|     2k   5.2m|<br>17:53:00| 3.60  4.07  3.97|  2   1  87  10|    0    0|    2.0  245.5     7.8   2480.2 150.2  503.7   4.1 100.0|    0     1     0      1     1|   29034  99.99|  62  112    0    0|    800    17k|<br>17:53:01| 3.55  4.05  3.97|  1   1  87  11|    0    0|    1.0  207.3     3.9   4227.7 142.0  674.9   4.8  99.9|    0     0     0      1     0|       0 100.00|  62  112    0    0|    716     1k|<br>17:53:02| 3.55  4.05  3.97|  1   1  79  19|    0    0|    2.0  214.2     7.8   3282.2 141.7  625.1   4.6  99.9|    0     0     0      1     0|       0 100.00|  62  112    0    0|     1k     3k|<br>17:53:03| 3.55  4.05  3.97|  1   1  75  24|    0    0|    2.0  310.4     7.8   3748.3 146.5  563.0   3.2 100.0|    0     0     0      1     0|       0 100.00|  62  112    0    0|    716     1k|<br>17:53:04| 3.55  4.05  3.97|  2   1  75  22|    0    0|    2.9  389.3    11.7   4331.7 137.4  381.2   2.5 100.0|    0     0     0      1     0|       0 100.00|  62  112    0    0|    716     1k|<br>17:53:05| 3.55  4.05  3.97|  2   1  86  11|    0    0|   17.6  120.3    70.4   2988.8  19.2  234.4   7.2 100.0|    0     0     0      3     0|      26  80.77|  60  112    0    0|     1k     4k|<br>17:53:06| 3.35  4.00  3.95|  6   1  81  11|    0    0|  224.7   51.8  3563.4    347.7   4.6   34.1   3.5  96.5|    0     0     0      1     0|       0 100.00|  60  112    0    0|    816   2.3m|<br>17:53:07| 3.35  4.00  3.95|  8   1  71  20|    0    0|   85.1  154.5  1228.4   2754.0 100.6  279.6   4.1  97.6|    0     1     0      1     1|      10  60.00|  61  112    0    0|    896   1.2m|<br>17:53:08| 3.35  4.00  3.95|  5   1  78  16|    0    0|   34.4  330.8  1024.8   3372.8 118.8  417.7   4.4 100.0|    0     3     0      2     3|   58120  99.96|  64  112    0    0|     4k   498k|<br>——– —–load-avg—- —cpu-usage— —swap— ————————-io-usage———————–                     -QPS- -TPS-         -Hit%- ——threads—— —–bytes—-<br>    再使用top命令，发现mysql的cpu使用率最高，因此估计是mysql有慢查询导致。</p>
+<p>慢查询分析</p>
+<pre><code>默认情况下mysql没有开启慢查询，需要手动开启。注意在处理完问题后也要手工关闭该选项，否则性能会受一些影响。
+</code></pre><ol>
+<li>登录mysql</li>
+</ol>
+<p>mysql -uroot -p密码</p>
+<ol start="2">
+<li>查询是否开启慢查询 （log_slow_queries是否为ON）</li>
+</ol>
+<p>show variables like ‘%slow%’;<br>+———————+————————————+<br>| Variable_name       | Value                              |<br>+———————+————————————+<br>| log_slow_queries    | OFF                                |<br>| slow_launch_time    | 2                                  |<br>| slow_query_log      | OFF                                |<br>| slow_query_log_file | /var/mysql/data/uhz002798-slow.log |<br>+———————+————————————+<br>4 rows in set (0.01 sec)</p>
+<ol start="3">
+<li>开启慢查询（不需要重启数据库）</li>
+</ol>
+<p>set global log_slow_queries=ON ;<br>/usr/local/mysql/bin/mysqldumpslow -s c -t 10 /var/mysql/data/uhz002798-slow.log<br>h5. <em>mysqldumpslow命令</em>/usr/local/mysql/bin/mysqldumpslow -s c -t 10 /var/mysql/data/uhz002798-slow.log<br>该命令会输出记录次数最多的10条SQL语句，其中：</p>
+<pre><code>-s, 是表示按照何种方式排序，c、t、l、r分别是按照记录次数、时间、查询时间、返回的记录数来排序，ac、at、al、ar，表示相应的倒叙；
+-t, 是top n的意思，即为返回前面多少条的数据；
+-g, 后边可以写一个正则匹配模式，大小写不敏感的；
+慢查询日志文件路径见mysql参数 slow_query_log_file
+ 查询结果如下：
+</code></pre><p>[root@uhz002798 data]#  /usr/local/mysql/bin/mysqldumpslow -s c -t 10 /var/mysql/data/uhz002798-slow.log</p>
+<p>Count: 1  Time=138.15s (138s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost<br>  update check_error_item_4  set status=’S’ where numIid=’S’</p>
+<p>Count: 1  Time=25.57s (25s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost<br>  delete from check_error_item_1 where taskId=N</p>
+<p>Count: 1  Time=133.27s (133s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost<br>  delete from check_error_item_4 where taskId=N</p>
+<p>Count: 1  Time=151.91s (151s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost<br>  delete from check_error_item_3 where taskId=N<br>     Count：语句的执行次数<br>     Time： 语句的执行时间<br>     Lock： 锁时间</p>
+<ol start="4">
+<li><p>分析查询结果</p>
+<p> 我们可以用explain来查看sql执行计划，但是explain命令只能分析select语句，上面的delete和update语句怎么办？  我们将update和delete语句转为select语句进行分析：</p>
+</li>
+</ol>
+<p>update check_error_item_4  set status=’S’ where numIid=’S’<br>    改为select语句，并加上explain</p>
+<p>explain select * from check_error_item_4 where numIid=’S’;<br>    分析结果</p>
+<p>+—-+————-+——————–+——+—————+——+———+——+———+————-+<br>| id | select_type | table              | type | possible_keys | key  | key_len | ref  | rows    | Extra       |<br>+—-+————-+——————–+——+—————+——+———+——+———+————-+<br>|  1 | SIMPLE      | check_error_item_4 | ALL  | NULL          | NULL | NULL    | NULL | 8141292 | Using where |<br>+—-+————-+——————–+——+—————+——+———+——+———+————-+<br>1 row in set (0.00 sec)<br>    分析结果的type为ALL，表明这条语句导致了全表扫描。 通过查询该表的数据量，发现该表有913万条记录（1.7G大小）。对这么大的表做全表扫描必定是非常耗费IO的。</p>
+<pre><code>下面通过SHOW INDEX命令查看该表的索引情况，确定该表并没有根据numIid字段建索引：
+</code></pre><p> mysql&gt; SHOW INDEX FROM check_error_item_4;<br>+——————–+————+———-+————–+————-+———–+————-+———-+——–+——+————+———+—————+<br>| Table              | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |<br>+——————–+————+———-+————–+————-+———–+————-+———-+——–+——+————+———+—————+<br>| check_error_item_4 |          0 | PRIMARY  |            1 | keyId       | A         |     8240568 |     NULL | NULL   |      | BTREE      |         |               |<br>| check_error_item_4 |          1 | Index_2  |            1 | taskId      | A         |       32064 |     NULL | NULL   | YES  | BTREE      |         |               |<br>+——————–+————+———-+————–+————-+———–+————-+———-+——–+——+————+———+—————+<br>2 rows in set (0.57 sec)<br>    建索引（注意该表很大，建索引可能需要十几分钟到半小时不等，需要在业务空闲时操作）</p>
+<p>ALTER TABLE <code>check_error_item_4</code> ADD INDEX <code>idx_numiid</code> (<code>num_iid</code>) ;<br>    接下来看一下这条delete语句。</p>
+<p>delete from check_error_item_4 where taskId=N<br>    该表的taskId已经建了索引，但是通过分析语句后，发现该语句的执行计划还是全表扫描。 使用desc tableName查看taskId字段类型，原来该字段类型为varchar，但在sql中没有使用引号。 通过两个执行计划，我们可以看出其中的差别：</p>
+<p> mysql&gt; explain select * from check_error_item_4 where taskId = 90;<br>+—-+————-+——————–+——+—————+——+———+——+———+————-+<br>| id | select_type | table              | type | possible_keys | key  | key_len | ref  | rows    | Extra       |<br>+—-+————-+——————–+——+—————+——+———+——+———+————-+<br>|  1 | SIMPLE      | check_error_item_4 | ALL  | Index_2       | NULL | NULL    | NULL | 8295386 | Using where |<br>+—-+————-+——————–+——+—————+——+———+——+———+————-+<br>1 row in set (0.00 sec)</p>
+<p>mysql&gt; explain select * from check_error_item_4 where taskId = ‘90’;<br>+—-+————-+——————–+——+—————+———+———+——-+——+————-+<br>| id | select_type | table              | type | possible_keys | key     | key_len | ref   | rows | Extra       |<br>+—-+————-+——————–+——+—————+———+———+——-+——+————-+<br>|  1 | SIMPLE      | check_error_item_4 | ref  | Index_2       | Index_2 | 138     | const |    8 | Using where |<br>+—-+————-+——————–+——+—————+———+———+——-+——+————-+<br>1 row in set (0.08 sec)<br>    解决的方法很简单，修改程序为sql语句的taskId值加上引号即可。</p>
+<p>参考</p>
+<p>用命令查看数据库中表的数据行数和表占用空间大小（对于Innodb引擎的表，数据行数不准，仅供参考）<br>select table_name, <code>ENGINE</code>, TABLE_ROWS, DATA_LENGTH/1024/1024 as DATA_LENGTH  from information_schema.<code>TABLES</code> where TABLE_SCHEMA=’数据库名’;<br>SHOW INDEX 命令返回信息的含义 Table 表的名称。<br>    Non_unique   如果索引不能包括重复词，则为0。如果可以，则为1。</p>
+<pre><code>Key_name     索引的名称。
+
+Seq_in_index 索引中的列序列号，从1开始。
+
+Column_name  列名称。
+
+Collation    列以什么方式存储在索引中。在MySQLSHOW INDEX语法中，有值&apos;A&apos;（升序）或NULL（无分类）。
+
+Cardinality  索引中唯一值的数目的估计值。通过运行ANALYZE TABLE或myisamchk -a可以更新。基数根据被存储为整数的统计数据来计数，所以即使对于小型表，该值也没有必要是精确的。基数越大，当进行联合时，MySQL使用该索引的机会就越大。
+    Cardinality会有如下的含义：
+    1. 列值代表的是此列中存储的唯一值的个数（如果此列为primary key 则值为记录的行数）
+    2. 列值只是个估计值，并不准确。
+    3. 列值不会自动更新，需要通过Analyze table来更新一张表或者mysqlcheck -Aa来进行更新整个数据库。
+    4. 列值的大小影响Join时是否选用这个Index的判断。
+    5. 创建Index时，MyISAM的表Cardinality的值为null，InnoDB的表Cardinality的值大概为行数。
+    6. MyISAM与InnoDB对于Cardinality的计算方式不同
+        更多参考该文章 http://www.mysqlperformanceblog.com/2008/09/03/analyze-myisam-vs-innodb/
+
+Sub_part 如果列只是被部分地编入索引，则为被编入索引的字符的数目。如果整列被编入索引，则为NULL。
+
+Packed 指示关键字如何被压缩。如果没有被压缩，则为NULL。
+
+Null 如果列含有NULL，则含有YES。如果没有，则该列含有NO。
+
+Index_type 用过的索引方法（BTREE, FULLTEXT, HASH, RTREE）。
+
+Comment 多种评注。
+</code></pre><p>结束….</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.sandseasoft.com/20180809153380181724439.png" alt="左韵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/未归档/" rel="tag"># 未归档</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/16/0124-在http请求上加上no-cache，组织客户端缓存动态请求/" rel="next" title="在http请求上加上no-cache，组织客户端缓存动态请求">
+                <i class="fa fa-chevron-left"></i> 在http请求上加上no-cache，组织客户端缓存动态请求
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/01/0127-Server Conflunce/" rel="prev" title="Server Conflunce">
+                Server Conflunce <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim" alt="左韵">
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yunzuo92" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">92.2k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

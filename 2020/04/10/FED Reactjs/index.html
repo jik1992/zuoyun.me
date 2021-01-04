@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+  <meta name="keywords" content="react,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Life Cycle     setState props     componentWillReveiceProps  🐶   shouldComponentUpdate 🐶 🐶   componentWillUpdate 🐶 🐶   render 🐶 🐶   componentDidUpdate 🐶 🐶    123456789getSnapshotBeforeUpdate(">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FED Reacts">
+<meta property="og:url" content="http://yoursite.com/2020/04/10/FED Reactjs/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="Life Cycle     setState props     componentWillReveiceProps  🐶   shouldComponentUpdate 🐶 🐶   componentWillUpdate 🐶 🐶   render 🐶 🐶   componentDidUpdate 🐶 🐶    123456789getSnapshotBeforeUpdate(">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://miro.medium.com/max/4532/1*lINPzI9FsJnay2_fm4vmzA.png">
+<meta property="og:updated_time" content="2021-01-04T04:14:12.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FED Reacts">
+<meta name="twitter:description" content="Life Cycle     setState props     componentWillReveiceProps  🐶   shouldComponentUpdate 🐶 🐶   componentWillUpdate 🐶 🐶   render 🐶 🐶   componentDidUpdate 🐶 🐶    123456789getSnapshotBeforeUpdate(">
+<meta name="twitter:image" content="https://miro.medium.com/max/4532/1*lINPzI9FsJnay2_fm4vmzA.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>FED Reacts | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/FED Reactjs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">FED Reacts</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-10T01:51:04+00:00">
+                2020-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/dev/" itemprop="url" rel="index">
+                    <span itemprop="name">dev</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/dev/front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">front-end</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  560
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Life-Cycle"><a href="#Life-Cycle" class="headerlink" title="Life Cycle"></a>Life Cycle</h1><p><img src="https://miro.medium.com/max/4532/1*lINPzI9FsJnay2_fm4vmzA.png" alt></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>setState</th>
+<th>props</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>componentWillReveiceProps</td>
+<td></td>
+<td>🐶</td>
+</tr>
+<tr>
+<td>shouldComponentUpdate</td>
+<td>🐶</td>
+<td>🐶</td>
+</tr>
+<tr>
+<td>componentWillUpdate</td>
+<td>🐶</td>
+<td>🐶</td>
+</tr>
+<tr>
+<td>render</td>
+<td>🐶</td>
+<td>🐶</td>
+</tr>
+<tr>
+<td>componentDidUpdate</td>
+<td>🐶</td>
+<td>🐶</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getSnapshotBeforeUpdate(prevProps, prevState) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">static getDerivedStateFromProps(props, state) &#123;    </span><br><span class="line">	return &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">componentDidMount() &#123;&#125;</span><br><span class="line">componentDidUpdate() &#123;&#125;</span><br><span class="line">componentWillUnMount() &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Route"><a href="#Route" class="headerlink" title="Route"></a>Route</h1><h1 id="Inline-CSS-style-component"><a href="#Inline-CSS-style-component" class="headerlink" title="Inline CSS style component"></a>Inline CSS style component</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ReactionInfoContainer = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">    width: 95%;</span></span><br><span class="line"><span class="string">    margin-top: 38px;</span></span><br><span class="line"><span class="string">    position: absolute;</span></span><br><span class="line"><span class="string">    bottom: <span class="subst">$&#123;props =&gt; <span class="string">`<span class="subst">$&#123;props.bottom&#125;</span>px`</span>&#125;</span>;</span></span><br><span class="line"><span class="string">    height: <span class="subst">$&#123;props =&gt; <span class="string">`<span class="subst">$&#123;props.height !== <span class="literal">null</span> ? props.height : <span class="string">'auto'</span>&#125;</span>`</span>&#125;</span> </span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> OtherContainert = styled(<span class="function"><span class="params">props</span> =&gt;</span><span class="xml"><span class="tag">&lt;<span class="name">Form</span> &#123;<span class="attr">...props</span>&#125;&gt;</span>)`</span></span><br><span class="line"><span class="xml">    width: 12px;</span></span><br><span class="line"><span class="xml">`;</span></span><br></pre></td></tr></table></figure>
+<h1 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ReactionInfoContainer = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">    width: 95%;</span></span><br><span class="line"><span class="string">    margin-top: 38px;</span></span><br><span class="line"><span class="string">    position: absolute;</span></span><br><span class="line"><span class="string">    bottom: <span class="subst">$&#123;props =&gt; <span class="string">`<span class="subst">$&#123;props.bottom&#125;</span>px`</span>&#125;</span>;</span></span><br><span class="line"><span class="string">    height: <span class="subst">$&#123;props =&gt; <span class="string">`<span class="subst">$&#123;props.height !== <span class="literal">null</span> ? props.height : <span class="string">'auto'</span>&#125;</span>`</span>&#125;</span> </span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">xxx</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">PureComponent</span>&lt;<span class="title">IProps</span>,<span class="title">IStates</span>&gt;</span>&#123;</span><br><span class="line">  constructs(props)&#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  render():React.ReactNode&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">    			&lt;ReactionInfoContainer</span><br><span class="line">                    height=&#123;INFO_CONTAINER_HEIGHT_HIDE&#125;</span><br><span class="line">                    bottom=&#123;<span class="keyword">this</span>.props.isPlayground ? <span class="string">'0'</span> : SCHEME_BOTTOM_BAR&#125;</span><br><span class="line">                &gt;</span><br><span class="line">               </span><br><span class="line">          &lt;<span class="regexp">/ReactionInfoContainer&gt;)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h1><ul>
+<li>action</li>
+<li>Statetoprops</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">interface IDispatchProps &#123;</span><br><span class="line">    userLogout: () =&gt; void;</span><br><span class="line">&#125;</span><br><span class="line">interface IStateProps &#123;</span><br><span class="line">    taskInfo?: TaskInfo;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">this.props.taskInfo;    </span><br><span class="line"></span><br><span class="line">const mapStateToProps = (state: IStoreState) =&gt; &#123;</span><br><span class="line">    const &#123; modalProps &#125; = state.modal;</span><br><span class="line">    const &#123; role &#125; = state.role;</span><br><span class="line">    const &#123; taskInfo &#125; = state.chemiriseTasks;</span><br><span class="line">    return &#123;</span><br><span class="line">        taskInfo,</span><br><span class="line">        modalProps,</span><br><span class="line">        role,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function mapDispatchToProps(dispatch: Dispatch): IDispatchProps &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        userLogout: () =&gt; &#123;</span><br><span class="line">            dispatch(userLogout());</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(</span><br><span class="line">    mapStateToProps,</span><br><span class="line">    mapDispatchToProps,</span><br><span class="line">)(PageHeaderContainer);</span><br></pre></td></tr></table></figure>
+<h1 id="useHook"><a href="#useHook" class="headerlink" title="useHook"></a>useHook</h1><h1 id="Geninic"><a href="#Geninic" class="headerlink" title="Geninic"></a>Geninic</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">function identity &lt;T, U&gt;(value: T, message: U) : T &#123;</span><br><span class="line">  console.log(message);</span><br><span class="line">  return value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(identity(68, "Semlinker"));</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span></span><br><span class="line">interface GenericInterface&lt;U&gt; &#123;</span><br><span class="line">  value: U</span><br><span class="line">  getIdentity: () =&gt; U</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class IdentityClass&lt;T&gt; implements GenericInterface&lt;T&gt; &#123;</span><br><span class="line">  value: T</span><br><span class="line"></span><br><span class="line">  constructor(value: T) &#123;</span><br><span class="line">    this.value = value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getIdentity(): T &#123;</span><br><span class="line">    return this.value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const myNumberClass = new IdentityClass&lt;Number&gt;(68);</span><br><span class="line">console.log(myNumberClass.getIdentity()); // 68</span><br><span class="line"></span><br><span class="line">const myStringClass = new IdentityClass&lt;string&gt;("Semlinker!");</span><br><span class="line">console.log(myStringClass.getIdentity()); // Semlinker!</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span></span><br><span class="line">function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] &#123;</span><br><span class="line">  return obj[key];</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">async function stringPromise() &#123;</span><br><span class="line">  return "Hello, Semlinker!";</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function personPromise() &#123;</span><br><span class="line">  return &#123; name: "Semlinker", age: 30 &#125; as Person;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type PromiseType&lt;T&gt; = (args: any[]) =&gt; Promise&lt;T&gt;;</span><br><span class="line">type UnPromisify&lt;T&gt; = T extends PromiseType&lt;infer U&gt; ? U : never;</span><br><span class="line"></span><br><span class="line">type extractStringPromise = UnPromisify&lt;typeof stringPromise&gt;; // string</span><br><span class="line">type extractPersonPromise = UnPromisify&lt;typeof personPromise&gt;; // Person</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> tools</span></span><br><span class="line">type Partial&lt;T&gt; = &#123;</span><br><span class="line">    [P in keyof T]?: T[P];</span><br><span class="line">&#125;;</span><br><span class="line">type Record&lt;K extends keyof any, T&gt; = &#123;</span><br><span class="line">    [P in K]: T;</span><br><span class="line">&#125;;</span><br><span class="line">type Pick&lt;T, K extends keyof T&gt; = &#123;</span><br><span class="line">    [P in K]: T[P];</span><br><span class="line">&#125;;</span><br><span class="line">type Exclude&lt;T, U&gt; = T extends U ? never : T;</span><br><span class="line">type ReturnType&lt;T extends (...args: any) =&gt; any&gt; = T extends (...args: any) =&gt; infer R ? R : any;</span><br></pre></td></tr></table></figure>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="best-practices"><a href="#best-practices" class="headerlink" title="best practices"></a>best practices</h2><ul>
+<li><a href="https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#side-effects-on-props-change" target="_blank" rel="noopener">https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#side-effects-on-props-change</a></li>
+<li><a href="https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html" target="_blank" rel="noopener">https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html</a></li>
+</ul>
+<h1 id="Quote"><a href="#Quote" class="headerlink" title="Quote"></a>Quote</h1><ul>
+<li><a href="https://juejin.im/post/5b6f1800f265da282d45a79a" target="_blank" rel="noopener">https://juejin.im/post/5b6f1800f265da282d45a79a</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.sandseasoft.com/20180809153380181724439.png" alt="左韵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/10/MongoDB/" rel="next" title="MongoDB">
+                <i class="fa fa-chevron-left"></i> MongoDB
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/20/FED Advance Skils_/" rel="prev" title="FED Advance Skils">
+                FED Advance Skils <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim" alt="左韵">
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yunzuo92" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Life-Cycle"><span class="nav-number">1.</span> <span class="nav-text">Life Cycle</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Route"><span class="nav-number">2.</span> <span class="nav-text">Route</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Inline-CSS-style-component"><span class="nav-number">3.</span> <span class="nav-text">Inline CSS style component</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Component"><span class="nav-number">4.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-redux"><span class="nav-number">5.</span> <span class="nav-text">react-redux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#useHook"><span class="nav-number">6.</span> <span class="nav-text">useHook</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Geninic"><span class="nav-number">7.</span> <span class="nav-text">Geninic</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tips"><span class="nav-number">8.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#best-practices"><span class="nav-number">8.1.</span> <span class="nav-text">best practices</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quote"><span class="nav-number">9.</span> <span class="nav-text">Quote</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">92.2k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

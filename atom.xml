@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jik92</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2021-01-04T04:14:12.288Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>左韵</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ORM Framework Mybatis</title>
+    <link href="http://yoursite.com/2021/01/04/ORM%20Framework%20Python%20sqlalchemy/"/>
+    <id>http://yoursite.com/2021/01/04/ORM Framework Python sqlalchemy/</id>
+    <published>2021-01-04T02:14:29.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://aiopg.readthedocs.io/en/stable/examples.html&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+      <category term="orm" scheme="http://yoursite.com/tags/orm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bigdata Spark Guide</title>
+    <link href="http://yoursite.com/2020/12/26/Bigdata%20Spark%20Guide/"/>
+    <id>http://yoursite.com/2020/12/26/Bigdata Spark Guide/</id>
+    <published>2020-12-26T16:19:54.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="big data" scheme="http://yoursite.com/categories/big-data/"/>
+    
+    
+      <category term="spark" scheme="http://yoursite.com/tags/spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bigdata Hadoop Guide</title>
+    <link href="http://yoursite.com/2020/12/26/Bigdata%20Hadoop%20Guide/"/>
+    <id>http://yoursite.com/2020/12/26/Bigdata Hadoop Guide/</id>
+    <published>2020-12-26T16:19:54.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;h1 id=&quot;Architecture&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="big data" scheme="http://yoursite.com/categories/big-data/"/>
+    
+    
+      <category term="spark" scheme="http://yoursite.com/tags/spark/"/>
+    
+      <category term="hadoop" scheme="http://yoursite.com/tags/hadoop/"/>
+    
+      <category term="hive" scheme="http://yoursite.com/tags/hive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bigdata Kylin_Zepplin</title>
+    <link href="http://yoursite.com/2020/12/21/Bigdata%20Kylin_Zepplin/"/>
+    <id>http://yoursite.com/2020/12/21/Bigdata Kylin_Zepplin/</id>
+    <published>2020-12-21T16:19:54.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="big data" scheme="http://yoursite.com/categories/big-data/"/>
+    
+    
+      <category term="hue" scheme="http://yoursite.com/tags/hue/"/>
+    
+      <category term="zepplin" scheme="http://yoursite.com/tags/zepplin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FED DSL</title>
+    <link href="http://yoursite.com/2020/12/20/FED%20DSL/"/>
+    <id>http://yoursite.com/2020/12/20/FED DSL/</id>
+    <published>2020-12-20T16:19:54.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="FED" scheme="http://yoursite.com/categories/FED/"/>
+    
+    
+      <category term="dsl" scheme="http://yoursite.com/tags/dsl/"/>
+    
+      <category term="ast" scheme="http://yoursite.com/tags/ast/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Bigdata HBase_ Phoenix</title>
+    <link href="http://yoursite.com/2020/12/20/Bigdata%20HBase_%20Phoenix/"/>
+    <id>http://yoursite.com/2020/12/20/Bigdata HBase_ Phoenix/</id>
+    <published>2020-12-20T16:19:54.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;h1 id=&quot;Architecture&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="big data" scheme="http://yoursite.com/categories/big-data/"/>
+    
+    
+      <category term="hbase" scheme="http://yoursite.com/tags/hbase/"/>
+    
+      <category term="phoenix" scheme="http://yoursite.com/tags/phoenix/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Proxy  Frp</title>
+    <link href="http://yoursite.com/2020/12/20/Proxy%20%20Frp/"/>
+    <id>http://yoursite.com/2020/12/20/Proxy  Frp/</id>
+    <published>2020-12-20T11:52:07.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Concept&quot;&gt;&lt;a href=&quot;#Concept&quot; class=&quot;headerlink&quot; title=&quot;Concept&quot;&gt;&lt;/a&gt;Concept&lt;/h1&gt;&lt;p&gt;​        透明代理，基于ssh建立隧道连接内网&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+      <category term="ops" scheme="http://yoursite.com/categories/ops/"/>
+    
+    
+      <category term="frp" scheme="http://yoursite.com/tags/frp/"/>
+    
+      <category term="proxy" scheme="http://yoursite.com/tags/proxy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Server Gitlab</title>
+    <link href="http://yoursite.com/2020/12/20/0115-Server%20Gitlab/"/>
+    <id>http://yoursite.com/2020/12/20/0115-Server Gitlab/</id>
+    <published>2020-12-20T06:09:46.000Z</published>
+    <updated>2021-01-04T04:14:12.284Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Comcept&quot;&gt;&lt;a href=&quot;#Comcept&quot; class=&quot;headerlink&quot; title=&quot;Comcept&quot;&gt;&lt;/a&gt;Comcept&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;root&lt;/li&gt;
+&lt;li&gt;control version
+        
+      
+    
+    </summary>
+    
+      <category term="ops" scheme="http://yoursite.com/categories/ops/"/>
+    
+    
+      <category term="gitlab" scheme="http://yoursite.com/tags/gitlab/"/>
+    
+      <category term="gitlab-runner" scheme="http://yoursite.com/tags/gitlab-runner/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git Guide</title>
+    <link href="http://yoursite.com/2020/12/20/Version%20Control%20System_Git/"/>
+    <id>http://yoursite.com/2020/12/20/Version Control System_Git/</id>
+    <published>2020-12-20T00:00:00.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;http://img.sandseasoft.com/image/7/6f/60376e015ea1836d1fc152594e99a.png&quot; alt&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Software&quot;&gt;&lt;a href=&quot;#Software&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="build_env" scheme="http://yoursite.com/categories/build-env/"/>
+    
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+      <category term="source_tree" scheme="http://yoursite.com/tags/source-tree/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Domain Specific Language</title>
+    <link href="http://yoursite.com/2020/12/19/Domain%20Specific%20Language/"/>
+    <id>http://yoursite.com/2020/12/19/Domain Specific Language/</id>
+    <published>2020-12-19T17:58:25.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+    
+    
+      <category term="DSL" scheme="http://yoursite.com/tags/DSL/"/>
+    
+      <category term="AST" scheme="http://yoursite.com/tags/AST/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>K3S Traefik Guide</title>
+    <link href="http://yoursite.com/2020/12/16/K3S%20Traefik%20Guide/"/>
+    <id>http://yoursite.com/2020/12/16/K3S Traefik Guide/</id>
+    <published>2020-12-16T17:58:25.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Concepts&quot;&gt;&lt;a href=&quot;#Concepts&quot; class=&quot;headerlink&quot; title=&quot;Concepts&quot;&gt;&lt;/a&gt;Concepts&lt;/h2&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="ops" scheme="http://yoursite.com/categories/ops/"/>
+    
+    
+      <category term="k3s" scheme="http://yoursite.com/tags/k3s/"/>
+    
+      <category term="traefik" scheme="http://yoursite.com/tags/traefik/"/>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernete Guide</title>
+    <link href="http://yoursite.com/2020/12/11/Kubernetes%20Guide/"/>
+    <id>http://yoursite.com/2020/12/11/Kubernetes Guide/</id>
+    <published>2020-12-11T17:58:25.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;h2 id=&quot;Feature&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="ops" scheme="http://yoursite.com/categories/ops/"/>
+    
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="kubernete" scheme="http://yoursite.com/tags/kubernete/"/>
+    
+      <category term="minikube" scheme="http://yoursite.com/tags/minikube/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FED TEST e2e-test cypress</title>
+    <link href="http://yoursite.com/2020/12/11/FED%20TEST%20e2e-test%20cypress/"/>
+    <id>http://yoursite.com/2020/12/11/FED TEST e2e-test cypress/</id>
+    <published>2020-12-11T17:58:25.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h1&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="fed" scheme="http://yoursite.com/categories/fed/"/>
+    
+      <category term="test" scheme="http://yoursite.com/categories/fed/test/"/>
+    
+    
+      <category term="E2e-test" scheme="http://yoursite.com/tags/E2e-test/"/>
+    
+      <category term="cypress" scheme="http://yoursite.com/tags/cypress/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FED Advance Skils</title>
+    <link href="http://yoursite.com/2020/04/20/FED%20Advance%20Skils_/"/>
+    <id>http://yoursite.com/2020/04/20/FED Advance Skils_/</id>
+    <published>2020-04-20T01:51:04.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;service-work&quot;&gt;&lt;a href=&quot;#service-work&quot; class=&quot;headerlink&quot; title=&quot;service work&quot;&gt;&lt;/a&gt;service work&lt;/h1&gt;&lt;p&gt;让js实现多线程&lt;br&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="dev" scheme="http://yoursite.com/categories/dev/"/>
+    
+      <category term="front-end" scheme="http://yoursite.com/categories/dev/front-end/"/>
+    
+    
+      <category term="react" scheme="http://yoursite.com/tags/react/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FED Reacts</title>
+    <link href="http://yoursite.com/2020/04/10/FED%20Reactjs/"/>
+    <id>http://yoursite.com/2020/04/10/FED Reactjs/</id>
+    <published>2020-04-10T01:51:04.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Life-Cycle&quot;&gt;&lt;a href=&quot;#Life-Cycle&quot; class=&quot;headerlink&quot; title=&quot;Life Cycle&quot;&gt;&lt;/a&gt;Life Cycle&lt;/h1&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="dev" scheme="http://yoursite.com/categories/dev/"/>
+    
+      <category term="front-end" scheme="http://yoursite.com/categories/dev/front-end/"/>
+    
+    
+      <category term="react" scheme="http://yoursite.com/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB</title>
+    <link href="http://yoursite.com/2020/04/10/MongoDB/"/>
+    <id>http://yoursite.com/2020/04/10/MongoDB/</id>
+    <published>2020-04-10T00:00:00.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;Grammar &lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="dev" scheme="http://yoursite.com/categories/dev/"/>
+    
+      <category term="db" scheme="http://yoursite.com/categories/dev/db/"/>
+    
+    
+      <category term="mongodb" scheme="http://yoursite.com/tags/mongodb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Server Gitlab</title>
+    <link href="http://yoursite.com/2020/04/03/Server%20Gitlab/"/>
+    <id>http://yoursite.com/2020/04/03/Server Gitlab/</id>
+    <published>2020-04-03T06:09:46.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;official&quot;&gt;&lt;a href=&quot;#official&quot; class=&quot;headerlink&quot; title=&quot;official&quot;&gt;&lt;/a&gt;official&lt;/h2&gt;&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="ops" scheme="http://yoursite.com/categories/ops/"/>
+    
+    
+      <category term="gitlab" scheme="http://yoursite.com/tags/gitlab/"/>
+    
+      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MCU Digital Circuits Guide</title>
+    <link href="http://yoursite.com/2020/02/26/MCU%20Digital%20Circuits%20Guide/"/>
+    <id>http://yoursite.com/2020/02/26/MCU Digital Circuits Guide/</id>
+    <published>2020-02-26T00:00:00.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;数字电路知识&quot;&gt;&lt;a href=&quot;#数字电路知识&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="soc" scheme="http://yoursite.com/categories/soc/"/>
+    
+    
+      <category term="mcu" scheme="http://yoursite.com/tags/mcu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Language C/C++</title>
+    <link href="http://yoursite.com/2020/02/26/Language%20C_C++/"/>
+    <id>http://yoursite.com/2020/02/26/Language C_C++/</id>
+    <published>2020-02-26T00:00:00.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;标准 98/11/14/18&lt;/p&gt;
+&lt;p&gt;C语言基础&lt;/p&gt;
+&lt;p&gt;C++补充&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;封装继承多态&lt;/li&gt;
+&lt;li&gt;指针&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;格式&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="dev" scheme="http://yoursite.com/categories/dev/"/>
+    
+    
+      <category term="c" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MCU Ardunio Codes</title>
+    <link href="http://yoursite.com/2020/02/25/MCU%20Arduino%20Codes/"/>
+    <id>http://yoursite.com/2020/02/25/MCU Arduino Codes/</id>
+    <published>2020-02-25T00:00:00.000Z</published>
+    <updated>2021-01-04T04:14:12.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;​    目前拿到的MCU有ESP8266、ESP32 、Arduino Nano、ESP 8266 01
+        
+      
+    
+    </summary>
+    
+      <category term="soc" scheme="http://yoursite.com/categories/soc/"/>
+    
+    
+      <category term="mcu" scheme="http://yoursite.com/tags/mcu/"/>
+    
+      <category term="arduino" scheme="http://yoursite.com/tags/arduino/"/>
+    
+  </entry>
+  
+</feed>

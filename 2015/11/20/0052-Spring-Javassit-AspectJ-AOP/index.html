@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml">
+
+
+
+  <meta name="keywords" content="java,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jik92" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="引言基于 jvm 的静态语言的动态实现一般有几种方法， 其中分两大类，jvm 的动态代理和字节码编程。其中 jvm 动态代理 proxydynmic 面对接口编程，字节码编程主要对应的包是 cglib 和 javassit，cglib 性能很好，有很多约束条件，如需要默认的初始化构造方法。javassit 相对来说更加好用，由于 classloader 默认一个类只能够加载一次，也需要 agent">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-Javassit&#x2F;AspectJ&#x2F;AOP">
+<meta property="og:url" content="http://yoursite.com/2015/11/20/0052-Spring-Javassit-AspectJ-AOP/index.html">
+<meta property="og:site_name" content="Jik92">
+<meta property="og:description" content="引言基于 jvm 的静态语言的动态实现一般有几种方法， 其中分两大类，jvm 的动态代理和字节码编程。其中 jvm 动态代理 proxydynmic 面对接口编程，字节码编程主要对应的包是 cglib 和 javassit，cglib 性能很好，有很多约束条件，如需要默认的初始化构造方法。javassit 相对来说更加好用，由于 classloader 默认一个类只能够加载一次，也需要 agent">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.sandseasoft.com/image/c/b2/50383d59d486d145365d6fd0e2db6.png">
+<meta property="og:image" content="http://img.sandseasoft.com/image/6/bb/2a5ab206a6c4103f666017b41604c.png">
+<meta property="og:updated_time" content="2021-01-04T04:14:12.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring-Javassit&#x2F;AspectJ&#x2F;AOP">
+<meta name="twitter:description" content="引言基于 jvm 的静态语言的动态实现一般有几种方法， 其中分两大类，jvm 的动态代理和字节码编程。其中 jvm 动态代理 proxydynmic 面对接口编程，字节码编程主要对应的包是 cglib 和 javassit，cglib 性能很好，有很多约束条件，如需要默认的初始化构造方法。javassit 相对来说更加好用，由于 classloader 默认一个类只能够加载一次，也需要 agent">
+<meta name="twitter:image" content="http://img.sandseasoft.com/image/c/b2/50383d59d486d145365d6fd0e2db6.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>Spring-Javassit/AspectJ/AOP | Jik92</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jik92</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/20/0052-Spring-Javassit-AspectJ-AOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="左韵">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jik92">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring-Javassit/AspectJ/AOP</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-20T17:38:02+00:00">
+                2015-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tryghost/" itemprop="url" rel="index">
+                    <span itemprop="name">tryghost</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,839
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>基于 jvm 的静态语言的动态实现一般有几种方法， 其中分两大类，jvm 的动态代理和字节码编程。其中 jvm 动态代理 proxydynmic 面对接口编程，字节码编程主要对应的包是 cglib 和 javassit，cglib 性能很好，有很多约束条件，如需要默认的初始化构造方法。javassit 相对来说更加好用，由于 classloader 默认一个类只能够加载一次，也需要 agent 支持或者自定义 classloader。</p>
+<h1 id="代理类"><a href="#代理类" class="headerlink" title="代理类"></a>代理类</h1><p>1.5之后的特性, JVM级别做了AOP支持，核心Instrumentation接口。<br>使用<br>-javaagent:daemon.jar </p>
+<h1 id="字节码增强"><a href="#字节码增强" class="headerlink" title="字节码增强"></a>字节码增强</h1><p><img src="http://img.sandseasoft.com/image/c/b2/50383d59d486d145365d6fd0e2db6.png" alt></p>
+<ul>
+<li>cglib</li>
+<li>javaassit</li>
+</ul>
+<h1 id="一些工具"><a href="#一些工具" class="headerlink" title="一些工具"></a>一些工具</h1><ul>
+<li>Btree</li>
+</ul>
+<p><a href="https://github.com/jbachorik/btrace2" target="_blank" rel="noopener">https://github.com/jbachorik/btrace2</a><br><a href="http://www.iteye.com/topic/1005918" target="_blank" rel="noopener">http://www.iteye.com/topic/1005918</a></p>
+<ul>
+<li>beanutils</li>
+</ul>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>动态代理类生成的对象会占用PermGen 内存，而PermGen内存是极难回收的，吃完就会 OOM。<br> spring 的反射是基于 cglib 的，aop 也是基于 cglib 的，那么如果PermGen 内存溢出请检查反射是否使用不当，或者性能问题导致代理类无法及时释放。</p>
+<p>claasloader 要求同一个类只能注册一次， 如果需要做到类重载那么需要自定义一个 classloader。</p>
+<p><img src="http://img.sandseasoft.com/image/6/bb/2a5ab206a6c4103f666017b41604c.png" alt></p>
+<h1 id="Javassist-使用"><a href="#Javassist-使用" class="headerlink" title="Javassist 使用"></a>Javassist 使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">public class JavassistDemo1 &#123;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 动态构造对象</span><br><span class="line">   */</span><br><span class="line">  @Test</span><br><span class="line">  public void demo() throws NotFoundException, CannotCompileException, ClassNotFoundException, IllegalAccessException,</span><br><span class="line">                            InstantiationException, NoSuchMethodException, InvocationTargetException, IOException &#123;</span><br><span class="line">    ClassPool cp = ClassPool.getDefault();</span><br><span class="line">    //另一种方法,当 classpool 没有被引用的时候,会被释放</span><br><span class="line">//    ClassPool cp = new ClassPool(true);</span><br><span class="line">    Loader loader = new Loader(cp);</span><br><span class="line"></span><br><span class="line">    CtClass ctClass = cp.makeClass(&quot;com.raycloud.express.monitor.javassist.sample.ExpDemo&quot;);</span><br><span class="line"></span><br><span class="line">    StringBuffer body = null;</span><br><span class="line">    //参数  1：属性类型  2：属性名称  3：所属类CtClass</span><br><span class="line">    CtField ctField = new CtField(cp.get(&quot;java.lang.String&quot;), &quot;name&quot;, ctClass);</span><br><span class="line">    ctField.setModifiers(Modifier.PRIVATE);</span><br><span class="line">    //设置name属性的get set方法</span><br><span class="line">    ctClass.addMethod(CtNewMethod.setter(&quot;setName&quot;, ctField));</span><br><span class="line">    ctClass.addMethod(CtNewMethod.getter(&quot;getName&quot;, ctField));</span><br><span class="line">    ctClass.addField(ctField, CtField.Initializer.constant(&quot;default&quot;));</span><br><span class="line"></span><br><span class="line">    //参数  1：参数类型   2：所属类CtClass</span><br><span class="line">    CtConstructor ctConstructor = new CtConstructor(new CtClass[]&#123;&#125;, ctClass);</span><br><span class="line">    body = new StringBuffer();</span><br><span class="line">    body.append(&quot;&#123;\n name=\&quot;me\&quot;;\n&#125;&quot;);</span><br><span class="line">    ctConstructor.setBody(body.toString());</span><br><span class="line">    ctClass.addConstructor(ctConstructor);</span><br><span class="line"></span><br><span class="line">    //参数：  1：返回类型  2：方法名称  3：传入参数类型  4：所属类CtClass</span><br><span class="line">    CtMethod ctMethod = new CtMethod(CtClass.voidType, &quot;execute&quot;, new CtClass[]&#123;&#125;, ctClass);</span><br><span class="line">    ctMethod.setModifiers(Modifier.PUBLIC);</span><br><span class="line">//    ctMethod.insertBefore(&quot;&#123; System.out.println($0); System.out.println($2); &#125;&quot;);</span><br><span class="line"></span><br><span class="line">    body = new StringBuffer();</span><br><span class="line">    body.append(&quot;&#123;\n System.out.println(name);&quot;);</span><br><span class="line">    body.append(&quot;\n System.out.println(\&quot;execute ok\&quot;);&quot;);</span><br><span class="line">    body.append(&quot;\n return ;&quot;);</span><br><span class="line">    body.append(&quot;\n&#125;&quot;);</span><br><span class="line">    ctMethod.setBody(body.toString());</span><br><span class="line">    ctClass.addMethod(ctMethod);</span><br><span class="line">    Class&lt;?&gt; c = ctClass.toClass();</span><br><span class="line">    Object o = c.newInstance();</span><br><span class="line">    Method method = o.getClass().getMethod(&quot;execute&quot;, new Class[]&#123;&#125;);</span><br><span class="line">    //调用字节码生成类的execute方法</span><br><span class="line">    method.invoke(o, new Object[]&#123;&#125;);</span><br><span class="line"></span><br><span class="line">    //写文件,该类冻结</span><br><span class="line">    ctClass.debugWriteFile();</span><br><span class="line">    //生成类加载到对应的 classloader, 该类冻结</span><br><span class="line">    ctClass.setName(&quot;ExpDemo$$Impl&quot;);</span><br><span class="line">    Class clazz = ctClass.toClass();</span><br><span class="line">    ctClass.toClass(loader);</span><br><span class="line"></span><br><span class="line">    clazz.getMethod(&quot;show&quot;).invoke(clazz.newInstance(), &quot;hello&quot;);</span><br><span class="line">    ctClass.defrost();  // 解冻一个类，对应freeze方法</span><br><span class="line"></span><br><span class="line">    //释放内存,踢出类</span><br><span class="line">    ctClass.detach();</span><br><span class="line">    ClassPool.doPruning = true;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">public class JavassistDemo2 &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 拦截器</span><br><span class="line">   */</span><br><span class="line">  @Test</span><br><span class="line">  public void demo() throws NotFoundException, CannotCompileException, ClassNotFoundException, IllegalAccessException,</span><br><span class="line">                            InstantiationException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line">    // 实例化代理类工厂</span><br><span class="line">    ProxyFactory factory = new ProxyFactory();</span><br><span class="line"></span><br><span class="line">    //设置父类，ProxyFactory将会动态生成一个类，继承该父类</span><br><span class="line">    factory.setSuperclass(TestProxy.class);</span><br><span class="line"></span><br><span class="line">    //设置过滤器，判断哪些方法调用需要被拦截</span><br><span class="line">    factory.setFilter(new MethodFilter() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public boolean isHandled(Method m) &#123;</span><br><span class="line">        return m.getName().startsWith(&quot;get&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    Class&lt;?&gt; clazz = factory.createClass();</span><br><span class="line">    TestProxy proxy = (TestProxy) clazz.newInstance();</span><br><span class="line">    ((ProxyObject) proxy).setHandler(new MethodHandler() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable &#123;</span><br><span class="line">        //拦截后前置处理，改写name属性的内容</span><br><span class="line">        //实际情况可根据需求修改</span><br><span class="line">        System.out.println(thisMethod.getName() + &quot;被调用&quot;);</span><br><span class="line">        try &#123;</span><br><span class="line">          Object ret = proceed.invoke(self, args);</span><br><span class="line">          System.out.println(&quot;返回值: &quot; + ret);</span><br><span class="line">          return ret;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">          System.out.println(thisMethod.getName() + &quot;调用完毕&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    proxy.setName(&quot;Alvin&quot;);</span><br><span class="line">    proxy.setValue(&quot;1000&quot;);</span><br><span class="line">    proxy.getName();</span><br><span class="line">    proxy.getValue();</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">public class JavassistDemo3 &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 获取接口</span><br><span class="line">   */</span><br><span class="line">  @Test</span><br><span class="line">  public void test() throws NotFoundException &#123;</span><br><span class="line">    // 获取默认类型池对象</span><br><span class="line">    ClassPool classPool = ClassPool.getDefault();</span><br><span class="line"></span><br><span class="line">    // 获取指定的类型</span><br><span class="line">    CtClass ctClass = classPool.get(&quot;java.lang.String&quot;);</span><br><span class="line"></span><br><span class="line">    System.out.println(ctClass.getName());  // 获取类名</span><br><span class="line">    System.out.println(&quot;\tpackage &quot; + ctClass.getPackageName());    // 获取包名</span><br><span class="line">    System.out</span><br><span class="line">        .print(&quot;\t&quot; + Modifier.toString(ctClass.getModifiers()) + &quot; class &quot; + ctClass.getSimpleName());   // 获取限定符和简要类名</span><br><span class="line">    System.out.print(&quot; extends &quot; + ctClass.getSuperclass().getName());  // 获取超类</span><br><span class="line">    // 获取接口</span><br><span class="line">    if (ctClass.getInterfaces() != null) &#123;</span><br><span class="line">      System.out.print(&quot; implements &quot;);</span><br><span class="line">      boolean first = true;</span><br><span class="line">      for (CtClass c : ctClass.getInterfaces()) &#123;</span><br><span class="line">        if (first) &#123;</span><br><span class="line">          first = false;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          System.out.print(&quot;, &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.print(c.getName());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 获取方法参数</span><br><span class="line">   */</span><br><span class="line">  @Test</span><br><span class="line">  public void demo() throws NotFoundException, CannotCompileException, ClassNotFoundException, IllegalAccessException,</span><br><span class="line">                            InstantiationException, NoSuchMethodException, InvocationTargetException &#123;</span><br><span class="line"></span><br><span class="line">    ClassLoader classLoader = ClassPool.getDefault().getClassLoader();</span><br><span class="line">    // 获取要修改的类</span><br><span class="line">    Class&lt;?&gt; clazz = classLoader.loadClass(&quot;edu.alvin.reflect.TestLib&quot;);</span><br><span class="line"></span><br><span class="line">    // 实例化类型池</span><br><span class="line">    ClassPool classPool = ClassPool.getDefault();</span><br><span class="line">//    classPool.appendClassPath(clazz);</span><br><span class="line">    CtClass ctClass = classPool.get(clazz.getName());</span><br><span class="line"></span><br><span class="line">    // 获取方法</span><br><span class="line">    CtMethod</span><br><span class="line">        method =</span><br><span class="line">        ctClass</span><br><span class="line">            .getDeclaredMethod(&quot;show&quot;);</span><br><span class="line">    // 判断是否为静态方法</span><br><span class="line">    int staticIndex = Modifier.isStatic(method.getModifiers()) ? 0 : 1;</span><br><span class="line"></span><br><span class="line">    // 获取方法的参数</span><br><span class="line">    MethodInfo methodInfo = method.getMethodInfo();</span><br><span class="line">    CodeAttribute codeAttribute = methodInfo.getCodeAttribute();</span><br><span class="line">    LocalVariableAttribute</span><br><span class="line">        localVariableAttribute =</span><br><span class="line">        (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; method.getParameterTypes().length; i++) &#123;</span><br><span class="line">      System.out.println(&quot;第&quot; + (i + 1) + &quot;个参数名称为: &quot; + localVariableAttribute.variableName(staticIndex + i));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">  Loader loader = new Loader();</span><br><span class="line"></span><br><span class="line">  CtClass ctClass = ClassPool.getDefault().get(&quot;com.raycloud.express.monitor.javassist.sample.ExpDemo&quot;);</span><br><span class="line">  CtClass xxx = ClassPool.getDefault().get(&quot;com.raycloud.express.monitor.javassist.sample.SupExpDemo&quot;);</span><br><span class="line">  ctClass.setSuperclass(xxx);</span><br><span class="line"></span><br><span class="line">  String needChangeName = &quot;setName&quot;;</span><br><span class="line">  CtMethod needChangeMethod = ctClass.getDeclaredMethod(needChangeName);</span><br><span class="line">  String newName = needChangeName + &quot;$impl&quot;;</span><br><span class="line">  needChangeMethod.setName(newName);</span><br><span class="line">  CtMethod newMethod = CtNewMethod.copy(needChangeMethod, needChangeName, ctClass, null);</span><br><span class="line"></span><br><span class="line">  //主要的注入代码</span><br><span class="line">  StringBuffer body = new StringBuffer();</span><br><span class="line">  body.append(&quot;&#123;\nlong start = System.currentTimeMillis();\n&quot;);</span><br><span class="line">  //调用原有代码，类似于method();($$)表示所有的参数</span><br><span class="line">  body.append(newName + &quot;($$);\n&quot;);</span><br><span class="line">  body.append(&quot;System.out.println(\&quot;Call to method &quot;</span><br><span class="line">              + needChangeName</span><br><span class="line">              + &quot; took \&quot; +\n (System.currentTimeMillis()-start) + &quot;</span><br><span class="line">              + &quot;\&quot; ms.\&quot;);\n&quot;);</span><br><span class="line"></span><br><span class="line">  body.append(&quot;&#125;&quot;);</span><br><span class="line">  //替换新方法</span><br><span class="line">  newMethod.setBody(body.toString());</span><br><span class="line">  //增加新方法</span><br><span class="line">  ctClass.addMethod(newMethod);</span><br><span class="line">  //类已经更改，注意不能使用A a=new A();，因为在同一个classloader中，不允许装载同一个类两次</span><br><span class="line">  ctClass.debugWriteFile();</span><br><span class="line">  ExpDemo expDemo = (ExpDemo) ctClass.toClass(loader).newInstance();</span><br><span class="line">  expDemo.setName(&quot;xxx&quot;);</span><br><span class="line">&#125; catch (CannotCompileException e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//也就是说这个类加载器里面的这个对象全部都被改变了</span><br><span class="line">ExpDemo b = new ExpDemo();</span><br><span class="line">b.setName(&quot;xxx&quot;);</span><br></pre></td></tr></table></figure>
+<h1 id="引用资料"><a href="#引用资料" class="headerlink" title="引用资料"></a>引用资料</h1><p><a href="https://blog.newrelic.com/2014/09/29/diving-bytecode-manipulation-creating-audit-log-asm-javassist/" target="_blank" rel="noopener">https://blog.newrelic.com/2014/09/29/diving-bytecode-manipulation-creating-audit-log-asm-javassist/</a></p>
+<p><a href="http://zhxing.iteye.com/blog/1703305" target="_blank" rel="noopener">http://zhxing.iteye.com/blog/1703305</a></p>
+<p><a href="http://yonglin4605.iteye.com/blog/1396494" target="_blank" rel="noopener">http://yonglin4605.iteye.com/blog/1396494</a></p>
+<h1 id="AspectJ"><a href="#AspectJ" class="headerlink" title="AspectJ"></a>AspectJ</h1><p>cglib 需要做字节码修改必须要有一个默认的构造方法.</p>
+<p>写一个切面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@Aspect</span><br><span class="line">public class SimpleAspect &#123;</span><br><span class="line"></span><br><span class="line">  @Pointcut(&quot;execution(* com.quicloud.*Controller*.*(..))&quot;)</span><br><span class="line">  public void pointCut() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  @After(&quot;pointCut()&quot;)</span><br><span class="line">  public void after(JoinPoint joinPoint) &#123;</span><br><span class="line">    System.out.println(&quot;after aspect executed&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Before(&quot;pointCut() &amp;&amp; exp()&quot;)</span><br><span class="line">  public void before(JoinPoint joinPoint) &#123;</span><br><span class="line">    //如果需要这里可以取出参数进行处理</span><br><span class="line">    //Object[] args = joinPoint.getArgs();</span><br><span class="line">    System.out.println(&quot;before aspect executing&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @AfterReturning(pointcut = &quot;pointCut()&quot;, returning = &quot;returnVal&quot;)</span><br><span class="line">  public void afterReturning(JoinPoint joinPoint, Object returnVal) &#123;</span><br><span class="line">    System.out.println(&quot;afterReturning executed, return result is &quot;</span><br><span class="line">                       + returnVal);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Around(&quot;pointCut()&quot;)</span><br><span class="line">  public void around(ProceedingJoinPoint pjp) throws Throwable &#123;</span><br><span class="line">    System.out.println(&quot;around start..&quot;);</span><br><span class="line">    try &#123;</span><br><span class="line">      pjp.proceed();</span><br><span class="line">    &#125; catch (Throwable ex) &#123;</span><br><span class="line">      System.out.println(&quot;error in around&quot;);</span><br><span class="line">      throw ex;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(&quot;around end&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @AfterThrowing(pointcut = &quot;pointCut()&quot;, throwing = &quot;error&quot;)</span><br><span class="line">  public void afterThrowing(JoinPoint jp, Throwable error) &#123;</span><br><span class="line">    System.out.println(&quot;error:&quot; + error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;       xsi:schemaLocation=&quot;http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;aop:aspectj-autoproxy/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure></p>
+<p>pom.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.8.7&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://docs.spring.io/spring/docs/2.5.x/reference/aop.html#" target="_blank" rel="noopener">http://docs.spring.io/spring/docs/2.5.x/reference/aop.html#</a> aop-choosing</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝个咖啡 Thanks♪(･ω･)ﾉ</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="http://img.sandseasoft.com/20180809153380181724439.png" alt="左韵 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/19/0051-部署-sentry/" rel="next" title="部署-sentry">
+                <i class="fa fa-chevron-left"></i> 部署-sentry
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/20/0053-2014阿里云企业架构会场总结/" rel="prev" title="2014阿里云企业架构会场总结">
+                2014阿里云企业架构会场总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://img.sandseasoft.com/20180809153380021758140.jpg?imageslim" alt="左韵">
+            
+              <p class="site-author-name" itemprop="name">左韵</p>
+              <p class="site-description motion-element" itemprop="description">using J2EE/Web,CD/CI, microservice</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jik1992" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:chinajik@gmail.com" target="_blank" title="Mail">
+                      
+                        <i class="fa fa-fw fa-stack-overflow"></i>Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/Jik1992" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/yunzuo92" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代理类"><span class="nav-number">2.</span> <span class="nav-text">代理类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字节码增强"><span class="nav-number">3.</span> <span class="nav-text">字节码增强</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些工具"><span class="nav-number">4.</span> <span class="nav-text">一些工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">5.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javassist-使用"><span class="nav-number">6.</span> <span class="nav-text">Javassist 使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用资料"><span class="nav-number">7.</span> <span class="nav-text">引用资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AspectJ"><span class="nav-number">8.</span> <span class="nav-text">AspectJ</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChinaJik</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">92.2k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://github.com/jik1992/zuoyun.me">GitHub Pages</a></div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+    
+  </script>
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
