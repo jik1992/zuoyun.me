@@ -202,7 +202,22 @@ type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => i
 
 # Tips
 
+```
+# nginx .conf
+server {
+  listen 80;
+  server_name 10.1.30.170;
+  root  /home/jik1992/project/marking;
+  location / {
+		try_files $uri $uri/ /index.html;
+  }
+}
+```
+
+
+
 ## best practices
+
 * https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#side-effects-on-props-change
 * https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
 

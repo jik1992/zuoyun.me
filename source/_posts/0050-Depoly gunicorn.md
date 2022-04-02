@@ -1,55 +1,61 @@
 title: Depoly gunicorn
-date: 2015/11/19 17:19:43
+date: 2020/2/01 17:19:43
 categories:
- - tryghost
+
+ - gunicorn
+ - python
+ - systemd
 
 tags:
- - python 
+ - python
 
 
 
 ---
 
-nginx+gunicorn+flask
+# Introduction
 
-http://gunicorn.org/# quickstart
+* http://gunicorn.org
 
-使用很简单
+# Usage
 
 ```language-bash
-  $ sudo pip install virtualenv
-  $ mkdir ~/environments/
-  $ virtualenv ~/environments/tutorial/
-  $ cd ~/environments/tutorial/
-  $ ls
-  bin  include  lib
-  $ source bin/activate
-  (tutorial) $ pip install gunicorn
-  (tutorial) $ mkdir myapp
-  (tutorial) $ cd myapp/
-  (tutorial) $ vi myapp.py
-  (tutorial) $ cat myapp.py
+# test
+gunicorn -b 0.0.0.0:8011 --timeout 3600 \
+				 --worker-class aiohttp.worker.GunicornWebWorker --capture-output \
+				 --log-file - task_online.mark_service.main:app
 
-  def app(environ, start_response):
-      data = "Hello, World!\n"
-      start_response("200 OK", [
-          ("Content-Type", "text/plain"),
-          ("Content-Length", str(len(data)))
-      ])
-      return iter([data])
+# lannch with deamon
+# added gunicorn.service in /etc/systemd/system/
 
-  (tutorial) $ ../bin/gunicorn -w 4 myapp:app
-  [2014-09-10 10:22:28 +0000] [30869] [INFO] Listening at: http://127.0.0.1:8000 (30869)
-  [2014-09-10 10:22:28 +0000] [30869] [INFO] Using worker: sync
-  [2014-09-10 10:22:28 +0000] [30874] [INFO] Booting worker with pid: 30874
-  [2014-09-10 10:22:28 +0000] [30875] [INFO] Booting worker with pid: 30875
-  [2014-09-10 10:22:28 +0000] [30876] [INFO] Booting worker with pid: 30876
-  [2014-09-10 10:22:28 +0000] [30877] [INFO] Booting worker with pid: 30877
+###
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+Type=notify
+User=jik1992
+Group=jik1992
+RuntimeDirectory=gunicorn
+WorkingDirectory=/home/jik1992/project/
+ExecStart=/usr/bin/gunicorn -b 0.0.0.0:8011 --timeout 3600 --worker-class aiohttp.worker.GunicornWebWorker --capture-output --log-file - task_online.mark_service.main:app
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+###
+
+sudo systemctl daemon-reload
+sudo systemctl stop gunicorn.service
+sudo systemctl start gunicorn.service
+sudo systemctl status gunicorn.service
 ```
 
 然后 nginx 再反代一下就好了
-
-tornado
 
 
 
